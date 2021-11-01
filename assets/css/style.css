@@ -16,6 +16,11 @@
     font-family: "FF7";
     src: url("../fonts/Reactor7.ttf") format("truetype");
 }
+@font-face 
+{
+    font-family: "MtSerrat";
+    src: url("../fonts/Montserrat-Regular.ttf") format("truetype");
+}
 body
 {
     margin:0;
@@ -219,21 +224,105 @@ CONSOLE
 /*************
 COMPETENCE
 *************/
+#article2 div:first-child:not(.textContainer,.line)
+{
+    display: flex;
+    height: 80vh;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#article2 div:last-child:not(.textContainer,.line)
+{
+    display: flex;
+    height: 80vh;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+}
 #article2,#article2 div div
 {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;
 }
-#article2 div:not(.textContainer)
+#article2 div div
 {
     width: 50%;
 }
-#article2 p
+#article2 div:not(.textContainer,.line,.line2)
+{
+    width: 50%;
+}
+#article2 p,#article2 span
 {
     margin: 0;
+    z-index: 1;
+}
+#article2 span
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+#article2 span:nth-child(even):not(.line,.line2)
+{
+    height: 50px;
+    width: 50px;
+    
+}
+body #article2 .textContainer span:nth-child(odd)
+{
+    height: 40px;
+    border-radius: 5px;
+}
+#article2 .textContainer:nth-child(odd) span
+{
+    background-color: var(--white);
+    border-radius: 50px;
+    color:var(--black);
 }
 
+#article2 .textContainer:nth-child(even) span
+{
+    background-color: var(--black);
+    border-radius: 50px;
+    color:var(--white);
+    border: 1px solid var(--white);
+}
+
+#article2 .textContainer
+{
+    position: relative;
+    margin: auto;
+    justify-content: space-between;
+}
+#article2 .line
+{
+    position: absolute;
+    top:48%;
+    height: 4px;
+    width: 100%;
+    background-color: var(--white);
+    z-index: -1;
+}
+#article2 .textContainer:nth-child(even) .line
+{
+    background-color: var(--black);
+    border: 1px solid var(--white);
+}
+
+#article2 div:last-child:not(.textContainer,.line) p:nth-child(odd)
+{
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#article2 div:last-child:not(.textContainer,.line) p:nth-child(even)
+{
+    font-family: "MtSerrat";
+}
 
 @keyframes bounceR
 {
