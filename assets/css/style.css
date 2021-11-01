@@ -142,7 +142,7 @@ header h2
 /*************
 SLIDER CONTENT
 *************/
-#article2,#article1,#console,#article4
+#article1,#console,#article4
 {
     position: absolute;
     right: 0%;
@@ -215,6 +215,25 @@ CONSOLE
     position: absolute;
     bottom:-200vh;
 }
+
+/*************
+COMPETENCE
+*************/
+#article2,#article2 div div
+{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+#article2 div:not(.textContainer)
+{
+    width: 50%;
+}
+#article2 p
+{
+    margin: 0;
+}
+
 
 @keyframes bounceR
 {

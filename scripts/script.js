@@ -1,3 +1,4 @@
+var blackscreen = document.getElementById("blackscreen");
 var visible= true; // blinking _
 var visibleStart= true; // blinking Intro
 
@@ -262,7 +263,6 @@ swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide 
     }
     if(swiper.activeIndex == 3) // Hardcoded Id of the animated dialog
     {
-        swiper.mousewheel.disable()
         showTitle(title3,interTitle,"titre");
     }
     if(swiper.activeIndex == 4 || swiper.activeIndex == 0)
