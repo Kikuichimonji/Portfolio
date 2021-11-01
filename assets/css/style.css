@@ -1,0 +1,256 @@
+:root
+{
+    box-sizing: border-box;
+    --header-height:100px;
+    --white:#ffffff;
+    --black:#000000;
+    --blackless:#131313;
+}
+@font-face 
+{
+    font-family: "OpenSans";
+    src: url("../fonts/OpenSans-VariableFont_wdth\,wght.ttf");
+}
+@font-face 
+{
+    font-family: "FF7";
+    src: url("../fonts/Reactor7.ttf") format("truetype");
+}
+body
+{
+    margin:0;
+    font-family: "OpenSans";
+    background: var(--blackless);
+    color: var(--white);
+}
+
+.fadeOutFast
+{
+    animation: fadeOut 0.5s forwards;
+}
+.hidden
+{
+    visibility: hidden;
+}
+
+/*************
+INTRO
+*************/
+
+#blackscreen
+{
+    background-color: black;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 11;
+    text-align: center;
+    display: initial;
+    font-family: "ff7";
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+#blackscreen h1
+{
+    margin:auto;
+    position: relative;
+    top:0;
+    opacity: 0;
+    width:90%;
+}
+#start
+{
+    position: absolute;
+    top: 50%;
+    right:30%;
+    opacity: 0;
+}
+#intro
+{
+    font-size: 3em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/*************
+SWIPER
+*************/
+#mainWraper
+{
+    height: 100vh;
+}
+#mainWraper .swiper 
+{
+    height: calc(100vh - var(--header-height));
+    width: 100%;
+    overflow: hidden;
+}
+.slide-inner 
+{
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+#mainWraper .swiper-button-next
+{
+    margin-right: 0.5em;
+    animation: bounceR 2s ease-in-out infinite;
+    text-shadow: 1px 0px 3px lightgray;
+    color:white ;
+}
+#mainWraper .swiper-button-prev
+{
+    margin-left: 0.5em;
+    animation: bounceL 2s ease-in-out infinite;
+    text-shadow: -1px 0px 3px lightgray;
+    color:white ;
+}
+
+#slideList .swiper-pagination-bullet,#slideList .swiper-pagination-bullet-active
+{
+    background-color:white; 
+    opacity: 1 ;
+}
+#slideList .swiper-pagination-bullet-active
+{
+    background-color:yellow; 
+}
+#slideList
+{
+    height: 30px;
+    top:65px;
+}
+
+/*************
+HEADER
+*************/
+
+header
+{
+    height: var(--header-height);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+}
+header h2
+{
+    display: inline;
+}
+
+/*************
+SLIDER CONTENT
+*************/
+#article2,#article1,#console,#article4
+{
+    position: absolute;
+    right: 0%;
+    top: 0px;
+    width: 48%;
+    height: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.dialog__content /* FF7 dialog box :D */
+{
+    border: solid 1px #ffffff;
+    box-shadow: 1px 1px #e7dfe7,
+                -1px -1px #e7dfe7,
+                1px -1px #e7dfe7,
+                -1px 1px #e7dfe7,
+                0 -2px #9c9a9c,
+                -2px 0 #7b757b,
+                0 2px #424542;
+    padding: 5px 10px;
+    margin: 50px 50px;
+    background: #04009d;
+    background: linear-gradient(to bottom,  #04009d 0%,#06004d 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#04009d', endColorstr='#06004d',GradientType=0 );
+
+    border-radius: 7px;
+    color: #eff1ff;
+    text-shadow: 2px 2px #212421,
+                1px 1px #212021;
+    font-family: "FF7";
+    font-size: 20px;
+    font-weight: normal;
+    margin: 5px 0;
+}
+
+/*************
+CONSOLE
+*************/
+#console-top
+{
+    display: flex;
+    align-content: center;
+    background-color: white;
+    color: black;
+    font-size: 14px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: fixed;
+    width: 48%;
+}
+#console-top img
+{
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+#console
+{
+    border: solid 1px lightgray;
+    border-right: none;
+    border-color: lightgray;
+}
+#p1
+{
+    position: absolute;
+    top:0;
+}
+#p2
+{
+    position: absolute;
+    bottom:-200vh;
+}
+
+@keyframes bounceR
+{
+    0%,
+    100% 
+    {
+        transform: translate(0, 0);
+    }
+
+    50% 
+    {
+        transform: translate(10px, 0);
+    }
+}
+@keyframes bounceL
+{
+    0%,
+    100% 
+    {
+        transform: translate(0, 0);
+    }
+
+    50% 
+    {
+        transform: translate(-10px, 0);
+    }
+}
+
+@keyframes fadeOut 
+{
+    0% 
+    {
+        opacity:1;
+    }
+    100% 
+    {
+        opacity:0;
+    }
+}
