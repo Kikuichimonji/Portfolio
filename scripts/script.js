@@ -1,9 +1,13 @@
 var blackscreen = document.getElementById("blackscreen");
 var visible= true; // blinking _
 var visibleStart= true; // blinking Intro
-
-var texte ='\"Bonjour, Je me prénomme Thomas, je suis Web Développeur Fullstack avec préférence Back end et je suis passionné par le développement\" \n "J\'ai 33 ans, j\'habite dans le haut Rhin, et je suisbénévole chez Animaux en Détresse"'
-var texte2 = '\"Je suis passionné de jeux vidéo et de développementweb, le tout accompagné de musiques !" \n "J\'aime également les randonnées, la piscine, le lockpicking, le vélo, et m\'occuper des animaux"'
+var textTable = ['"Bonjour, Je me prénomme Thomas, je suis Web Développeur Fullstack avec préférence Back end et je suis passionné par le développement"','"J\'ai 33 ans, j\'habite dans le haut Rhin, et je suis bénévole chez Animaux en Détresse"'
+,'"Je suis passionné de jeux vidéo et de développement web, le tout accompagné de musiques !"',
+"J\'aime également les randonnées, la piscine, le lockpicking, le vélo, et m\'occuper des animaux"]
+var texte ='"Bonjour, Je me prénomme Thomas, je suis Web Développeur Fullstack avec préférence Back end et je suis passionné par le développement"'
+var texte2 = '"J\'ai 33 ans, j\'habite dans le haut Rhin, et je suis bénévole chez Animaux en Détresse"'
+var texte3 = '"Je suis passionné de jeux vidéo et de développement web, le tout accompagné de musiques !"'
+var texte4 = '"J\'aime également les randonnées, la piscine, le lockpicking, le vélo, et m\'occuper des animaux"'
 var showTextActive = false;
 var interDiag = 10; //Speed of the dialog
 var textInterval = [];
@@ -81,6 +85,50 @@ function showText(texte,interval,tag)//same as the one upside but for the Dialog
         }(count))
     } 
     setTimeout(function(){showTextActive=false;},(count*interval)) //to not overlap 2 dialog
+}
+function showTextTable(texte,interval,tag)//same as the one upside but for the Dialog
+{
+    showTextActive = true;
+    document.getElementById(tag).innerHTML="";
+    for(countText = 0; countText < texte.length; countText++)
+    {
+        
+        setTimeout((function(countText)
+        {
+            for(count = 0; count < texte[countText].length; count++)
+            {
+                (function(count)
+                {
+                    textInterval[count] = setTimeout(function()
+                    {
+                        document.getElementById(tag).innerHTML = document.getElementById(tag).innerHTML + texte[countText][count];
+                    },interval*count)
+                }(count))
+                
+            }
+            }(countText))
+        ,(texte[countText].length*interval))
+    }
+    setTimeout(function(){showTextActive=false;},(count*interval)) //to not overlap 2 dialog
+}
+function showDialog(texte,textIndex,index,interval,tag) //Fuck yeah it finally work
+{
+    for(countLetter = 0; countLetter < texte[textIndex[index]].length; countLetter++)
+    {
+        (function(countLetter)
+        {
+            setTimeout(function()
+            {
+                document.getElementById(tag).innerHTML = document.getElementById(tag).innerHTML + texte[textIndex[index]][countLetter]; //My head hurts
+                if(countLetter == texte[textIndex[index]].length-1)
+                    if(textIndex[index+1])
+                    {
+                        index++;
+                        showDialog(texte,textIndex,index,interval,"dialog"+index)
+                    }
+            },countLetter*interval)
+        })(countLetter)
+    }
 }
 
 underscore = window.setInterval(function() { //Blinking "_"
@@ -252,8 +300,12 @@ swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide 
             for(let countD = 0; countD < textInterval.length; countD++)
                 clearTimeout(textInterval[countD]);
 
-            setTimeout(function(){showText(texte,interDiag,"dialog")},500); // Timeout on the start of the text
-            setTimeout(function(){showText(texte2,interDiag,"dialog2")},500);
+            setTimeout(function(){showDialog(textTable,[0,3],0,interDiag,"dialog0")},500);
+            //setTimeout(function(){showTextTable(textTable,interDiag,"dialog")},500);
+            /*setTimeout(function(){showText(texte,interDiag,"dialog")},500); // Timeout on the start of the text
+            setTimeout(function(){showText(texte2,interDiag,"dialog2")},1000);
+            setTimeout(function(){showText(texte3,interDiag,"dialog3")},1500); // Timeout on the start of the text
+            setTimeout(function(){showText(texte4,interDiag,"dialog4")},2000);*/
         }
     }
     if(swiper.activeIndex == 2) // Hardcoded Id of the animated dialog

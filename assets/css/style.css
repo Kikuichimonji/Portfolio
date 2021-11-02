@@ -219,10 +219,17 @@ SLIDER 1
     max-width: 100%;
     max-height: 100%;
     margin: auto;
+    border-radius: 5px;
+    border-width: 2px;
 }
 #article1 .pc50:last-child
 {
     height: 60vh;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 .dialog__content /* FF7 dialog box :D */
 {
@@ -235,19 +242,24 @@ SLIDER 1
                 -2px 0 #7b757b,
                 0 2px #424542;
     padding: 5px 10px;
-    margin: 50px 50px;
-    background: #04009d;
     background: linear-gradient(to bottom,  #04009d 0%,#06004d 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#04009d', endColorstr='#06004d',GradientType=0 );
-
     border-radius: 7px;
     color: #eff1ff;
     text-shadow: 2px 2px #212421,
                 1px 1px #212021;
     font-family: "FF7";
-    font-size: 20px;
+    font-size: 32px;
     font-weight: normal;
-    margin: 5px 0;
+}
+.dialog__content p:not(p:first-child)
+{
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    margin-left: 15px;
+}
+.dialog__content p:first-child
+{
+    margin-top: 0.5em;
 }
 
 
