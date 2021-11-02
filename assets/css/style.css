@@ -20,7 +20,9 @@
 {
     font-family: "MtSerrat";
     src: url("../fonts/Montserrat-Regular.ttf") format("truetype");
+    font-weight: normal;
 }
+
 body
 {
     margin:0;
@@ -28,7 +30,23 @@ body
     background: var(--blackless);
     color: var(--white);
 }
-
+h2,h3
+{
+    font-family: "OpenSans";
+}
+span
+{
+    font-family: "MtSerrat";
+    font-weight: normal;
+}
+.pc50
+{
+    width: 50%;
+}
+.border
+{
+    border: 1px solid var(--white);
+}
 .fadeOutFast
 {
     animation: fadeOut 0.5s forwards;
@@ -99,14 +117,14 @@ SWIPER
 }
 #mainWraper .swiper-button-next
 {
-    margin-right: 0.5em;
+    margin-right:2em;
     animation: bounceR 2s ease-in-out infinite;
     text-shadow: 1px 0px 3px lightgray;
     color:white ;
 }
 #mainWraper .swiper-button-prev
 {
-    margin-left: 0.5em;
+    margin-left: 2em;
     animation: bounceL 2s ease-in-out infinite;
     text-shadow: -1px 0px 3px lightgray;
     color:white ;
@@ -114,12 +132,17 @@ SWIPER
 
 #slideList .swiper-pagination-bullet,#slideList .swiper-pagination-bullet-active
 {
-    background-color:white; 
     opacity: 1 ;
+    padding: 3px;
+}
+#slideList .swiper-pagination-bullet
+{
+    background-color: var(--black);
+    border: 2px solid var(--white)
 }
 #slideList .swiper-pagination-bullet-active
 {
-    background-color:yellow; 
+    background-color:white; 
 }
 #slideList
 {
@@ -139,15 +162,23 @@ header
     text-align: center;
     text-transform: uppercase;
 }
-header h2
+header h2,header span
 {
     display: inline;
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+header div
+{
+    margin-top: 1em;
 }
 
+
 /*************
-SLIDER CONTENT
+SLIDER 1
 *************/
-#article1,#console,#article4
+#console,#article4
 {
     position: absolute;
     right: 0%;
@@ -157,7 +188,18 @@ SLIDER CONTENT
     overflow-y: hidden;
     overflow-x: hidden;
 }
-
+#article1
+{
+    display: flex;
+    flex-direction: row;
+}
+#article1 .pc50:first-child img
+{
+    max-width: 80%;
+    max-height: 80%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
 .dialog__content /* FF7 dialog box :D */
 {
     border: solid 1px #ffffff;
@@ -224,35 +266,38 @@ CONSOLE
 /*************
 COMPETENCE
 *************/
-#article2 div:first-child:not(.textContainer,.line)
+#article2
 {
-    display: flex;
-    height: 80vh;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-#article2 div:last-child:not(.textContainer,.line)
-{
-    display: flex;
-    height: 80vh;
-    flex-direction: column;
-    justify-content: space-evenly;
-    text-align: center;
-}
-#article2,#article2 div div
-{
+    height: 100%;
     display: flex;
     flex-flow: row nowrap;
+}
+#article2 .pc50
+{
+    display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
+    height: 60vh;
+    margin-top: auto;
+    margin-bottom: auto;
 }
-#article2 div div
+#article2 .pc50:first-child
 {
-    width: 50%;
+    margin-left: 100px;
 }
-#article2 div:not(.textContainer,.line,.line2)
+#article2 .pc50:last-child
 {
-    width: 50%;
+    text-align: center;
+    margin-right: 100px;
 }
+#article2 table
+{
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    width: 100%;
+}
+
 #article2 p,#article2 span
 {
     margin: 0;
@@ -263,66 +308,82 @@ COMPETENCE
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: auto;
-    margin-bottom: auto;
 }
-#article2 span:nth-child(even):not(.line,.line2)
-{
-    height: 50px;
-    width: 50px;
-    
-}
-body #article2 .textContainer span:nth-child(odd)
-{
-    height: 40px;
-    border-radius: 5px;
-}
-#article2 .textContainer:nth-child(odd) span
-{
-    background-color: var(--white);
-    border-radius: 50px;
-    color:var(--black);
-}
-
-#article2 .textContainer:nth-child(even) span
-{
-    background-color: var(--black);
-    border-radius: 50px;
-    color:var(--white);
-    border: 1px solid var(--white);
-}
-
-#article2 .textContainer
+#article2 tr
 {
     position: relative;
-    margin: auto;
-    justify-content: space-between;
 }
 #article2 .line
 {
     position: absolute;
-    top:48%;
+    top:47%;
+    right: 15%;
     height: 4px;
-    width: 100%;
+    width: 80%;
     background-color: var(--white);
     z-index: -1;
 }
-#article2 .textContainer:nth-child(even) .line
+#article2 tr:nth-child(odd)
+{
+    color:var(--black);
+}
+#article2 tr:nth-child(odd) span
+{
+    background-color: var(--white);
+    border: 1px solid var(--black);
+}
+#article2 tr:nth-child(even) span
 {
     background-color: var(--black);
     border: 1px solid var(--white);
 }
-
-#article2 div:last-child:not(.textContainer,.line) p:nth-child(odd)
+#article2 td:last-child span
+{
+    padding: 15px 15px 15px 15px;
+    border-radius: 10px; 
+    font-size: 20px;
+}
+#article2 td:first-child span
+{
+    max-height: 80px;
+    min-height: 80px;
+    max-width: 80px;
+    min-width: 80px;
+    margin-right: 1em;
+    font-family: "OpenSans";
+    font-weight: bold;
+    font-size: 25px;
+    border-radius: 50px;
+}
+#article2 tr:nth-child(even) .line
+{
+    background-color: var(--black);
+    border: 1px solid var(--white);
+}
+#article2 .border
+{
+    height: 90%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 80%;
+    margin:auto;
+}
+#article2 .pc50:last-child p:first-child
 {
     font-size: 2em;
     font-weight: bold;
     text-transform: uppercase;
 }
-#article2 div:last-child:not(.textContainer,.line) p:nth-child(even)
+#article2 .pc50:last-child p:last-child
 {
     font-family: "MtSerrat";
+    margin-top: 1em;
 }
+
+
+
 
 @keyframes bounceR
 {

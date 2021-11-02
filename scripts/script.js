@@ -9,7 +9,7 @@ var interDiag = 10; //Speed of the dialog
 var textInterval = [];
 
 var title = "Découvrez Thomas"
-var title2 = "Mes passions et passe-temps"
+var title2 = "Mes compétences"
 var title3 = "Mes projets"
 var title4 = "Me contacter"
 var showTitleActive = false;
