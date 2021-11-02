@@ -1,35 +1,36 @@
 var blackscreen = document.getElementById("blackscreen");
 var visible= true; // blinking _
 var visibleStart= true; // blinking Intro
-var textTable = ['"Bonjour, Je me prénomme Thomas, je suis Web Développeur Fullstack avec préférence Back end et je suis passionné par le développement"','"J\'ai 33 ans, j\'habite dans le haut Rhin, et je suis bénévole chez Animaux en Détresse"'
-,'"Je suis passionné de jeux vidéo et de développement web, le tout accompagné de musiques !"',
-"J\'aime également les randonnées, la piscine, le lockpicking, le vélo, et m\'occuper des animaux"]
-var texte ='"Bonjour, Je me prénomme Thomas, je suis Web Développeur Fullstack avec préférence Back end et je suis passionné par le développement"'
+var textTable = ['"Bonjour, Je me prénomme Thomas, je suis Web Développeur Fullstack avec préférence Back end et je suis passionné par le développement"',
+'"J\'ai 33 ans, j\'habite dans le haut Rhin, et je suis bénévole chez Animaux en Détresse"',
+'"Je suis passionné de jeux vidéo et de développement web, le tout accompagné de musiques !"',
+'"J\'aime également les randonnées, la piscine, le lockpicking, le vélo, et m\'occuper des animaux"',
+"test"] //the dialogue text list
+/*var texte ='"Bonjour, Je me prénomme Thomas, je suis Web Développeur Fullstack avec préférence Back end et je suis passionné par le développement"'
 var texte2 = '"J\'ai 33 ans, j\'habite dans le haut Rhin, et je suis bénévole chez Animaux en Détresse"'
 var texte3 = '"Je suis passionné de jeux vidéo et de développement web, le tout accompagné de musiques !"'
-var texte4 = '"J\'aime également les randonnées, la piscine, le lockpicking, le vélo, et m\'occuper des animaux"'
-var showTextActive = false;
-var interDiag = 10; //Speed of the dialog
-var textInterval = [];
+var texte4 = '"J\'aime également les randonnées, la piscine, le lockpicking, le vélo, et m\'occuper des animaux"'*/
+var activeText = false;     
+var interDiag = 10; //Typing Speed of the dialog
+var textInterval = [];  // Table of timeouts, for easy cleaning (page slide for ex)
 
-var title = "Découvrez Thomas"
+var title = "Découvrez Thomas" //All the slider Titles
 var title2 = "Mes compétences"
 var title3 = "Mes projets"
-var title4 = "Me contacter"
-var showTitleActive = false;
-var interTitle = 80; //Speed of the title
-var letters = [];
+var title4 = "Me contacter"  
+var interTitle = 80; //Typing Speed of the title
+var letters = []; // Table of timeouts, for easy cleaning (stop all typing animation for the title when we change slide)
 
 
-var consoleBox = document.getElementById("console")
+var consoleBox = document.getElementById("console") //The console Mockup
 var animEnd = true; // Status of the animation (to prevent overlap)
 var animPosi = true; //Status of scroll | Start / end | (to not start an animation if we're already at the bottom for ex.)
 
 
 const swiper = new Swiper('.swiper', { // Swiper params
     
-    direction: 'horizontal',
-    loop: true,
+    direction: 'horizontal', //Horizontal slide
+    loop: true, //Come back to 1 after last one (actually a duplicate with n+1 ID )
     navigation: { // Nav arrows
         nextEl: '.swiper-button-next' ,
         prevEl: '.swiper-button-prev',
@@ -39,38 +40,33 @@ const swiper = new Swiper('.swiper', { // Swiper params
         type: 'bullets',
         clickable: 'true',
     },
-    on: 
-    {
-
-    }
 });
 
-blackscreen.addEventListener("click",function()
+blackscreen.addEventListener("click",function() //Remove the intro on click 
 {
-    blackscreen.className = blackscreen.className + " fadeOutFast";
-    setTimeout(() => {
+    blackscreen.className = blackscreen.className + " fadeOutFast"; 
+    setTimeout(() => { //I'm not used to type it this way, i need to train more
         blackscreen.style.display="none";
     }, 500);
 })
 
 function showTitle(texte,interval,tag) // i separated title and text for screen sliding reason
 {
-    showTitleActive = true; 
-    document.getElementById(tag).innerHTML="";
+    document.getElementById(tag).innerHTML=""; //Clean the actual title
     for(count = 0; count < texte.length; count++) //Loop for the text animation
     {
-        (function(count) 
+        (function(countDracula)  //Self executing anonymous function (truly private scope)
         {
-            letters[count] = setTimeout(function()
+            letters[countDracula] = setTimeout(function() //Writing letter by letter
             {
-                document.getElementById(tag).innerHTML = document.getElementById(tag).innerHTML + texte[count];
-            },interval*count) //repeat x number of letters times with desired interval
-        }(count))
+                document.getElementById(tag).innerHTML = document.getElementById(tag).innerHTML + texte[countDracula]; 
+            },interval*countDracula) //repeat x number of letters times with desired interval
+        }(count)) //Param to the functionn
 
     }
 }
 
-function showText(texte,interval,tag)//same as the one upside but for the Dialog
+/*function showText(texte,interval,tag)//same as the one upside but for the Dialog
 {
     showTextActive = true;
     document.getElementById(tag).innerHTML="";
@@ -110,27 +106,35 @@ function showTextTable(texte,interval,tag)//same as the one upside but for the D
         ,(texte[countText].length*interval))
     }
     setTimeout(function(){showTextActive=false;},(count*interval)) //to not overlap 2 dialog
-}
-function showDialog(texte,textIndex,index,interval,tag) //Fuck yeah it finally work
+}*/
+
+function showDialog(text,textIndex,index,interval,tag) //Fuck yeah it finally work //(Table of dialog,list of indexes fot the table,which one in the list,what speed we write,where do we write)
 {
-    for(countLetter = 0; countLetter < texte[textIndex[index]].length; countLetter++)
+    for(countLetter = 0; countLetter < text[textIndex[index]].length; countLetter++) //We loop for the lenght of the right text in the table
     {
-        (function(countLetter)
+        (function(countLetter) //Self executed anonymous fonction again
         {
-            setTimeout(function()
+            textInterval[countLetter] = setTimeout(function() //each timeout got a unique id, this way we cean clear the whole list later
             {
-                document.getElementById(tag).innerHTML = document.getElementById(tag).innerHTML + texte[textIndex[index]][countLetter]; //My head hurts
-                if(countLetter == texte[textIndex[index]].length-1)
+                document.getElementById(tag).innerHTML = document.getElementById(tag).innerHTML + text[textIndex[index]][countLetter]; //My head hurts //
+                if(countLetter == text[textIndex[index]].length-1)
                     if(textIndex[index+1])
                     {
                         index++;
-                        showDialog(texte,textIndex,index,interval,"dialog"+index)
+                        activeText=true;
+                        showDialog(text,textIndex,index,interval,"dialog"+index)
                     }
+                    else
+                        activeText=false;
             },countLetter*interval)
         })(countLetter)
     }
 }
-
+function clearDialog(tag,list)
+{
+    for(count = 0; count < list.length; count++)
+        document.getElementById(tag+list[count]).innerHTML = ""
+}
 underscore = window.setInterval(function() { //Blinking "_"
     if (visible)
     {
@@ -295,12 +299,13 @@ swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide 
     if(swiper.activeIndex == 1 || swiper.activeIndex == 5) // Will be a switch in the future
     {
         showTitle(title,interTitle,"titre");
-        if(!showTextActive) // To not overlap 2 dialogue if we switch active window
+        if(!activeText) // To not overlap 2 dialogue if we switch active window
         {
             for(let countD = 0; countD < textInterval.length; countD++)
                 clearTimeout(textInterval[countD]);
 
-            setTimeout(function(){showDialog(textTable,[0,3],0,interDiag,"dialog0")},500);
+            clearDialog("dialog",[0,1,2,3]);
+            setTimeout(function(){showDialog(textTable,[0,1,2,3],0,interDiag,"dialog0")},500);
             //setTimeout(function(){showTextTable(textTable,interDiag,"dialog")},500);
             /*setTimeout(function(){showText(texte,interDiag,"dialog")},500); // Timeout on the start of the text
             setTimeout(function(){showText(texte2,interDiag,"dialog2")},1000);

@@ -95,12 +95,12 @@ INTRO
     top: 50%;
     right:30%;
     opacity: 0;
+    font-size: 40px;
 }
 #intro
 {
-    font-size: 3em;
-    text-transform: uppercase;
-    font-weight: bold;
+    font-size: 6em;
+
 }
 
 /*************
