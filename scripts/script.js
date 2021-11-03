@@ -135,6 +135,7 @@ function clearDialog(tag,list)
     for(count = 0; count < list.length; count++)
         document.getElementById(tag+list[count]).innerHTML = ""
 }
+
 underscore = window.setInterval(function() { //Blinking "_"
     if (visible)
     {
@@ -162,17 +163,18 @@ start = window.setInterval(function() { //Blinking Start
 
 
 showTitle(title,interTitle,"titre"); //first title initialisation
+setTimeout(function(){showDialog(textTable,[0,1,2,3],0,interDiag,"dialog0")},500); //first dialog initialisation
 
 var xMax = 16
-anime.timeline({loop: false}) //
-.add({
+anime.timeline({loop: false}) //Intro Animation
+.add({ // Coming down
     targets: '#intro',
     opacity:[0,1],
     translateY: [0,400],
     easing: "easeInExpo",
     duration: 1000,
 })
-.add({
+.add({ // Shake
     targets: '#intro',
     easing: 'easeInOutSine',
     duration: 550,
@@ -195,7 +197,7 @@ anime.timeline({loop: false}) //
     }
     ],
 })
-.add({
+.add({ // Press any key Appear
     targets: '#start',
     opacity:[0,1],
     duration: 1,
