@@ -186,7 +186,7 @@ header div
 /*************
 SLIDER 1
 *************/
-#console,#article4
+/*#console,#article4
 {
     position: absolute;
     right: 0%;
@@ -195,7 +195,7 @@ SLIDER 1
     height: 100%;
     overflow-y: hidden;
     overflow-x: hidden;
-}
+}*/
 #article1
 {
     display: flex;
@@ -250,6 +250,7 @@ SLIDER 1
     font-family: "FF7";
     font-size: 32px;
     font-weight: normal;
+    line-height: normal;
 }
 .dialog__content p:not(p:first-child)
 {
@@ -260,6 +261,7 @@ SLIDER 1
 .dialog__content p:first-child
 {
     margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 
@@ -381,6 +383,11 @@ COMPETENCE
 /*************
 CONSOLE
 *************/
+#article3
+{
+    display:flex;
+    flex-direction: row;
+}
 #console-top
 {
     display: flex;
@@ -413,6 +420,20 @@ CONSOLE
 {
     position: absolute;
     bottom:-200vh;
+}
+#article3 .pc50:first-child div
+{
+    height: 100%;
+    display: flex;
+}
+#article3 .pc50:first-child img
+{
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    border-radius: 5px;
+    border-width: 2px;
 }
 
 

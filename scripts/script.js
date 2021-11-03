@@ -122,7 +122,7 @@ function showDialog(text,textIndex,index,interval,tag) //Fuck yeah it finally wo
                     {
                         index++;
                         activeText=true;
-                        showDialog(text,textIndex,index,interval,"dialog"+index)
+                        setTimeout(function(){showDialog(text,textIndex,index,interval,"dialog"+index)},200);
                     }
                     else
                         activeText=false;
