@@ -237,6 +237,32 @@ consoleBox.addEventListener('wheel',function(e)
                         animPosi = false;
                     }
                 })
+
+                scrolldownI3 = anime.timeline({loop:false})
+                .add({
+                    targets:"#i1",
+                    top:"100vh",
+                    opacity:0,
+                    easing: "easeInExpo",
+                    duration: 1000,
+                    begin: function()
+                    {
+                        animEnd=false;
+                        
+                    }
+                })
+                .add({
+                    targets:"#i2",
+                    top: '0',
+                    easing: "easeOutExpo",
+                    opacity:1,
+                    duration: 1000,
+                    complete: function()
+                    {
+                        animEnd = true;
+                        animPosi = false;
+                    }
+                })
             }
             if(animEnd && !animPosi)
                 swiper.slideNext()
@@ -262,6 +288,31 @@ consoleBox.addEventListener('wheel',function(e)
                 })
                 .add({
                     targets:"#p1",
+                    top: 0,
+                    opacity:1,
+                    easing: "easeOutExpo",
+                    duration: 1000,
+                    complete: function()
+                    {
+                        animEnd = true;
+                        animPosi = true;
+                    }
+                })
+                
+                scrollUpI3 = anime.timeline({loop:false})
+                .add({
+                    targets:"#i2",
+                    top: '100vh',
+                    opacity:0,
+                    easing: "easeInExpo",
+                    duration: 1000,
+                    begin: function()
+                    {
+                        animEnd=false;
+                    }
+                })
+                .add({
+                    targets:"#i1",
                     top: 0,
                     opacity:1,
                     easing: "easeOutExpo",

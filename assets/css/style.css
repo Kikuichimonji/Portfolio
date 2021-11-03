@@ -422,6 +422,16 @@ CONSOLE
     bottom:-200vh;
     padding-top: 1em;
 }
+#i1
+{
+    position: absolute;
+    top:0;
+}
+#i2
+{
+    position: absolute;
+    bottom:-200vh;
+}
 #article3 .pc50:first-child div
 {
     height: 100%;
