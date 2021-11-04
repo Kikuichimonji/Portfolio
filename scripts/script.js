@@ -44,6 +44,7 @@ const swiper = new Swiper('.swiper', { // Swiper params
     },
 });
 
+
 blackscreen.addEventListener("click",function() //Remove the intro on click 
 {
     blackscreen.className = blackscreen.className + " fadeOutFast"; 
@@ -57,10 +58,12 @@ for(let countList = 0; countList < listInput.length; countList++)
 {
     listInput[countList].addEventListener("focus",function(e)
     {
+        swiper.allowTouchMove = false;
         listInput[countList].previousElementSibling.className= "inputFocus"
     })
     listInput[countList].addEventListener("blur",function(e)
     {
+        swiper.allowTouchMove = true;
         listInput[countList].previousElementSibling.className= "inputLoseFocus"
     })
 }
@@ -68,10 +71,12 @@ for(let countArea = 0; countArea < listArea.length; countArea++)
 {
     listArea[countArea].addEventListener("focus",function(e)
     {
+        swiper.allowTouchMove = false;
         listArea[countArea].previousElementSibling.className= "inputFocus"
     })
     listArea[countArea].addEventListener("blur",function(e)
     {
+        swiper.allowTouchMove = true;
         listArea[countArea].previousElementSibling.className= "inputLoseFocus"
     })
 }
@@ -316,6 +321,20 @@ window.addEventListener('wheel',function(e) //check if we hover the consol, to n
     }
 })
 
+/*swiper.on("touchEnd",function() //Custom Sensitivity , original was way too touchy
+{
+    if(swiper.touches.diff > 100) //if we move more than 100pixels regarding of the speed, we slide  
+    {
+        //swiper.touches.diff = 0
+        swiper.slidePrev();
+    }  
+    else if(swiper.touches.diff < -100)
+    {
+        //swiper.touches.diff = 0
+        swiper.slideNext();
+    }   
+
+})*/
 swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide transition
 {
     for(let countI = 0; countI < letters.length; countI++)
