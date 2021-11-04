@@ -26,6 +26,8 @@ var consoleBox = document.getElementById("console") //The console Mockup
 var animEnd = true; // Status of the animation (to prevent overlap)
 var animPosi = true; //Status of scroll | Start / end | (to not start an animation if we're already at the bottom for ex.)
 
+var listInput = document.getElementsByTagName("input")
+var listArea = document.getElementsByTagName("textarea")
 
 const swiper = new Swiper('.swiper', { // Swiper params
     
@@ -48,7 +50,32 @@ blackscreen.addEventListener("click",function() //Remove the intro on click
     setTimeout(() => { //I'm not used to type it this way, i need to train more
         blackscreen.style.display="none";
     }, 500);
+    setTimeout(function(){showDialog(textTable,[0,1,2,3],0,interDiag,"dialog0")},500); //first dialog initialisation
 })
+
+for(let countList = 0; countList < listInput.length; countList++)
+{
+    listInput[countList].addEventListener("focus",function(e)
+    {
+        listInput[countList].previousElementSibling.className= "inputFocus"
+    })
+    listInput[countList].addEventListener("blur",function(e)
+    {
+        listInput[countList].previousElementSibling.className= "inputLoseFocus"
+    })
+}
+for(let countArea = 0; countArea < listArea.length; countArea++)
+{
+    listArea[countArea].addEventListener("focus",function(e)
+    {
+        listArea[countArea].previousElementSibling.className= "inputFocus"
+    })
+    listArea[countArea].addEventListener("blur",function(e)
+    {
+        listArea[countArea].previousElementSibling.className= "inputLoseFocus"
+    })
+}
+
 
 function showTitle(texte,interval,tag) // i separated title and text for screen sliding reason
 {
@@ -66,48 +93,6 @@ function showTitle(texte,interval,tag) // i separated title and text for screen 
     }
 }
 
-/*function showText(texte,interval,tag)//same as the one upside but for the Dialog
-{
-    showTextActive = true;
-    document.getElementById(tag).innerHTML="";
-    for(count = 0; count < texte.length; count++)
-    {
-        (function(count)
-        {
-            textInterval[count] = setTimeout(function()
-            {
-                document.getElementById(tag).innerHTML = document.getElementById(tag).innerHTML + texte[count];
-            },interval*count)
-        }(count))
-    } 
-    setTimeout(function(){showTextActive=false;},(count*interval)) //to not overlap 2 dialog
-}
-function showTextTable(texte,interval,tag)//same as the one upside but for the Dialog
-{
-    showTextActive = true;
-    document.getElementById(tag).innerHTML="";
-    for(countText = 0; countText < texte.length; countText++)
-    {
-        
-        setTimeout((function(countText)
-        {
-            for(count = 0; count < texte[countText].length; count++)
-            {
-                (function(count)
-                {
-                    textInterval[count] = setTimeout(function()
-                    {
-                        document.getElementById(tag).innerHTML = document.getElementById(tag).innerHTML + texte[countText][count];
-                    },interval*count)
-                }(count))
-                
-            }
-            }(countText))
-        ,(texte[countText].length*interval))
-    }
-    setTimeout(function(){showTextActive=false;},(count*interval)) //to not overlap 2 dialog
-}*/
-
 function showDialog(text,textIndex,index,interval,tag) //Fuck yeah it finally work //(Table of dialog,list of indexes fot the table,which one in the list,what speed we write,where do we write)
 {
     for(countLetter = 0; countLetter < text[textIndex[index]].length; countLetter++) //We loop for the lenght of the right text in the table
@@ -116,7 +101,8 @@ function showDialog(text,textIndex,index,interval,tag) //Fuck yeah it finally wo
         {
             textInterval[countLetter] = setTimeout(function() //each timeout got a unique id, this way we cean clear the whole list later
             {
-                document.getElementById(tag).innerHTML = document.getElementById(tag).innerHTML + text[textIndex[index]][countLetter]; //My head hurts //
+                document.getElementsByClassName(tag)[0].innerHTML = document.getElementsByClassName(tag)[0].innerHTML + text[textIndex[index]][countLetter]; //My head hurts //
+                document.getElementsByClassName(tag)[1].innerHTML = document.getElementsByClassName(tag)[1].innerHTML + text[textIndex[index]][countLetter];
                 if(countLetter == text[textIndex[index]].length-1)
                     if(textIndex[index+1])
                     {
@@ -133,37 +119,22 @@ function showDialog(text,textIndex,index,interval,tag) //Fuck yeah it finally wo
 function clearDialog(tag,list)
 {
     for(count = 0; count < list.length; count++)
-        document.getElementById(tag+list[count]).innerHTML = ""
+        document.getElementsByClassName(tag+list[count])[0].innerHTML = ""
+    for(count = 0; count < list.length; count++)
+        document.getElementsByClassName(tag+list[count])[1].innerHTML = ""
 }
 
 underscore = window.setInterval(function() { //Blinking "_"
-    if (visible)
-    {
-        document.getElementById("undescore").className = 'hidden'
-        visible = false;
-    }
-    else 
-    {
-        document.getElementById("undescore").className = ''
-        visible = true;
-    }
+        document.getElementById("undescore").classList.toggle('hidden')
 }, 600)
+
 start = window.setInterval(function() { //Blinking Start
-    if (visibleStart)
-    {
-        document.getElementById("start").className = 'hidden'
-        visibleStart = false;
-    }
-    else 
-    {
-        document.getElementById("start").className = ''
-        visibleStart = true;
-    }
+        document.getElementById("start").classList.toggle('hidden')
 }, 600)
 
 
 showTitle(title,interTitle,"titre"); //first title initialisation
-setTimeout(function(){showDialog(textTable,[0,1,2,3],0,interDiag,"dialog0")},500); //first dialog initialisation
+
 
 var xMax = 16
 anime.timeline({loop: false}) //Intro Animation
@@ -227,7 +198,7 @@ consoleBox.addEventListener('wheel',function(e)
                 })
                 .add({
                     targets:"#p2",
-                    top: '0',
+                    top: 0,
                     easing: "easeOutExpo",
                     opacity:1,
                     duration: 1000,
@@ -245,6 +216,7 @@ consoleBox.addEventListener('wheel',function(e)
                     opacity:0,
                     easing: "easeInExpo",
                     duration: 1000,
+                    delay:100,
                     begin: function()
                     {
                         animEnd=false;
@@ -253,7 +225,7 @@ consoleBox.addEventListener('wheel',function(e)
                 })
                 .add({
                     targets:"#i2",
-                    top: '0',
+                    top: "-65vh",
                     easing: "easeOutExpo",
                     opacity:1,
                     duration: 1000,
@@ -302,7 +274,7 @@ consoleBox.addEventListener('wheel',function(e)
                 scrollUpI3 = anime.timeline({loop:false})
                 .add({
                     targets:"#i2",
-                    top: '100vh',
+                    top: 0,
                     opacity:0,
                     easing: "easeInExpo",
                     duration: 1000,
@@ -359,11 +331,6 @@ swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide 
 
             clearDialog("dialog",[0,1,2,3]);
             setTimeout(function(){showDialog(textTable,[0,1,2,3],0,interDiag,"dialog0")},500);
-            //setTimeout(function(){showTextTable(textTable,interDiag,"dialog")},500);
-            /*setTimeout(function(){showText(texte,interDiag,"dialog")},500); // Timeout on the start of the text
-            setTimeout(function(){showText(texte2,interDiag,"dialog2")},1000);
-            setTimeout(function(){showText(texte3,interDiag,"dialog3")},1500); // Timeout on the start of the text
-            setTimeout(function(){showText(texte4,interDiag,"dialog4")},2000);*/
         }
     }
     if(swiper.activeIndex == 2) // Hardcoded Id of the animated dialog
@@ -379,5 +346,5 @@ swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide 
     {
         showTitle(title4,interTitle,"titre");
     }
-
 });
+

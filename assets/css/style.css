@@ -170,6 +170,15 @@ header
     text-align: center;
     text-transform: uppercase;
 }
+header img
+{
+    height: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
 header h2,header span
 {
     display: inline;
@@ -239,7 +248,7 @@ SLIDER 1
     text-shadow: 2px 2px #212421,
                 1px 1px #212021;
     font-family: "FF7";
-    font-size: 32px;
+    font-size: 28px;
     font-weight: normal;
     line-height: normal;
 }
@@ -380,7 +389,7 @@ CONSOLE
     flex-direction: row;
     height: 100%;
 }
-#article3 .pc50:last-child
+#article3 .pc50
 {
     height:60vh;
     margin-top: auto;
@@ -409,6 +418,7 @@ CONSOLE
     position: relative;
     width: 80%;
     margin: auto;
+    overflow: hidden;
 }
 #p1
 {
@@ -419,24 +429,25 @@ CONSOLE
 #p2
 {
     position: absolute;
-    bottom:-200vh;
+    bottom:-100vh;
     padding-top: 1em;
 }
 #i1
 {
     position: absolute;
     top:0;
+    max-width: 100%;
 }
 #i2
 {
     position: absolute;
-    bottom:-200vh;
+    bottom:-100vh;
 }
 #article3 .pc50:first-child div
 {
     height: 100%;
     display: flex;
-    
+    position: relative;
 }
 #article3 .pc50:first-child img
 {
@@ -457,6 +468,152 @@ CONSOLE
 
 }
 
+/*************
+FORM
+*************/
+#article4 
+{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+#article4 div:not(form div)
+{
+    width: 50%;
+    margin:auto;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#article4 form
+{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    justify-content: space-between;
+    min-height: 450px;
+}
+#article4 form #formContainer
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#article4 form #formContainer div
+{
+    width: 45%;
+}
+#article4 p
+{
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#article4 form #formContainer div,#article4 form div
+{
+    display: flex;
+    flex-direction: column;
+}
+#article4 form button
+{
+    width: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    font-family: "MtSerrat";
+    font-size: 30px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+#article4 input,#article4 textarea
+{
+    background-color: transparent;
+    color: var(--white);
+    border:none;
+    border-bottom: 1px solid #949494;
+}
+#article4 input
+{
+    height: 2em;
+    z-index: 0;
+    padding-left: 1em;
+}
+#article4 textarea
+{
+    border: 1px solid #949494;
+    z-index: 0;
+    padding-left: 1em;
+}
+#article4 label
+{
+    margin-left: 0.5em;
+    transform: translate(0,150%);
+    z-index: 0;
+    color: #949494;
+}
+#article4 input,#article4 textarea,#article4 label,#article4 button,#article4 p
+{
+    font-family: "MtSerrat";
+    font-size: 20px;
+}
+
+#article4 form .inputFocus
+{
+    animation: formUP 0.5s ease-in-out forwards; 
+}
+#article4 form .inputLoseFocus
+{
+    animation: formDOWN 0.5s ease-in-out forwards; 
+}
+#article4 img
+{
+    width: 100px;
+    height: 100px;
+    
+}
+#article4 a
+{
+    position: absolute;
+    top:0;
+    transform: translate(0,40%);
+}
+#article4 a:first-child
+{
+    left:10%;
+}
+#article4 a:nth-child(2)
+{
+    right:10%;
+}
+
+@keyframes formUP
+{
+    0%
+    {
+        transform: translate(0, 150%);
+        color: #949494;
+    }
+    100%
+    {
+        transform: translate(0,-10%);
+        color: white;
+    }
+}
+@keyframes formDOWN
+{
+    0%
+    {
+        transform: translate(0, -10%);
+        color: white;
+    }
+    100%
+    {
+        transform: translate(0,150%);
+        color: #949494;
+    }
+}
 @keyframes bounceR
 {
     0%,

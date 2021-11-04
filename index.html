@@ -14,6 +14,7 @@
             <p id="start">Click anywhere to continue</p>
         </div>
         <header>
+            <img src="assets/img/Logo-Thomas-black.png" alt="">
             <div>
                 <h2 id="titre"></h2>
                 <span id="undescore">&#95;</span>
@@ -26,19 +27,19 @@
                     <div id="article1" >
                         <div class="pc50">
                             <div>
-                                <img src="assets/img/moi.jpg" alt="Photo de propriétaire du portfolio" class="border">
+                                <img src="assets/img/moi.jpg" alt="Photo du propriétaire du portfolio" class="border">
                             </div>
                         </div>
                         <div class="pc50">
                             <div class="dialog__content">
                                 <p>Thomas</p>
-                                <p id="dialog0"></p>
-                                <p id="dialog1"></p>
+                                <p class="dialog0"></p>
+                                <p class="dialog1"></p>
                             </div>
                             <div class="dialog__content">
                                 <p>Thomas</p>
-                                <p id="dialog2"></p>
-                                <p id="dialog3"></p>
+                                <p class="dialog2"></p>
+                                <p class="dialog3"></p>
                             </div>
                         </div>
                     </div>
@@ -98,11 +99,11 @@
                 <section class="swiper-slide">
                     <div id="article3">
                         <div class="pc50">
-                            <div >
-                                <img id="i1" src="assets/img/site-mocjup-triple.png" alt="">
+                            <div id="i1" >
+                                <img src="assets/img/site-mocjup-triple.png" alt="">
                             </div>
-                            <div >
-                                <img id="i2" src="assets/img/appli-mockup2.png" alt="">
+                            <div id="i2">
+                                <img src="assets/img/appli-mockup2.png" alt="">
                             </div>
                         </div>
                         <div class="pc50">
@@ -113,14 +114,14 @@
                                     <h2>Site vitrine de l'osteopathe Annabel Begaud</h2>
                                         <p>
                                             Mon 1er site, fait sans CMS pour pouvoir bien prendre de bonnes habitudes et respecter la sémantique. Il est en constante évolution 
-                                            pour répondre aux demandes de ma cliente 
+                                            pour répondre aux demandes de ma cliente.
                                         </p>
                                 </div>
                                 <div id="p2" >
-                                    <h2>Mon projet 2</h2>
+                                    <h2>OsteoClic</h2>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non metus id diam euismod porta. Vestibulum bibendum ac dui non dictum. Maecenas ut sapien finibus, placerat turpis vitae, placerat nunc. Aliquam et mattis orci, vel imperdiet tortor. Fusce sed porttitor lorem, vitae feugiat leo. Etiam placerat fringilla sem, non sodales ante volutpat eget. Aliquam elementum elit lectus, id cursus sem ornare eget. Integer in imperdiet arcu. Donec sit amet pulvinar magna. Quisque quis semper sapien. Sed mi diam, tincidunt vitae pretium a, cursus vitae risus. Cras ultricies massa elit, sit amet venenatis urna suscipit sit amet. Nam dapibus bibendum quam ut posuere. Sed eu condimentum metus, vitae porta augue.
-                                        Integer ut mi quis tortor tristique iaculis. In erat ligula, sagittis sit amet metus non, egestas rutrum odio.
+                                        OsteoClic est une application faite pour une Ostéopathe pour gérer sa patientèle et ses consultations selon le cabinet. 
+                                        Elle a été développé sous Symfony 5 dont une grosse partie dynamique en JS.
                                     </p>
                                 </div>
                                 <object type="image/svg+xml" data="assets/img/mouse-scroll-animated.svg"></object>
@@ -130,8 +131,32 @@
                 </section>
                 <section class="swiper-slide">
                     <div id="article4" >
-                        4
-                        
+                        <a href=""><img src="assets/img/github.png" alt="logo GitHub"></a>
+                        <a href=""><img src="assets/img/linkedin.png" alt="logo Linkdin"></a>
+                        <div>
+                            <p>N'hesitez pas à me contacter pour plus d'informations</p>
+                            <form method="post" action="">
+                                <div id="formContainer">
+                                    <div>
+                                        <label class="textDown" for="nom">Votre nom <span>*</span></label>
+                                        <input type="text" name="nom" id="nom"  required/>
+                                    </div>
+                                    <div>
+                                        <label class="textDown" for="prenom">Votre prenom <span>*</span></label>
+                                        <input type="text" name="prenom" id="prenom"  required/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="textDown" for="mail">Votre mail <span>*</span></label>
+                                    <input type="email" name="mail" id="mail" pattern=".+@globex\.com"  size="30" required/>
+                                </div>
+                                <div>
+                                    <label class="textDown" for="texte">Votre message </label>
+                                    <textarea name="texte" id="texte" rows="5" cols="33"></textarea>  
+                                </div> 
+                                <button>Envoyer</button>
+                            </form>
+                        </div>
                     </div>
                 </section>
             </div>
