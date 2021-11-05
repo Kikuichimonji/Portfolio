@@ -10,8 +10,10 @@
 <body>
     <div id="mainWraper">
         <div id="blackscreen">
-            <h1 id="intro">Bienvenue Chez Thomas Roess</h1>
-            <p id="start">Click anywhere to continue</p>
+            <div id="intro">
+                <h1 >Bienvenue Chez Thomas Roess</h1>
+                <p id="start">Click anywhere to continue</p>
+            </div>
         </div>
         <header>
             <img src="assets/img/Logo-Thomas-black.png" alt="">
@@ -79,20 +81,25 @@
                             </table>
                         </div>
                         <div class="pc50">
-                            <div class="border">
-                                <div>
-                                    <p>HTML5 - CSS3 - UIKIT</p>
-                                    <p>Sémantique - SEO</p>
+                            <div id="outerBorder">
+                                <div id="border1" class="borderR"></div>
+                                <div id="border2" class="borderR"></div>
+                                <div id="border3" class="borderR"></div>
+                                <div class="border">
+                                    <div>
+                                        <p>HTML5 - CSS3 - UIKIT</p>
+                                        <p>Sémantique - SEO</p>
+                                    </div>
+                                    <div>
+                                        <p>php - mysql - js es6</p>
+                                        <p>Doctrine - PHP/JS OO</p>
+                                    </div>
+                                    <div>
+                                        <p>wordpress - symfony 5</p>
+                                        <p>Prestashop - Tests Unitaires</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p>php - mysql - js es6</p>
-                                    <p>Doctrine - PHP/JS OO</p>
-                                </div>
-                                <div>
-                                    <p>wordpress - symfony 5</p>
-                                    <p>Prestashop - Tests Unitaires</p>
-                                </div>
-                            </div>
+                            </div>  
                         </div>
                     </div>
                 </section>
@@ -109,7 +116,7 @@
                         <div class="pc50">
                             <div id="console">
                                 <div id="console-top">
-                                    <img src="assets/img/cmd.JPG" alt=""> Thomas Roess ©</div>
+                                    <img src="assets/img/cmd.JPG" alt=""> Thomas Roess © <span><p>1</p>/<p>2</p></span></div>
                                 <div id="p1">
                                     <h2>Site vitrine de l'osteopathe Annabel Begaud</h2>
                                         <p>
@@ -124,7 +131,7 @@
                                         Elle a été développé sous Symfony 5 dont une grosse partie dynamique en JS.
                                     </p>
                                 </div>
-                                <object type="image/svg+xml" data="assets/img/mouse-scroll-animated.svg"></object>
+                                <object type="image/svg+xml" data="assets/img/mouse-scroll-up-down.svg"></object>
                             </div>
                         </div>
                     </div>
@@ -135,26 +142,26 @@
                         <a href=""><img src="assets/img/linkedin.png" alt="logo Linkdin"></a>
                         <div>
                             <p>N'hesitez pas à me contacter pour plus d'informations</p>
-                            <form method="post" action="">
+                            <form method="post" action="" id="contact">
                                 <div id="formContainer">
-                                    <div>
-                                        <label class="textDown" for="nom">Votre nom <span>*</span></label>
-                                        <input type="text" name="nom" id="nom"  required/>
-                                    </div>
                                     <div>
                                         <label class="textDown" for="prenom">Votre prenom <span>*</span></label>
                                         <input type="text" name="prenom" id="prenom"  required/>
                                     </div>
+                                    <div>
+                                        <label class="textDown" for="nom">Votre nom <span>*</span></label>
+                                        <input type="text" name="nom" id="nom"  required/>
+                                    </div>
                                 </div>
                                 <div>
                                     <label class="textDown" for="mail">Votre mail <span>*</span></label>
-                                    <input type="email" name="mail" id="mail" pattern=".+@globex\.com"  size="30" required/>
+                                    <input type="email" name="mail" id="mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  size="30" required/>
                                 </div>
                                 <div>
                                     <label class="textDown" for="texte">Votre message </label>
                                     <textarea name="texte" id="texte" rows="5" cols="33"></textarea>  
                                 </div> 
-                                <button>Envoyer</button>
+                                <button type="submit" form="contact" value="Submit">Envoyer</button>
                             </form>
                         </div>
                     </div>
@@ -167,5 +174,6 @@
     <script src="lib/swiper-bundle.min.js"></script>
     <script src="lib/anime.min.js"></script>
     <script src="scripts/script.js"></script>
+    <!--<script src="https://smtpjs.com/v3/smtp.js"></script>-->
 </body>
 </html>
