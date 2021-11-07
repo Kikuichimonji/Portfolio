@@ -125,6 +125,10 @@ SWIPER
     text-shadow: 1px 0px 3px lightgray;
     color:white ;
 }
+#mainWraper .swiper-button-disabled
+{
+    opacity:1 ;
+}
 #mainWraper .swiper-button-prev
 {
     margin-left: 2em;

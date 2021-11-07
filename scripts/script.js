@@ -28,20 +28,74 @@ var listInput = document.getElementsByTagName("input")
 var listArea = document.getElementsByTagName("textarea")
 var formButton = document.getElementsByTagName("button")[0]
 
+var swiperTouchStartX;
+
 const swiper = new Swiper('.swiper', { // Swiper params
     
     direction: 'horizontal', //Horizontal slide
     mousewheel: true,
     loop: false, //Come back to 1 after last one (actually a duplicate with n+1 ID )
-    navigation: { // Nav arrows
+    /*navigation: { // Nav arrows
         nextEl: '.swiper-button-next' ,
         prevEl: '.swiper-button-prev',
-    },
+    },*/
     pagination: { //Buletts
         el: '.swiper-pagination',
         type: 'bullets',
         clickable: 'true',
     },
+    on:{
+        init(swiper){
+            swiper.el.querySelector('.swiper-button-prev').addEventListener('click', function() {
+                if (swiper.isBeginning) 
+                {
+                    swiper.slideTo(swiper.slides.length - 1);
+                }
+                else 
+                {
+                    swiper.slideTo(swiper.realIndex - 1);
+                }
+            });
+            swiper.el.querySelector('.swiper-button-next').addEventListener('click', function() {
+                if (swiper.isEnd) 
+                {
+                    swiper.slideTo(0);
+                } else 
+                {
+                    swiper.slideTo(swiper.realIndex + 1);
+                }
+            });
+        },
+        touchStart(swiper,e)
+        {
+            swiperTouchStartX = e.touches[0].clientX;
+        },
+        touchEnd(swiper, e) {
+            const tolerance = 150;
+            const totalSlidesLen = swiper.slides.length;
+            const diff = (() => 
+            {
+                if (e.type === 'touchend') {
+                return e.changedTouches[0].clientX - swiperTouchStartX;
+            } 
+            else 
+            {
+                return e.clientX - swiperTouchStartX;
+            }
+            })();
+            if (swiper.isBeginning && diff >= tolerance) 
+            {
+                swiper.slideTo(totalSlidesLen - 1);
+            } 
+            else if (swiper.isEnd && diff <= -tolerance) 
+            {
+                setTimeout(() => 
+                {
+                    swiper.slideTo(0);
+                }, 1);
+            }
+        },
+    }
 });
 
 
@@ -375,3 +429,65 @@ swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide 
 		message => alert("ça marche pô")
     );
 })*/
+
+/*let swiperTouchStartX;
+
+new Swiper('.swiper-container', {
+    slidesPerView: 3,
+    on: {
+        init(swiper) {
+        const totalSlidesLen = swiper.slides.length;
+
+        swiper.el.querySelector('.swiper-button-prev').addEventListener('click', () => {
+            if (swiper.isBeginning) {
+            swiper.slideTo(totalSlidesLen - 1);
+            } else {
+            swiper.slideTo(swiper.realIndex - 1);
+            }
+        });
+
+        swiper.el.querySelector('.swiper-button-next').addEventListener('click', () => {
+          if (swiper.isEnd) {
+            swiper.slideTo(0);
+          } else {
+            swiper.slideTo(swiper.realIndex + 1);
+          }
+        });
+      },
+
+      touchStart(swiper, e) {
+
+        if (e.type === 'touchstart') {
+          swiperTouchStartX = e.touches[0].clientX;
+        } else {
+          swiperTouchStartX = e.clientX;
+        }
+      },
+
+      touchEnd(swiper, e) {
+        // スワイプ判定のしきい値
+        const tolerance = 150;
+        // スライド総数
+        const totalSlidesLen = swiper.slides.length;
+  
+
+        const diff = (() => {
+          if (e.type === 'touchend') {
+            return e.changedTouches[0].clientX - swiperTouchStartX;
+          } else {
+            return e.clientX - swiperTouchStartX;
+          }
+        })();
+  
+        if (swiper.isBeginning && diff >= tolerance) {
+          swiper.slideTo(totalSlidesLen - 1);
+
+        } else if (swiper.isEnd && diff <= -tolerance) {
+
+          setTimeout(() => {
+            swiper.slideTo(0);
+          }, 1);
+        }
+      },
+    },
+  });*/
