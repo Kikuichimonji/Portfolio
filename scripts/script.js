@@ -2,10 +2,10 @@ var blackscreen = document.getElementById("blackscreen");
 var intro = document.getElementById("intro");
 var visible= true; // blinking _
 var visibleStart= true; // blinking Intro
-var textTable = ['"Bonjour, Je me prénomme Thomas, je suis Web Développeur Fullstack avec préférence Back end et je suis passionné par le développement"',
-'"J\'ai 33 ans, j\'habite dans le haut Rhin, et je suis bénévole chez Animaux en Détresse"',
+var textTable = ['"Bonjour, Je me prénomme Thomas, je suis Web Développeur Fullstack avec préférence Back end et je suis passionné par le développement."',
+'"J\'ai 33 ans, j\'habite dans le Haut-Rhin et je suis bénévole chez Animaux en Détresse."',
 '"Je suis passionné de jeux vidéo et de développement web, le tout accompagné de musiques !"',
-'"J\'aime également les randonnées, la piscine, le lockpicking, le vélo, et m\'occuper des animaux"',
+'"J\'aime également les randonnées, la piscine, le lockpicking, le vélo et m\'occuper des animaux."',
 "test"] //the dialogue text list
 
 var activeText = false;     
@@ -32,7 +32,7 @@ const swiper = new Swiper('.swiper', { // Swiper params
     
     direction: 'horizontal', //Horizontal slide
     mousewheel: true,
-    loop: true, //Come back to 1 after last one (actually a duplicate with n+1 ID )
+    loop: false, //Come back to 1 after last one (actually a duplicate with n+1 ID )
     navigation: { // Nav arrows
         nextEl: '.swiper-button-next' ,
         prevEl: '.swiper-button-prev',
@@ -107,7 +107,7 @@ function showDialog(text,textIndex,index,interval,tag) //Fuck yeah it finally wo
             textInterval[countLetter] = setTimeout(function() //each timeout got a unique id, this way we cean clear the whole list later
             {
                 document.getElementsByClassName(tag)[0].innerHTML = document.getElementsByClassName(tag)[0].innerHTML + text[textIndex[index]][countLetter]; //we look for the right container (tag), the right text at the right index to write, then we print letter by letter
-                document.getElementsByClassName(tag)[1].innerHTML = document.getElementsByClassName(tag)[1].innerHTML + text[textIndex[index]][countLetter]; // Had to recall it because of swipper duplicating first and last slider for smooth loops (index 0 = slide 1, index 1 = slide 1 duplicated)
+                //document.getElementsByClassName(tag)[1].innerHTML = document.getElementsByClassName(tag)[1].innerHTML + text[textIndex[index]][countLetter]; // Had to recall it because of swipper duplicating first and last slider for smooth loops (index 0 = slide 1, index 1 = slide 1 duplicated)
                 if(countLetter == text[textIndex[index]].length-1) // if we're at the end of the sentence
                     if(textIndex[index+1]) //if we got more sentences
                     {
@@ -125,8 +125,8 @@ function clearDialog(tag,list) //CLearing all the dialogs for the tags
 {
     for(count = 0; count < list.length; count++) 
         document.getElementsByClassName(tag+list[count])[0].innerHTML = ""
-    for(count = 0; count < list.length; count++) //had to repeat again because of swipper (duplication of slides)
-        document.getElementsByClassName(tag+list[count])[1].innerHTML = ""
+    /*for(count = 0; count < list.length; count++) //had to repeat again because of swipper (duplication of slides)
+        document.getElementsByClassName(tag+list[count])[1].innerHTML = ""*/
 }
 
 underscore = window.setInterval(function() { //Blinking "_"
@@ -185,7 +185,7 @@ consoleBox.addEventListener('wheel',function(e) // All the console animations
 {
     if(e.deltaY > 0) //if we scroll down
     {
-        if(swiper.activeIndex == 3) //if we're actually on the console slide
+        if(swiper.activeIndex == 2) //if we're actually on the console slide
         {
             if(animEnd && animPosi) // if an animation is running or at the end of the list 
             {
@@ -223,7 +223,7 @@ consoleBox.addEventListener('wheel',function(e) // All the console animations
     }
     else
     {
-        if(swiper.activeIndex == 3)
+        if(swiper.activeIndex == 2)
         {
             if(animEnd && !animPosi)
             {
@@ -285,10 +285,10 @@ consoleBox.addEventListener("mouseleave",function(e)
 
 swiper.on("activeIndexChange",function()
 {
-    if(swiper.activeIndex == 0)
+    /*if(swiper.activeIndex == 0)
     {
         swiper.slideToLoop(3) //workaround to duplicate problem from swiper, lots of problems since my last slide is a form
-    }
+    }*/
 })
 
 swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide transition
@@ -298,8 +298,8 @@ swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide 
 
     switch(swiper.activeIndex)
     {
-        case 1:
-        case 5:
+        case 0:
+        //case 5:
             showTitle(title,interTitle,"titre");
             if(!activeText) // To not overlap 2 dialogue if we switch active window
             {
@@ -310,14 +310,14 @@ swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide 
                 setTimeout(function(){showDialog(textTable,[0,1,2,3],0,interDiag,"dialog0")},500);
             }
             break;
-        case 2:
+        case 1:
             showTitle(title2,interTitle,"titre");
             break;
-        case 3:
+        case 2:
             showTitle(title3,interTitle,"titre");
             break;
-        case 4:
-        case 0:
+        case 3:
+        //case 0:
             showTitle(title4,interTitle,"titre");
             break;
     }

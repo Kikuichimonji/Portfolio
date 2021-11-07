@@ -246,6 +246,7 @@ SLIDER 1
     font-size: 28px;
     font-weight: normal;
     line-height: normal;
+    min-height: 200px;
 }
 .dialog__content p:not(p:first-child)
 {
@@ -361,14 +362,15 @@ COMPETENCE
 }
 #article2 .border
 {
-    height: 90%;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 80%;
-    margin:auto;
+    position: relative;
     z-index: 5;
+    background-color: var(--blackless);
+    height: 100%;
+    margin: auto;
 }
 #article2 .pc50:last-child p:first-child
 {
@@ -625,14 +627,20 @@ FORM
 
 #outerBorder
 {
-    margin:20px;
+    padding:10px;
     z-index: 5;
+    position: relative;
+    overflow: hidden;
+    height: 80%;
+    width: 80%;
+    margin: auto;
 }
 #article2 .borderR
 {
-    width:100%;
+    width:120%;
     height: 200px;
     position: absolute;
+    opacity: 0;
 }
 #border1
 {
@@ -650,18 +658,20 @@ FORM
 }
 #article2 .pc50:last-child:hover .borderR
 {
-    animation: borderRotate 1s ease-in-out infinite;
+    animation: borderRotate 3s linear infinite;
 }
 
 @keyframes borderRotate
 {
     0%
     {
-        transform: rotate(0deg);
+        opacity: 1;
+        transform: rotate(0deg) translate(-50%,0);
     }
     100%
     {
-        transform: rotate(180deg);
+        opacity: 1;
+        transform: rotate(360deg) translate(-50%,0);
     }
 }
 @keyframes buttonUp
