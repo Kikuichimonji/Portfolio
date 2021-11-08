@@ -4,6 +4,7 @@
     --header-height:100px;
     --white:#ffffff;
     --black:#000000;
+    --black50: rgba(255,255,255,0.5);
     --blackless:#131313;
 }
 @font-face 
@@ -63,6 +64,10 @@ span
 {
     visibility: hidden;
 }
+.bold
+{
+    font-weight: bold;
+}
 
 /*************
 INTRO
@@ -121,7 +126,7 @@ SWIPER
 #mainWraper .swiper-button-next
 {
     margin-right:2em;
-    animation: bounceR 2s ease-in-out infinite;
+    animation: bounceR 2s ease-in-out infinite alternate-reverse;
     text-shadow: 1px 0px 3px lightgray;
     color:white ;
 }
@@ -132,7 +137,7 @@ SWIPER
 #mainWraper .swiper-button-prev
 {
     margin-left: 2em;
-    animation: bounceL 2s ease-in-out infinite;
+    animation: bounceL 2s ease-in-out infinite alternate-reverse;
     text-shadow: -1px 0px 3px lightgray;
     color:white ;
 }
@@ -250,7 +255,7 @@ SLIDER 1
     font-size: 28px;
     font-weight: normal;
     line-height: normal;
-    min-height: 200px;
+    flex-basis: 200px;
 }
 .dialog__content p:not(p:first-child)
 {
@@ -266,7 +271,7 @@ SLIDER 1
 
 
 /*************
-COMPETENCE
+COMPETENCE SLIDER 2
 *************/
 #article2
 {
@@ -315,12 +320,12 @@ COMPETENCE
 }
 #article2 tr:hover
 {
-    animation: buttonUp 0.2s ease-in-out forwards;
+    /*animation: buttonUp 0.2s ease-in-out forwards;*/
 }
 #article2 .line
 {
     position: absolute;
-    top:47%;
+    top:calc(50% - 4px);
     right: 15%;
     height: 4px;
     width: 80%;
@@ -341,13 +346,26 @@ COMPETENCE
     background-color: var(--black);
     border: 1px solid var(--white);
 }
-#article2 td:last-child span
+#article2 td:last-child
+{
+    position: relative;
+}
+#article2 td:last-child span:not(.square2)
 {
     padding: 15px 15px 15px 15px;
     border-radius: 10px; 
     font-size: 20px;
 }
-#article2 td:first-child span
+#article2 td:last-child span.square2
+{
+    position: absolute;
+    width: 5px;
+    height: 4px;
+    top:calc(50% - 3px);
+    left:-3px;
+    border: none;
+}
+#article2 td:first-child span:not(.square)
 {
     max-height: 80px;
     min-height: 80px;
@@ -358,11 +376,25 @@ COMPETENCE
     font-weight: bold;
     font-size: 25px;
     border-radius: 50px;
+    position: relative;
+}
+#article2 td:first-child span.square
+{
+    position: absolute;
+    width: 5px;
+    height: 4px;
+    top:calc(50% - 3px);
+    right:-3px;
+    border: none;
 }
 #article2 tr:nth-child(even) .line
 {
     background-color: var(--black);
     border: 1px solid var(--white);
+}
+#article2 tr:nth-child(odd) .line
+{
+    border: 1px solid var(--black);
 }
 #article2 .border
 {
@@ -387,10 +419,45 @@ COMPETENCE
     font-family: "MtSerrat";
     margin-top: 1em;
 }
+#outerBorder
+{
+    padding:5px;
+    z-index: 5;
+    position: relative;
+    overflow: hidden;
+    height: 80%;
+    width: 80%;
+    margin: auto;
+}
+#article2 .borderR
+{
+    width:120%;
+    height: 200px;
+    position: absolute;
+    opacity: 0;
+}
+#border1
+{
+    top:50px;
+    background-color: red;
+}
+#border2
+{
+    background-color: blue;
+}
+#border3
+{
+    background-color: green;
+    bottom: 50px;
+}
+#article2 .pc50:last-child .borderR
+{
+    animation: borderRotate 5s linear infinite;
+}
 
 
 /*************
-CONSOLE
+CONSOLE SLIDER 3
 *************/
 #article3
 {
@@ -451,6 +518,10 @@ CONSOLE
 {
     animation: consoleColor 0.5s ease-in-out forwards; 
 }
+#console p
+{
+    font-family: "MtSerrat";
+}
 #p1
 {
     position: absolute;
@@ -500,7 +571,7 @@ CONSOLE
 }
 
 /*************
-FORM
+FORM SLIDER 4
 *************/
 #article4 
 {
@@ -629,40 +700,112 @@ FORM
     right:10%;
 }
 
-#outerBorder
+/*************
+FOOTER
+*************/
+footer
 {
-    padding:10px;
-    z-index: 5;
-    position: relative;
-    overflow: hidden;
-    height: 80%;
-    width: 80%;
-    margin: auto;
-}
-#article2 .borderR
-{
-    width:120%;
-    height: 200px;
+    
     position: absolute;
-    opacity: 0;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100vw;
+    bottom: 0;
+    z-index: 6;
 }
-#border1
+footer p
 {
-    top:50px;
-    background-color: red;
+    opacity: 0.3;
 }
-#border2
+footer p:first-child,footer p:last-child
 {
-    background-color: blue;
+    text-decoration: underline;
 }
-#border3
+footer p:first-child:hover,footer p:last-child:hover
 {
-    background-color: green;
-    bottom: 50px;
+    cursor: pointer;
+    opacity: 1;
 }
-#article2 .pc50:last-child:hover .borderR
+
+/*************
+MENTIONS
+*************/
+.modalBox
 {
-    animation: borderRotate 3s linear infinite;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--black50);
+    z-index: 10;
+    display:none;
+}
+.modal
+{
+    transform: translate(50%,50%);
+    width: 50vw;
+    height: 50vh;
+    background-color: var(--black);
+    z-index: 10;
+    font-family: "MtSerrat";
+    position: relative;
+}
+.modalHeader
+{
+    width: 100%;
+    height: 1.5em;
+    color:var(--black);
+    background-color: var(--white);
+    text-align: center;
+    font-weight: bold;
+    position: fixed
+}
+.modalBody
+{
+    padding: 2em;
+    overflow-y: scroll;
+    height: 100%;
+    background-color: var(--black);
+}
+.modal a
+{
+    color: var(--white);
+    font-weight: bold;
+}
+
+/*************
+Cookies
+*************/
+.cookie
+{
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    background-color: #04009d;
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.cookie span
+{
+    margin-top: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+}
+.cookie div
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.cookie p
+{
+    background-color: teal;
+    border-radius: 5px;
+    min-width: 150px;    
+    text-align: center;
 }
 
 @keyframes borderRotate
@@ -686,14 +829,14 @@ FORM
     }
     100%
     {
-        transform: scale(110%);
+        transform: scale(120%);
     }
 }
 @keyframes buttonDown
 {
     0%
     {
-        transform: scale(110%);
+        transform: scale(120%);
     }
     100%
     {
@@ -773,26 +916,24 @@ FORM
 }
 @keyframes bounceR
 {
-    0%,
-    100% 
+    0%
     {
         transform: translate(0, 0);
     }
-
-    50% 
+    20%,
+    100% 
     {
         transform: translate(10px, 0);
     }
 }
 @keyframes bounceL
 {
-    0%,
-    100% 
+    0%
     {
         transform: translate(0, 0);
     }
-
-    50% 
+    20%,
+    100% 
     {
         transform: translate(-10px, 0);
     }

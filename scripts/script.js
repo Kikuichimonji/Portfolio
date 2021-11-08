@@ -29,11 +29,20 @@ var listArea = document.getElementsByTagName("textarea")
 var formButton = document.getElementsByTagName("button")[0]
 
 var swiperTouchStartX;
+var wheelSlowing = false;
+var noScroll = false;
+var interScroll = 500;
+
+var footerLinks = document.getElementsByTagName("footer")[0].getElementsByTagName("p")
+var modalBox = document.getElementsByClassName("modalBox")
 
 const swiper = new Swiper('.swiper', { // Swiper params
     
     direction: 'horizontal', //Horizontal slide
-    mousewheel: true,
+    /*mousewheel: 
+    {
+        releaseOnEdges : true,
+    },*/
     loop: false, //Come back to 1 after last one (actually a duplicate with n+1 ID )
     /*navigation: { // Nav arrows
         nextEl: '.swiper-button-next' ,
@@ -45,51 +54,43 @@ const swiper = new Swiper('.swiper', { // Swiper params
         clickable: 'true',
     },
     on:{
-        init(swiper){
-            swiper.el.querySelector('.swiper-button-prev').addEventListener('click', function() {
+        init(swiper){ //on initialisation
+            swiper.el.querySelector('.swiper-button-prev').addEventListener('click', function() { //We rewrite the clicking because the loop duplication is annoying
                 if (swiper.isBeginning) 
                 {
-                    swiper.slideTo(swiper.slides.length - 1);
+                    swiper.slideTo(swiper.slides.length - 1); //if we prev on the first, we go back to last
                 }
                 else 
                 {
-                    swiper.slideTo(swiper.realIndex - 1);
+                    swiper.slideTo(swiper.realIndex - 1); //else we just move 1 back
                 }
             });
             swiper.el.querySelector('.swiper-button-next').addEventListener('click', function() {
                 if (swiper.isEnd) 
                 {
-                    swiper.slideTo(0);
-                } else 
+                    swiper.slideTo(0); 
+                } 
+                else 
                 {
                     swiper.slideTo(swiper.realIndex + 1);
                 }
             });
         },
-        touchStart(swiper,e)
+        touchStart(swiper,e) //Event fired when we start dragging 
         {
-            swiperTouchStartX = e.touches[0].clientX;
+            swiperTouchStartX = e.clientX; //we save the initial position of the cursor
         },
         touchEnd(swiper, e) {
-            const tolerance = 150;
-            const totalSlidesLen = swiper.slides.length;
-            const diff = (() => 
+            tolerance = 150; //min pixel distance to start changing slides
+            totalSlides = swiper.slides.length;
+            diff = e.clientX - swiperTouchStartX; //how many pixels we travelled between start and end dragging
+            if (swiper.isBeginning && diff >= tolerance)  // if we're at the start and we dragged 150 to the right
             {
-                if (e.type === 'touchend') {
-                return e.changedTouches[0].clientX - swiperTouchStartX;
+                swiper.slideTo(totalSlides - 1); //we slide back to last
             } 
-            else 
+            else if (swiper.isEnd && diff <= -tolerance)  //same a before but the other way
             {
-                return e.clientX - swiperTouchStartX;
-            }
-            })();
-            if (swiper.isBeginning && diff >= tolerance) 
-            {
-                swiper.slideTo(totalSlidesLen - 1);
-            } 
-            else if (swiper.isEnd && diff <= -tolerance) 
-            {
-                setTimeout(() => 
+                setTimeout(function()  //for some reason it behave nicer this way, otherwise it goes to slide 2
                 {
                     swiper.slideTo(0);
                 }, 1);
@@ -132,8 +133,8 @@ function attachEvenInput(listInput) // as name says, we attach all event listene
     })
 }
 
-attachEvenInput(listInput);
-attachEvenInput(listArea);
+attachEvenInput(listInput); // Events on the inputs
+attachEvenInput(listArea); // Events on the textarea
 
 
 function showTitle(texte,interval,tag) // i separated title and text for screen sliding reason
@@ -235,7 +236,43 @@ anime.timeline({loop: false}) //Intro Animation
     delay: 600
 })
 
-consoleBox.addEventListener('wheel',function(e) // All the console animations
+
+window.addEventListener("wheel",function(e)
+{
+    consoleBox.addEventListener("mouseenter",function(e) // we disable page scrolling when we enter the console box
+    {
+        noScroll = true
+    })
+    consoleBox.addEventListener("mouseleave",function(e) // we re enable page scrolling when we leave the console box
+    {
+        noScroll= false
+    })    
+    if(!wheelSlowing && !noScroll)
+    {
+        wheelSlowing = true
+        if(e.deltaY < 0 && swiper.isBeginning) //if we scroll up
+        {
+            swiper.slideTo(swiper.slides.length - 1);
+        }
+        else if(e.deltaY < 0 && !swiper.isBeginning)
+        {
+            swiper.slidePrev();
+        }
+        else if(e.deltaY > 0 && swiper.isEnd)//if we scroll down
+        {
+            swiper.slideTo(0);
+        }
+        else if(e.deltaY > 0 && !swiper.isEnd)
+        {
+            swiper.slideNext();
+        }
+        setTimeout(function(){
+            wheelSlowing = false
+        },interScroll)
+    }
+})
+
+consoleBox.addEventListener("wheel",function(e) // All the console animations
 {
     if(e.deltaY > 0) //if we scroll down
     {
@@ -253,7 +290,6 @@ consoleBox.addEventListener('wheel',function(e) // All the console animations
                     begin: function()
                     {
                         animEnd=false;
-                        
                     }
                 })
                 .add({ // project 2 slide up
@@ -266,13 +302,20 @@ consoleBox.addEventListener('wheel',function(e) // All the console animations
                     {
                         animEnd = true;
                         animPosi = false;
-                        document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-down-up.svg" 
-                        document.getElementById("console-top").getElementsByTagName("p")[0].innerHTML = 2 
+                        document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-down-up.svg" //we swap the svg when we're at the end
+                        document.getElementById("console-top").getElementsByTagName("p")[0].innerHTML = 2 // "2/2"
                     }
                 })
             }
-            if(animEnd && !animPosi)
+            if(animEnd && !animPosi && !wheelSlowing)
+            {
                 swiper.slideNext() // if we're at the bottom of the project list we can slide next 
+                wheelSlowing = true;
+                setTimeout(function()
+                {
+                    wheelSlowing = false
+                },interScroll)
+            }
         }
     }
     else
@@ -304,23 +347,23 @@ consoleBox.addEventListener('wheel',function(e) // All the console animations
                         animEnd = true;
                         animPosi = true;
                         document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-up-down.svg"
-                        document.getElementById("console-top").getElementsByTagName("p")[0].innerHTML = 1
+                        document.getElementById("console-top").getElementsByTagName("p")[0].innerHTML = 1 //"(1/2)"
                     }
                 })   
             }
             if(animEnd && animPosi)
-            swiper.slidePrev()
+            {
+                swiper.slidePrev()
+                wheelSlowing = true;
+                setTimeout(function()
+                {
+                    wheelSlowing = false
+                },interScroll)
+            }
         }
     }
 })
-consoleBox.addEventListener("mouseenter",function(e)
-{
-    swiper.mousewheel.disable();
-})
-consoleBox.addEventListener("mouseleave",function(e)
-{
-    swiper.mousewheel.enable();
-})
+
 
 /*swiper.on("touchEnd",function() //Custom Sensitivity , original was way too touchy
 {
@@ -337,30 +380,21 @@ consoleBox.addEventListener("mouseleave",function(e)
 
 })*/ //everything become wanky, might change later again
 
-swiper.on("activeIndexChange",function()
-{
-    /*if(swiper.activeIndex == 0)
-    {
-        swiper.slideToLoop(3) //workaround to duplicate problem from swiper, lots of problems since my last slide is a form
-    }*/
-})
-
 swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide transition
 {
-    for(let countI = 0; countI < letters.length; countI++)
+    for(let countI = 0; countI < letters.length; countI++) //we clear the previous animation timeouts for the titles
         clearTimeout(letters[countI]);
 
     switch(swiper.activeIndex)
     {
         case 0:
-        //case 5:
             showTitle(title,interTitle,"titre");
             if(!activeText) // To not overlap 2 dialogue if we switch active window
             {
                 for(let countD = 0; countD < textInterval.length; countD++) //we clear all the timeouts to stop the current animation
                     clearTimeout(textInterval[countD]);
 
-                clearDialog("dialog",[0,1,2,3]);
+                clearDialog("dialog",[0,1,2,3]); //we clear the dialog for the id tag+n
                 setTimeout(function(){showDialog(textTable,[0,1,2,3],0,interDiag,"dialog0")},500);
             }
             break;
@@ -371,41 +405,9 @@ swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide 
             showTitle(title3,interTitle,"titre");
             break;
         case 3:
-        //case 0:
             showTitle(title4,interTitle,"titre");
             break;
     }
-    /*if(swiper.activeIndex == 1 || swiper.activeIndex == 5) // Will be a switch in the future
-    {
-        showTitle(title,interTitle,"titre");
-        if(!activeText) // To not overlap 2 dialogue if we switch active window
-        {
-            for(let countD = 0; countD < textInterval.length; countD++) //we clear all the timeouts to stop the current animation
-                clearTimeout(textInterval[countD]);
-
-            clearDialog("dialog",[0,1,2,3]);
-            setTimeout(function(){showDialog(textTable,[0,1,2,3],0,interDiag,"dialog0")},500);
-        }
-    }
-    if(swiper.activeIndex == 2) // Hardcoded Id of the animated dialog
-    {
-        showTitle(title2,interTitle,"titre");
-    }
-    if(swiper.activeIndex == 3) // Hardcoded Id of the animated dialog
-    {
-        showTitle(title3,interTitle,"titre");
-    }
-    if(swiper.activeIndex == 4 || swiper.activeIndex == 0)
-    {
-        showTitle(title4,interTitle,"titre");
-    }
-    /*if(swiper.previousIndex == 4 || swiper.previousIndex == 0)
-    {
-        swiper.loopDestroy();
-        swiper.loopCreate(); 
-        attachEvenInput(listInput);
-        attachEvenInput(listArea)  
-    }*/
 });
 
 
@@ -430,64 +432,20 @@ swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide 
     );
 })*/
 
-/*let swiperTouchStartX;
+footerLinks[0].addEventListener("click",function(){
+    modalBox[0].style.display = "initial"
+    noScroll = true
+    modalBox[0].addEventListener("click",function(){
+        modalBox[0].style.display = "none"
+        noScroll = false
+    })
+})
+footerLinks[2].addEventListener("click",function(){
 
-new Swiper('.swiper-container', {
-    slidesPerView: 3,
-    on: {
-        init(swiper) {
-        const totalSlidesLen = swiper.slides.length;
-
-        swiper.el.querySelector('.swiper-button-prev').addEventListener('click', () => {
-            if (swiper.isBeginning) {
-            swiper.slideTo(totalSlidesLen - 1);
-            } else {
-            swiper.slideTo(swiper.realIndex - 1);
-            }
-        });
-
-        swiper.el.querySelector('.swiper-button-next').addEventListener('click', () => {
-          if (swiper.isEnd) {
-            swiper.slideTo(0);
-          } else {
-            swiper.slideTo(swiper.realIndex + 1);
-          }
-        });
-      },
-
-      touchStart(swiper, e) {
-
-        if (e.type === 'touchstart') {
-          swiperTouchStartX = e.touches[0].clientX;
-        } else {
-          swiperTouchStartX = e.clientX;
-        }
-      },
-
-      touchEnd(swiper, e) {
-        // スワイプ判定のしきい値
-        const tolerance = 150;
-        // スライド総数
-        const totalSlidesLen = swiper.slides.length;
-  
-
-        const diff = (() => {
-          if (e.type === 'touchend') {
-            return e.changedTouches[0].clientX - swiperTouchStartX;
-          } else {
-            return e.clientX - swiperTouchStartX;
-          }
-        })();
-  
-        if (swiper.isBeginning && diff >= tolerance) {
-          swiper.slideTo(totalSlidesLen - 1);
-
-        } else if (swiper.isEnd && diff <= -tolerance) {
-
-          setTimeout(() => {
-            swiper.slideTo(0);
-          }, 1);
-        }
-      },
-    },
-  });*/
+    modalBox[1].style.display = "initial"
+    noScroll = true
+    modalBox[1].addEventListener("click",function(){
+        modalBox[1].style.display = "none"
+        noScroll = false
+    })
+})
