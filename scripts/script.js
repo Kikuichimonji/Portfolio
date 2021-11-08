@@ -5,7 +5,7 @@ var visibleStart= true; // blinking Intro
 var textTable = ['"Bonjour, Je me prénomme Thomas, je suis Web Développeur Fullstack avec préférence Back end et je suis passionné par le développement."',
 '"J\'ai 33 ans, j\'habite dans le Haut-Rhin et je suis bénévole chez Animaux en Détresse."',
 '"Je suis passionné de jeux vidéo et de développement web, le tout accompagné de musiques !"',
-'"J\'aime également les randonnées, la piscine, le lockpicking, le vélo et m\'occuper des animaux."',
+'"J\'aime également les randonnées, la piscine, le vélo et m\'occuper des animaux."',
 "test"] //the dialogue text list
 
 var activeText = false;     
@@ -35,6 +35,7 @@ var interScroll = 500;
 
 var footerLinks = document.getElementsByTagName("footer")[0].getElementsByTagName("p")
 var modalBox = document.getElementsByClassName("modalBox")
+var closeCookie = document.getElementById("cookie").getElementsByTagName("span")[1];
 
 const swiper = new Swiper('.swiper', { // Swiper params
     
@@ -411,7 +412,7 @@ swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide 
 });
 
 
-/*formButton.addEventListener("click",function(e)
+formButton.addEventListener("click",function(e)
 {
     firstName = document.getElementsByTagName("input")[0].value
     lastName = document.getElementsByTagName("input")[1].value
@@ -430,7 +431,7 @@ swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide 
 	}).then(
 		message => alert("ça marche pô")
     );
-})*/
+})
 
 footerLinks[0].addEventListener("click",function(){
     modalBox[0].style.display = "initial"
@@ -448,4 +449,7 @@ footerLinks[2].addEventListener("click",function(){
         modalBox[1].style.display = "none"
         noScroll = false
     })
+})
+closeCookie.addEventListener("click",function(){
+    document.getElementById("cookie").style.display ="none"
 })
