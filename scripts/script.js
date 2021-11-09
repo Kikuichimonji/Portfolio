@@ -36,6 +36,7 @@ var interScroll = 500;
 var footerLinks = document.getElementsByTagName("footer")[0].getElementsByTagName("p")
 var modalBox = document.getElementsByClassName("modalBox")
 var closeCookie = document.getElementById("cookie").getElementsByTagName("span")[1];
+var table = [];
 
 const swiper = new Swiper('.swiper', { // Swiper params
     
@@ -156,8 +157,12 @@ function showTitle(texte,interval,tag) // i separated title and text for screen 
 
 function showDialog(text,textIndex,index,interval,tag) //Fuck yeah it finally work //(Table of dialog,list of indexes fot the table,which one in the list,what speed we write,where do we write)
 {
+
+    if(tag=="dialog2")
+            document.getElementsByClassName("dialog__content")[1].style.opacity = 1;
     for(countLetter = 0; countLetter < text[textIndex[index]].length; countLetter++) //We loop for the lenght of the right text in the table
     {
+        
         (function(countLetter) //Self executed anonymous fonction again
         {
             textInterval[countLetter] = setTimeout(function() //each timeout got a unique id, this way we cean clear the whole list later
@@ -196,47 +201,48 @@ start = window.setInterval(function() { //Blinking Start
 
 showTitle(title,interTitle,"titre"); //first title initialisation
 
+window.addEventListener("load",function(){
 
-var middleHeight = (window.innerHeight / 2)-(intro.offsetHeight / 2); //My attempt at centenring the title animation
-var xMax = 16 //shake offset
-anime.timeline({loop: false}) //Intro Animation
-.add({ // Coming down
-    targets: '#intro',
-    opacity:[0,1],
-    translateY: [0,middleHeight],
-    easing: "easeInExpo",
-    duration: 1000,
+    var middleHeight = (window.innerHeight / 2)-(intro.offsetHeight / 2); //My attempt at centenring the title animation
+    var xMax = 16 //shake offset
+    anime.timeline({loop: false}) //Intro Animation
+    .add({ // Coming down
+        targets: '#intro',
+        opacity:[0,1],
+        translateY: [0,middleHeight],
+        easing: "easeInExpo",
+        duration: 1000,
+    })
+    .add({ // Shake
+        targets: '#intro',
+        easing: 'easeInOutSine',
+        duration: 550,
+        translateY: [middleHeight,middleHeight], //necessary, if not here the text ges back up for some reason
+        translateX: [
+        {
+            value: xMax * -1,
+        },
+        {
+            value: xMax,
+        },
+        {
+            value: xMax/-2,
+        },
+        {
+            value: xMax/2,
+        },
+        {
+            value: 0
+        }
+        ],
+    })
+    .add({ // Press any key Appear
+        targets: '#start',
+        opacity:[0,1],
+        duration: 1,
+        delay: 600
+    })
 })
-.add({ // Shake
-    targets: '#intro',
-    easing: 'easeInOutSine',
-    duration: 550,
-    translateY: [middleHeight,middleHeight], //necessary, if not here the text ges back up for some reason
-    translateX: [
-    {
-        value: xMax * -1,
-    },
-    {
-        value: xMax,
-    },
-    {
-        value: xMax/-2,
-    },
-    {
-        value: xMax/2,
-    },
-    {
-        value: 0
-    }
-    ],
-})
-.add({ // Press any key Appear
-    targets: '#start',
-    opacity:[0,1],
-    duration: 1,
-    delay: 600
-})
-
 
 window.addEventListener("wheel",function(e)
 {
@@ -411,27 +417,47 @@ swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide 
     }
 });
 
-
-formButton.addEventListener("click",function(e)
+function readTextFile(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                
+                allText.split(",").forEach(element => {
+                    table.push(element)
+                });
+            }
+        }
+    }
+    rawFile.send(null);
+}
+//formButton.addEventListener("click",function(e)
+function submitForm()
 {
     firstName = document.getElementsByTagName("input")[0].value
     lastName = document.getElementsByTagName("input")[1].value
-    email = document.getElementsByTagName("input")[2].value
+    mail = document.getElementsByTagName("input")[2].value
     message = document.getElementsByTagName("textarea")[0].value
-
-    console.log(firstName)
+    data = readTextFile("scripts/mail.txt")
+    
 	Email.send({
-	Host: "smtp.gmail.com",
-	Username : "thomasroesshd@gmail.com",
-	Password : "***********",
+	Host: table[0],
+	Username : table[1],
+	Password : table[2],
 	To : 'thomas_roess@hotmail.fr',
-	From : firstName + " " + lastName,
+	From : "admin@thomas-roess.fr",
 	Subject : "Message du portfolio",
-	Body : message,
+	Body : firstName+ " " + lastName + " "+ mail + " : " + message,
 	}).then(
-		message => alert("ça marche pô")
+		message => alert("Mail bien envoyé")
     );
-})
+}
 
 footerLinks[0].addEventListener("click",function(){
     modalBox[0].style.display = "initial"

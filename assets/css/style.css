@@ -257,6 +257,10 @@ SLIDER 1
     line-height: normal;
     flex-basis: 200px;
 }
+.dialog__content:last-child
+{
+    opacity: 0;
+}
 .dialog__content p:not(p:first-child)
 {
     margin-bottom: 0.5em;
@@ -278,6 +282,11 @@ COMPETENCE SLIDER 2
     height: 100%;
     display: flex;
     flex-flow: row nowrap;
+}
+#article2 a
+{
+    color:var(--white);
+    font-weight: bold;
 }
 #article2 .pc50
 {
@@ -339,12 +348,12 @@ COMPETENCE SLIDER 2
 #article2 tr:nth-child(odd) span
 {
     background-color: var(--white);
-    border: 1px solid var(--black);
+    border: 2px solid var(--black);
 }
 #article2 tr:nth-child(even) span
 {
     background-color: var(--black);
-    border: 1px solid var(--white);
+    border: 2px solid var(--white);
 }
 #article2 td:last-child
 {
@@ -359,9 +368,9 @@ COMPETENCE SLIDER 2
 #article2 td:last-child span.square2
 {
     position: absolute;
-    width: 5px;
+    width: 6px;
     height: 4px;
-    top:calc(50% - 3px);
+    top:calc(50% - 2px);
     left:-3px;
     border: none;
 }
@@ -383,18 +392,18 @@ COMPETENCE SLIDER 2
     position: absolute;
     width: 5px;
     height: 4px;
-    top:calc(50% - 3px);
+    top:calc(50% - 2px);
     right:-3px;
     border: none;
 }
 #article2 tr:nth-child(even) .line
 {
     background-color: var(--black);
-    border: 1px solid var(--white);
+    border: 2px solid var(--white);
 }
 #article2 tr:nth-child(odd) .line
 {
-    border: 1px solid var(--black);
+    border: 2px solid var(--black);
 }
 #article2 .border
 {
@@ -518,9 +527,10 @@ CONSOLE SLIDER 3
 {
     animation: consoleColor 0.5s ease-in-out forwards; 
 }
-#console p
+#console p:not(#console-top p)
 {
     font-family: "MtSerrat";
+    line-height: 1.5em;
 }
 #p1
 {
@@ -787,6 +797,7 @@ Cookies
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    display: none;
 }
 #cookie span:first-child
 {
