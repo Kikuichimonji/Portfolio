@@ -752,9 +752,9 @@ MENTIONS
 }
 .modal
 {
-    transform: translate(50%,50%);
-    width: 50vw;
-    height: 50vh;
+    transform: translate(40%,40%);
+    width: 60vw;
+    height: 60vh;
     background-color: var(--black);
     z-index: 10;
     font-family: "MtSerrat";
