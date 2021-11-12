@@ -1,3 +1,15 @@
+<?php 
+    $mailMessage = ["Mail bien envoyé","Un problème est survenu avec l'envoi du mail, veuillez réessayer plus tard"];
+    $message = "";
+    $messageClass = "";
+
+    if(isset($_GET["m"]))
+        if(isset($mailMessage[$_GET["m"]]))
+        {
+            $message =  $mailMessage[$_GET["m"]];
+            $messageClass = "popupMail";
+        }
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,6 +30,9 @@
             </div>
         </div>
         <header>
+            <div class="<?= $messageClass ?>">
+                <p><?= $message ?></p>
+            </div>
             <img src="assets/img/Logo-Thomas-black.png" alt="">
             <div>
                 <h2 id="titre"></h2>
@@ -146,7 +161,7 @@
                         <div>
                             <p>N'hesitez pas à me contacter pour plus d'informations</p>
                             <!--<form method="post" action="" id="contact"  onsubmit="submitForm();return false;">-->
-                            <form method="post" action="mail.php" id="contact"  onsubmit="submitForm();return false;"></form>
+                            <form method="post" action="mail.php" id="contact"  onsubmit="">
                                 <div id="formContainer">
                                     <div>
                                         <label class="textDown" for="prenom">Votre prenom <span>*</span></label>
@@ -427,6 +442,6 @@
     <script src="lib/swiper-bundle.min.js"></script>
     <script src="lib/anime.min.js"></script>
     <script src="scripts/script.js"></script>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <!--<script src="https://smtpjs.com/v3/smtp.js"></script>-->
 </body>
 </html>

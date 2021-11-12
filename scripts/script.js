@@ -442,8 +442,7 @@ function readTextFile(file)
 //formButton.addEventListener("click",function(e)
 function submitForm()
 {
-    /*let response = await fetch("scripts/mail.txt");
-    console.log("test" + response)*/
+
     firstName = document.getElementsByTagName("input")[0].value
     lastName = document.getElementsByTagName("input")[1].value
     mail = document.getElementsByTagName("input")[2].value
