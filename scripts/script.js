@@ -37,6 +37,8 @@ var footerLinks = document.getElementsByTagName("footer")[0].getElementsByTagNam
 var modalBox = document.getElementsByClassName("modalBox")
 var closeCookie = document.getElementById("cookie").getElementsByTagName("span")[1];
 var table = [];
+var timer = document.getElementById("timerSession").dataset
+
 
 const swiper = new Swiper('.swiper', { // Swiper params
     
@@ -160,6 +162,8 @@ function showDialog(text,textIndex,index,interval,tag) //Fuck yeah it finally wo
 
     if(tag=="dialog2")
             document.getElementsByClassName("dialog__content")[1].style.opacity = 1;
+    if(tag=="dialog0")
+            document.getElementsByClassName("dialog__content")[0].style.opacity = 1;
     for(countLetter = 0; countLetter < text[textIndex[index]].length; countLetter++) //We loop for the lenght of the right text in the table
     {
         
@@ -186,6 +190,10 @@ function clearDialog(tag,list) //CLearing all the dialogs for the tags
 {
     for(count = 0; count < list.length; count++) 
         document.getElementsByClassName(tag+list[count])[0].innerHTML = ""
+    var dialogList = document.getElementsByClassName("dialog__content")
+    for(count = 0; count < dialogList.length; count++) 
+        dialogList[count].style.opacity = 0
+
     /*for(count = 0; count < list.length; count++) //had to repeat again because of swipper (duplication of slides)
         document.getElementsByClassName(tag+list[count])[1].innerHTML = ""*/
 }
@@ -439,25 +447,22 @@ function readTextFile(file)
     rawFile.send(null);
 }
 
-//formButton.addEventListener("click",function(e)
-function submitForm()
+function submitForm(form)
 {
+    dateTimer = timer.value*1000
+    dateNow = Date.now()
+    timeDiff = 5*60*1000
+    var timeLeft = timeDiff -(dateNow - dateTimer)
+    var timeLeftDate = new Date(timeLeft)
 
-    firstName = document.getElementsByTagName("input")[0].value
-    lastName = document.getElementsByTagName("input")[1].value
-    mail = document.getElementsByTagName("input")[2].value
-    message = document.getElementsByTagName("textarea")[0].value
-    //data = readTextFile("scripts/mail.txt")
-    
-	Email.send({
-    SecureToken : "6c03a682-c7ed-4e62-8015-3fe347b1eca5",
-	To : 'thomas_roess@hotmail.fr',
-	From : "admin@thomas-roess.fr",
-	Subject : "Message du portfolio",
-	Body : firstName+ " " + lastName + " "+ mail + " : " + message,
-	}).then(
-		message => alert("Mail bien envoyé")
-    );
+    if(timeLeft > 0)
+    {
+        alert("Veuillez attendre avant de renvoyer un nouveau message. \nTemps restant : " + timeLeftDate.getUTCMinutes() + " minutes et " + timeLeftDate.getUTCSeconds() +" secondes")
+        return false;
+    }
+        
+    else
+        return true;
 }
 
 footerLinks[0].addEventListener("click",function(){

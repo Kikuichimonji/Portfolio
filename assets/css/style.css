@@ -272,11 +272,9 @@ SLIDER 1
     font-weight: normal;
     line-height: normal;
     flex-basis: 200px;
-}
-.dialog__content:last-child
-{
     opacity: 0;
 }
+
 .dialog__content p:not(p:first-child)
 {
     margin-bottom: 0.5em;

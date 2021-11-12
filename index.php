@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     $mailMessage = ["Mail bien envoyé","Un problème est survenu avec l'envoi du mail, veuillez réessayer plus tard"];
     $message = "";
     $messageClass = "";
@@ -9,6 +10,9 @@
             $message =  $mailMessage[$_GET["m"]];
             $messageClass = "popupMail";
         }
+    if(isset($_SESSION["timer"]))
+        //echo("<input type='hidden' id='timerSession' data-value='".$_SESSION["timer"]->format("Y-m-d\TH:i:s\Z")."' />");
+        echo("<input type='hidden' id='timerSession' data-value='".$_SESSION["timer"]."' />");
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -160,8 +164,7 @@
                         <a href="https://www.linkedin.com/in/thomas-roess/" target="blank_"><img src="assets/img/linkedin.webp" alt="logo Linkdin"></a>
                         <div>
                             <p>N'hesitez pas à me contacter pour plus d'informations</p>
-                            <!--<form method="post" action="" id="contact"  onsubmit="submitForm();return false;">-->
-                            <form method="post" action="mail.php" id="contact"  onsubmit="">
+                            <form method="post" action="mail.php" id="contact"  onsubmit="return submitForm(this)">
                                 <div id="formContainer">
                                     <div>
                                         <label class="textDown" for="prenom">Votre prenom <span>*</span></label>
@@ -177,8 +180,8 @@
                                     <input type="email" name="mail" id="mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  size="30" required/>
                                 </div>
                                 <div>
-                                    <label class="textDown" for="texte">Votre message </label>
-                                    <textarea name="texte" id="texte" rows="5" cols="33"></textarea>  
+                                    <label class="textDown" for="texte">Votre message <span>*</span></label>
+                                    <textarea name="texte" id="texte" rows="5" cols="33" required></textarea>  
                                 </div> 
                                 <button type="submit" form="contact" value="Submit">Envoyer</button>
                             </form>
