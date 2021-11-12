@@ -442,8 +442,7 @@ function readTextFile(file)
 //formButton.addEventListener("click",function(e)
 function submitForm()
 {
-    /*let response = await fetch("scripts/mail.txt");
-    console.log("test" + response)*/
+
     firstName = document.getElementsByTagName("input")[0].value
     lastName = document.getElementsByTagName("input")[1].value
     mail = document.getElementsByTagName("input")[2].value
@@ -451,9 +450,6 @@ function submitForm()
     //data = readTextFile("scripts/mail.txt")
     
 	Email.send({
-	/*Host: table[0],
-	Username : table[1],
-	Password : table[2],*/
     SecureToken : "6c03a682-c7ed-4e62-8015-3fe347b1eca5",
 	To : 'thomas_roess@hotmail.fr',
 	From : "admin@thomas-roess.fr",

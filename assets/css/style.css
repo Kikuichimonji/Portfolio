@@ -768,7 +768,9 @@ MENTIONS
     background-color: var(--white);
     text-align: center;
     font-weight: bold;
-    position: fixed
+    position: fixed;
+    border:1px solid var(--black);
+    border-bottom: none;
 }
 .modalBody
 {
@@ -784,7 +786,7 @@ MENTIONS
 }
 
 /*************
-Cookies
+COOKIES
 *************/
 #cookie
 {
