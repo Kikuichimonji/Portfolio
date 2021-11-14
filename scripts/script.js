@@ -48,7 +48,10 @@ var mainWidth = window.innerWidth
 var mainHeight = window.innerHeight
 
 if(mainWidth < 768)
+{
     swiperSuffix = "M"
+    document.getElementById("logo").src = "assets/img/Favicon-Thomas.png"
+}
 
 
 document.getElementById("swiper" + swiperSuffix).style.display = "block"

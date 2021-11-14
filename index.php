@@ -49,7 +49,7 @@
             <div class="<?= $messageClass ?>">
                 <p><?= $message ?></p>
             </div>
-            <img src="assets/img/Logo-Thomas-black.png" alt="">
+            <img id="logo" src="assets/img/Logo-Thomas-black.png" alt="">
             <div>
                 <h2 id="titre"></h2>
                 <span id="undescore">&#95;</span>
