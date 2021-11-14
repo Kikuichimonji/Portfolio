@@ -318,7 +318,7 @@ consoleBox.addEventListener("wheel",function(e) // All the console animations
             {
                 scrolldownP3 = anime.timeline({loop:false})
                 .add({ // project 1 slide down
-                    targets:["#p1","#i1"],
+                    targets:["#p1"+swiperSuffix,"#i1"+swiperSuffix],
                     top:"100vh",
                     opacity:0,
                     easing: "easeInExpo",
@@ -329,7 +329,7 @@ consoleBox.addEventListener("wheel",function(e) // All the console animations
                     }
                 })
                 .add({ // project 2 slide up
-                    targets:["#p2","#i2"],
+                    targets:["#p2"+swiperSuffix,"#i2"+swiperSuffix],
                     top: 0,
                     easing: "easeOutExpo",
                     opacity:1,
@@ -362,7 +362,7 @@ consoleBox.addEventListener("wheel",function(e) // All the console animations
             {
                 scrollUpP3 = anime.timeline({loop:false})
                 .add({
-                    targets:["#p2","#i2"],
+                    targets:["#p2"+swiperSuffix,"#i2"+swiperSuffix],
                     top: '100vh',
                     opacity:0,
                     easing: "easeInExpo",
@@ -373,7 +373,7 @@ consoleBox.addEventListener("wheel",function(e) // All the console animations
                     },
                 })
                 .add({
-                    targets:["#p1","#i1"],
+                    targets:["#p1"+swiperSuffix,"#i1"+swiperSuffix],
                     top: 0,
                     opacity:1,
                     easing: "easeOutExpo",

@@ -349,7 +349,7 @@ COMPETENCE SLIDER 2
     text-align: center;
     position: relative;
 }
-#article2 table
+table
 {
     margin-left: auto;
     margin-right: auto;
@@ -377,7 +377,7 @@ COMPETENCE SLIDER 2
 {
     /*animation: buttonUp 0.2s ease-in-out forwards;*/
 }
-#article2 .line
+.line
 {
     position: absolute;
     top:calc(50% - 4px);
@@ -387,31 +387,31 @@ COMPETENCE SLIDER 2
     background-color: var(--white);
     z-index: -1;
 }
-#article2 tr:nth-child(odd)
+tr:nth-child(odd)
 {
     color:var(--black);
 }
-#article2 tr:nth-child(odd) span
+tr:nth-child(odd) span
 {
     background-color: var(--white);
     border: 2px solid var(--black);
 }
-#article2 tr:nth-child(even) span
+tr:nth-child(even) span
 {
     background-color: var(--black);
     border: 2px solid var(--white);
 }
-#article2 td:last-child
+td:last-child
 {
     position: relative;
 }
-#article2 td:last-child span:not(.square2)
+td:last-child span:not(.square2)
 {
     padding: 15px 15px 15px 15px;
     border-radius: 10px; 
     font-size: 20px;
 }
-#article2 td:last-child span.square2
+td:last-child span.square2
 {
     position: absolute;
     width: 6px;
@@ -420,7 +420,7 @@ COMPETENCE SLIDER 2
     left:-3px;
     border: none;
 }
-#article2 td:first-child span:not(.square)
+td:first-child span:not(.square)
 {
     max-height: 80px;
     min-height: 80px;
@@ -433,7 +433,7 @@ COMPETENCE SLIDER 2
     border-radius: 50px;
     position: relative;
 }
-#article2 td:first-child span.square
+td:first-child span.square
 {
     position: absolute;
     width: 5px;
@@ -442,16 +442,16 @@ COMPETENCE SLIDER 2
     right:-3px;
     border: none;
 }
-#article2 tr:nth-child(even) .line
+tr:nth-child(even) .line
 {
     background-color: var(--black);
     border: 2px solid var(--white);
 }
-#article2 tr:nth-child(odd) .line
+tr:nth-child(odd) .line
 {
     border: 2px solid var(--black);
 }
-#article2 .border
+.border
 {
     border-radius: 5px;
     display: flex;
@@ -521,6 +521,12 @@ CONSOLE SLIDER 3
     flex-direction: row;
     height: 100%;
 }
+#article3M
+{
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+}
 #article3 .pc50
 {
     height:60vh;
@@ -583,25 +589,25 @@ CONSOLE SLIDER 3
     font-family: "MtSerrat";
     line-height: 1.5em;
 }
-#p1
+#p1,#p1M
 {
     position: absolute;
     top:0;
     padding-top: 1em;
 }
-#p2
+#p2,#p2M
 {
     position: absolute;
     bottom:-100vh;
     padding-top: 1em;
 }
-#i1
+#i1,#i1M
 {
     position: absolute;
     top:0;
     max-width: 100%;
 }
-#i2
+#i2,#i2M
 {
     position: absolute;
     bottom:-100vh;
@@ -612,7 +618,7 @@ CONSOLE SLIDER 3
     display: flex;
     max-width: 40vw;
 }
-#article3 .pc50:first-child img
+#article3 .pc50:first-child img,#article3M .pc50:first-child img
 {
     display: block;
     max-width: 100%;
@@ -621,7 +627,7 @@ CONSOLE SLIDER 3
     border-radius: 5px;
     border-width: 2px;
 }
-#article3 object
+#article3 object,#article3M object
 {
     height: 100px;
     position: absolute;
@@ -634,7 +640,7 @@ CONSOLE SLIDER 3
 /*************
 FORM SLIDER 4
 *************/
-#article4 
+#article4,#article4M
 {
     height: 100%;
     display: flex;
@@ -642,7 +648,7 @@ FORM SLIDER 4
     justify-content: center;
     position: relative;
 }
-#article4 div:not(form div)
+#article4 div:not(form div),#article4M div:not(form div)
 {
     width: 50%;
     margin:auto;
@@ -651,7 +657,7 @@ FORM SLIDER 4
     flex-direction: column;
     justify-content: space-between;
 }
-#article4 form
+#article4 form,#article4M form
 {
     display: flex;
     flex-direction: column;
@@ -659,28 +665,28 @@ FORM SLIDER 4
     justify-content: space-between;
     min-height: 450px;
 }
-#article4 form #formContainer
+#article4 form #formContainer,#article4M form #formContainer
 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-#article4 form #formContainer div
+#article4 form #formContainer div,#article4M form #formContainer div
 {
     width: 45%;
 }
-#article4 p
+#article4 p,#article4M p
 {
     text-align: center;
     margin-top: 0;
     margin-bottom: 0;
 }
-#article4 form #formContainer div,#article4 form div
+#article4 form #formContainer div,#article4 form div,#article4M form #formContainer div,#article4M form div
 {
     display: flex;
     flex-direction: column;
 }
-#article4 form button
+#article4 form button,#article4M form button
 {
     width: 200px;
     margin-right: auto;
@@ -696,26 +702,26 @@ FORM SLIDER 4
     animation: buttonUp 0.2s ease-in-out forwards; 
     cursor: pointer;
 }
-#article4 input,#article4 textarea
+#article4 input,#article4 textarea,#article4M input,#article4M textarea
 {
     background-color: transparent;
     color: var(--white);
     border:none;
     border-bottom: 1px solid #949494;
 }
-#article4 input
+#article4 input,#article4M input
 {
     height: 2em;
     z-index: 0;
     padding-left: 1em;
 }
-#article4 textarea
+#article4 textarea,#article4M textarea
 {
     border: 1px solid #949494;
     z-index: 0;
     padding-left: 1em;
 }
-#article4 label
+#article4 label,#article4M label
 {
     margin-left: 0.5em;
     transform: translate(0,150%);
@@ -728,21 +734,21 @@ FORM SLIDER 4
     font-size: 20px;
 }
 
-#article4 form .inputFocus
+#article4 form .inputFocus,#article4M form .inputFocus
 {
     animation: formUP 0.3s ease-in-out forwards; 
 }
-#article4 form .inputLoseFocus
+#article4 form .inputLoseFocus,#article4M form .inputLoseFocus
 {
     animation: formDOWN 0.3s ease-in-out forwards; 
 }
-#article4 img
+#article4 img,#article4M img
 {
     width: 100px;
     height: 100px;
     
 }
-#article4 a
+#article4 a,#article4M a
 {
     position: absolute;
     top:50px;
@@ -752,11 +758,11 @@ FORM SLIDER 4
 {
     animation: linkPopUp 0.5s ease-in-out forwards; 
 }
-#article4 a:first-child
+#article4 a:first-child,#article4M a:first-child
 {
     left:10%;
 }
-#article4 a:nth-child(2)
+#article4 a:nth-child(2),#article4M a:nth-child(2)
 {
     right:10%;
 }

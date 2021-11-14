@@ -262,6 +262,10 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </section>
+                <section class="swiper-slide">
+                    <div id="article2.5M">
                         <div class="pc50">
                             <div id="outerBorder"> <!-- Border aniamtion-->
                                 <div id="border1" class="borderR"></div> <!-- Spinning rectangles-->
@@ -288,10 +292,10 @@
                 <section class="swiper-slide">
                     <div id="article3M">
                         <div class="pc50">
-                            <div id="i1" > <!-- Images list-->
+                            <div id="i1M" > <!-- Images list-->
                                 <img src="assets/img/site-mockup-triple.webp" alt="">
                             </div>
-                            <div id="i2">
+                            <div id="i2M">
                                 <img src="assets/img/appli-mockup2.webp" alt="">
                             </div>
                         </div>
@@ -299,14 +303,14 @@
                             <div id="console">
                                 <div id="console-top">
                                     <img src="assets/img/cmd.JPG" alt=""> Thomas Roess © <span><p>1</p>/<p>2</p></span></div>
-                                <div id="p1"> <!-- Project list-->
+                                <div id="p1M"> <!-- Project list-->
                                     <h2>Site vitrine de l'osteopathe Annabel Begaud</h2>
                                         <p>
                                             Mon 1er site, fait sans CMS pour pouvoir prendre de bonnes habitudes et respecter la sémantique. Il est en constante évolution 
                                             pour répondre aux demandes de ma cliente.
                                         </p>
                                 </div>
-                                <div id="p2" >
+                                <div id="p2M" >
                                     <h2>OsteoClic</h2>
                                     <p>
                                         OsteoClic est une application faite pour une Ostéopathe pour gérer sa patientèle et ses consultations selon le cabinet. 
