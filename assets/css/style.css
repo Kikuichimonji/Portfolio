@@ -30,6 +30,7 @@ body
     font-family: "OpenSans";
     background: var(--blackless);
     color: var(--white);
+    overflow: hidden;
 }
 h2,h3
 {
@@ -68,7 +69,21 @@ span
 {
     font-weight: bold;
 }
-
+@media all and (max-width: 768px){
+    .pc50
+    {
+        width: 100%;
+        height: 50%;
+    }
+    .pc50:first-child
+    {
+        margin-left: 0;
+    }
+    .pc50:last-child
+    {
+        margin-right: 0;
+    }
+}
 /*************
 INTRO
 *************/
@@ -110,12 +125,14 @@ SWIPER
 {
     height: 100vh;
 }
-#mainWraper .swiper 
+#mainWraper .swiper,#mainWraper .swiperM 
 {
     height: calc(100vh - var(--header-height));
     width: 100%;
     overflow: hidden;
+    display: none;
 }
+
 .slide-inner 
 {
     width: 50%;
@@ -222,26 +239,41 @@ SLIDER 1
     flex-direction: row;
     height: 100%;
 }
+#article1M
+{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 #article1 .pc50:first-child
 {
     height: 60vh;
     margin-top: auto;
     margin-bottom: auto;
 }
+
 #article1 .pc50:first-child div
 {
     height: 100%;
     display: flex;
 }
-#article1 .pc50:first-child img
+#article1M .pc50:first-child div
+{
+    height: 100%;
+}
+
+#article1 .pc50:first-child img,#article1M .pc50:first-child img
 {
     display: block;
     max-width: 100%;
     max-height: 100%;
+    width: auto;
+    height: auto;
     margin: auto;
     border-radius: 5px;
     border-width: 2px;
 }
+
 #article1 .pc50:last-child
 {
     height: 60vh;
@@ -251,7 +283,7 @@ SLIDER 1
     flex-direction: column;
     justify-content: space-evenly;
 }
-.dialog__content /* FF7 dialog box :D */
+.dialog__content,.dialog__contentM /* FF7 dialog box :D */
 {
     border: solid 1px #ffffff;
     box-shadow: 1px 1px #e7dfe7,
@@ -451,6 +483,7 @@ COMPETENCE SLIDER 2
     height: 80%;
     width: 80%;
     margin: auto;
+    border-radius: 5px;
 }
 #article2 .borderR
 {
@@ -494,6 +527,10 @@ CONSOLE SLIDER 3
     margin-top: auto;
     margin-bottom: auto;
 }
+#article3 .pc50:last-child
+{
+    display: flex;
+}
 #console-top
 {
     display: flex;
@@ -531,7 +568,7 @@ CONSOLE SLIDER 3
 {
     border: solid 1px lightgray;
     border-color: lightgray;
-    height: 100%;
+    height: 80%;
     position: relative;
     width: 80%;
     margin: auto;

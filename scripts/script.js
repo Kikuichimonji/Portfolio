@@ -2,10 +2,10 @@ var blackscreen = document.getElementById("blackscreen");
 var intro = document.getElementById("intro");
 var visible= true; // blinking _
 var visibleStart= true; // blinking Intro
-var textTable = ['"Bonjour, Je me prénomme Thomas, je suis Web Développeur Fullstack avec préférence Back end et je suis passionné par le développement."',
-'"J\'ai 33 ans, j\'habite dans le Haut-Rhin et je suis bénévole chez Animaux en Détresse."',
-'"Je suis passionné de jeux vidéo et de développement web, le tout accompagné de musiques !"',
-'"J\'aime également les randonnées, la piscine, le vélo et m\'occuper des animaux."',
+var textTable = ['"Bonjour, Je me m\'appel Thomas, je suis Web Développeur Fullstack avec préférence Back end."',
+'"J\'ai 33 ans, j\'habite dans le Haut-Rhin et je suis également bénévole à l\'association \'Animaux en Détresse\'."',
+'"Je suis passionné par le développement web ansi que les jeux vidéo depuis que je suis jeune."',
+'"J\'aime également travailler en musique, les randonnées, la piscine, le vélo et m\'occuper des animaux."',
 "test"] //the dialogue text list
 
 var activeText = false;     
@@ -37,10 +37,23 @@ var footerLinks = document.getElementsByTagName("footer")[0].getElementsByTagNam
 var modalBox = document.getElementsByClassName("modalBox")
 var closeCookie = document.getElementById("cookie").getElementsByTagName("span")[1];
 var table = [];
-var timer = document.getElementById("timerSession").dataset
+if(typeof document.getElementById("timerSession") !== 'undefined')
+    timer = document.getElementById("timerSession").dataset
+else
+    timer = 0;
+var timeDiff = 5*60*1000;
+var dateTimer = timer.value*1000;
+var swiperSuffix = ""
+var mainWidth = window.innerWidth
+var mainHeight = window.innerHeight
+
+if(mainWidth < 768)
+    swiperSuffix = "M"
 
 
-const swiper = new Swiper('.swiper', { // Swiper params
+document.getElementById("swiper" + swiperSuffix).style.display = "block"
+
+const swiper = new Swiper("#swiper" + swiperSuffix, { // Swiper params
     
     direction: 'horizontal', //Horizontal slide
     /*mousewheel: 
@@ -159,11 +172,19 @@ function showTitle(texte,interval,tag) // i separated title and text for screen 
 
 function showDialog(text,textIndex,index,interval,tag) //Fuck yeah it finally work //(Table of dialog,list of indexes fot the table,which one in the list,what speed we write,where do we write)
 {
+    var mainBox = document.getElementsByClassName("dialog__content"+swiperSuffix); //To differentiate Mobile and Desktop box
 
-    if(tag=="dialog2")
-            document.getElementsByClassName("dialog__content")[1].style.opacity = 1;
-    if(tag=="dialog0")
-            document.getElementsByClassName("dialog__content")[0].style.opacity = 1;
+    if(tag=="dialog0") //first dialog box 
+    {
+        mainBox[0].style.opacity = 1;
+        subBox =  mainBox[0].getElementsByClassName(tag)[0];
+    }
+    if(tag=="dialog2") //second dialog box 
+    {
+        mainBox[1].style.opacity = 1;
+        subBox =  mainBox[1].getElementsByClassName(tag)[0];
+    }
+    
     for(countLetter = 0; countLetter < text[textIndex[index]].length; countLetter++) //We loop for the lenght of the right text in the table
     {
         
@@ -171,7 +192,7 @@ function showDialog(text,textIndex,index,interval,tag) //Fuck yeah it finally wo
         {
             textInterval[countLetter] = setTimeout(function() //each timeout got a unique id, this way we cean clear the whole list later
             {
-                document.getElementsByClassName(tag)[0].innerHTML = document.getElementsByClassName(tag)[0].innerHTML + text[textIndex[index]][countLetter]; //we look for the right container (tag), the right text at the right index to write, then we print letter by letter
+                subBox.innerHTML = subBox.innerHTML + text[textIndex[index]][countLetter]; //we look for the right container (tag), the right text at the right index to write, then we print letter by letter
                 //document.getElementsByClassName(tag)[1].innerHTML = document.getElementsByClassName(tag)[1].innerHTML + text[textIndex[index]][countLetter]; // Had to recall it because of swipper duplicating first and last slider for smooth loops (index 0 = slide 1, index 1 = slide 1 duplicated)
                 if(countLetter == text[textIndex[index]].length-1) // if we're at the end of the sentence
                     if(textIndex[index+1]) //if we got more sentences
@@ -181,7 +202,7 @@ function showDialog(text,textIndex,index,interval,tag) //Fuck yeah it finally wo
                         setTimeout(function(){showDialog(text,textIndex,index,interval,"dialog"+index)},200); //recursion 
                     }
                     else
-                        activeText=false; // No more dialog is running, we can reanimate if we want
+                        activeText=false; // No more dialog is running, we can re animate if we want
             },countLetter*interval) 
         })(countLetter)
     }
@@ -190,7 +211,7 @@ function clearDialog(tag,list) //CLearing all the dialogs for the tags
 {
     for(count = 0; count < list.length; count++) 
         document.getElementsByClassName(tag+list[count])[0].innerHTML = ""
-    var dialogList = document.getElementsByClassName("dialog__content")
+    var dialogList = document.getElementsByClassName("dialog__content"+swiperSuffix)
     for(count = 0; count < dialogList.length; count++) 
         dialogList[count].style.opacity = 0
 
@@ -301,7 +322,7 @@ consoleBox.addEventListener("wheel",function(e) // All the console animations
                     top:"100vh",
                     opacity:0,
                     easing: "easeInExpo",
-                    duration: 1000,
+                    duration: 700,
                     begin: function()
                     {
                         animEnd=false;
@@ -312,7 +333,7 @@ consoleBox.addEventListener("wheel",function(e) // All the console animations
                     top: 0,
                     easing: "easeOutExpo",
                     opacity:1,
-                    duration: 1000,
+                    duration: 700,
                     complete: function()
                     {
                         animEnd = true;
@@ -333,7 +354,7 @@ consoleBox.addEventListener("wheel",function(e) // All the console animations
             }
         }
     }
-    else
+    else //if we scroll up
     {
         if(swiper.activeIndex == 2)
         {
@@ -345,7 +366,7 @@ consoleBox.addEventListener("wheel",function(e) // All the console animations
                     top: '100vh',
                     opacity:0,
                     easing: "easeInExpo",
-                    duration: 1000,
+                    duration: 700,
                     begin: function()
                     {
                         animEnd=false;
@@ -356,7 +377,7 @@ consoleBox.addEventListener("wheel",function(e) // All the console animations
                     top: 0,
                     opacity:1,
                     easing: "easeOutExpo",
-                    duration: 1000,
+                    duration: 700,
                     complete: function()
                     {
                         animEnd = true;
@@ -425,47 +446,46 @@ swiper.on('slideChangeTransitionEnd',function() //event at the end of the slide 
     }
 });
 
-function readTextFile(file)
+
+function timeLeft(timeToWait, startTimer ) //Function that return the time left from a given timer 
 {
-    
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
+    timingDate = new Date(timeToWait -(Date.now() - startTimer)) //timestamp calculation
+    if(timeToWait -(Date.now() - startTimer) > 1000) //This check is just to not show the "00:00" and go directly to the button text after 00:01(1000 because milliseconds)
     {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                var allText = rawFile.responseText;
-                
-                allText.split(",").forEach(element => {
-                    table.push(element)
-                });
-            }
-        }
+        if(timingDate.getUTCSeconds()<10) // small display improvement, show XX:05 instead of XX:5
+            seconds = "0"+timingDate.getUTCSeconds()
+        else
+            seconds = timingDate.getUTCSeconds()
+        return timingDate.getUTCMinutes() + " : " + seconds;
     }
-    rawFile.send(null);
+    else
+    {
+        clearInterval(timeLeftInter); //we clear the interval that show the time
+        return "Envoyer"
+    }
 }
 
-function submitForm(form)
-{
-    dateTimer = timer.value*1000
-    dateNow = Date.now()
-    timeDiff = 5*60*1000
-    var timeLeft = timeDiff -(dateNow - dateTimer)
-    var timeLeftDate = new Date(timeLeft)
 
-    if(timeLeft > 0)
+timeLeftInter = window.setInterval(function() { //we start the interval directly at the loading, so it's already shown
+    document.getElementById("buttonForm").innerHTML = timeLeft(timeDiff,dateTimer);
+}, 1000)
+
+function submitForm(form) //before we submit the form we do some verifications
+{
+    dateNow = Date.now() //we get the time 
+
+    if(timeDiff - (dateNow - dateTimer) > 0) //if the coutdown run out, we can send the for
     {
-        alert("Veuillez attendre avant de renvoyer un nouveau message. \nTemps restant : " + timeLeftDate.getUTCMinutes() + " minutes et " + timeLeftDate.getUTCSeconds() +" secondes")
         return false;
     }
         
     else
+    {
         return true;
+    }
 }
 
-footerLinks[0].addEventListener("click",function(){
+footerLinks[0].addEventListener("click",function(){ //Politique de confidentialité
     modalBox[0].style.display = "initial"
     noScroll = true
     modalBox[0].addEventListener("click",function(){
@@ -473,7 +493,7 @@ footerLinks[0].addEventListener("click",function(){
         noScroll = false
     })
 })
-footerLinks[2].addEventListener("click",function(){
+footerLinks[2].addEventListener("click",function(){ //Mentions légales
 
     modalBox[1].style.display = "initial"
     noScroll = true

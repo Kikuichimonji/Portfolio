@@ -11,8 +11,12 @@
             $messageClass = "popupMail";
         }
     if(isset($_SESSION["timer"]))
-        //echo("<input type='hidden' id='timerSession' data-value='".$_SESSION["timer"]->format("Y-m-d\TH:i:s\Z")."' />");
-        echo("<input type='hidden' id='timerSession' data-value='".$_SESSION["timer"]."' />");
+        $timer = $_SESSION["timer"];
+    else
+        $timer = "";
+
+    echo("<input type='hidden' id='timerSession' data-value='".$timer."' />");
+    
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -24,6 +28,14 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="lib/swiper-bundle.min.css"/>
     <title>Portfolio Thomas Roess</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SCML6EWJHB"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-SCML6EWJHB');
+    </script>
 </head>
 <body>
     <div id="mainWraper">
@@ -44,7 +56,7 @@
                 <div id="slideList" class="swiper-pagination"></div>
             </div>
         </header>
-        <div class="swiper">
+        <div id ="swiper" class="swiper">
             <div class="swiper-wrapper">
                 <section class="swiper-slide">
                     <div id="article1" >
@@ -183,14 +195,162 @@
                                     <label class="textDown" for="texte">Votre message <span>*</span></label>
                                     <textarea name="texte" id="texte" rows="5" cols="33" required></textarea>  
                                 </div> 
-                                <button type="submit" form="contact" value="Submit">Envoyer</button>
+                                <button type="submit" form="contact" value="Submit" id="buttonForm">Envoyer</button>
                             </form>
                         </div>
                     </div>
                 </section>
             </div>
-            <div class="swiper-button-next "></div>
-            <div class="swiper-button-prev "></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+        <div id ="swiperM" class="swiperM">
+            <div class="swiper-wrapper">
+                <section class="swiper-slide">
+                    <div id="article1M" >
+                        <div class="pc50"> <!-- Half screen separation-->
+                            <div>
+                                <img src="assets/img/Thomas_roess-cropped.webp" alt="Photo du propriétaire du portfolio" class="border">
+                            </div>
+                        </div>
+                        <div class="pc50">
+                            <div class="dialog__contentM"> <!-- Dialog box, video game style-->
+                                <p>Thomas</p>
+                                <p class="dialog0"></p>
+                                <p class="dialog1"></p>
+                            </div>
+                            <div class="dialog__contentM">
+                                <p>Thomas</p>
+                                <p class="dialog2"></p>
+                                <p class="dialog3"></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="swiper-slide">
+                    <div id="article2M">
+                        <div class="pc50">
+                            <table>
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span>2011<span class="square"></span><!-- Little square that help me cheat with the borders-->
+                                        </span></td>
+                                        <td><div class="line"></div></td>
+                                        <td><span class="square2"></span><span><p>1ère Année de Cycle d'ingénieur - Epsi Arras</p></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>2019<span class="square"></span></td>
+                                        <td><div class="line"></div></td>
+                                        <td><span class="square2"></span><span><p>Création du site <a href="https://www.osteopathe-begaud.fr" target="blank_">www.osteopathe-begaud.fr</a></p></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>2020<span class="square"></span></td>
+                                        <td><div class="line"></div></td>
+                                        <td><span class="square2"></span><span><p>Diplôme de Développeur Web/Web Mobile</p></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>2020<span class="square"></span></td>
+                                        <td><div class="line"></div></td>
+                                        <td><span class="square2"></span><span><p>Application Symfony 5 OsteoClic</p></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>2021<span class="square"></span></td>
+                                        <td><div class="line"></div></td>
+                                        <td><span class="square2"></span><span><p>Formation de Développeur Fullstack CDA</p></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pc50">
+                            <div id="outerBorder"> <!-- Border aniamtion-->
+                                <div id="border1" class="borderR"></div> <!-- Spinning rectangles-->
+                                <div id="border2" class="borderR"></div>
+                                <div id="border3" class="borderR"></div>
+                                <div class="border">
+                                    <div>
+                                        <p>HTML5 - CSS3 - UIKIT</p>
+                                        <p>Sémantique - SEO</p>
+                                    </div>
+                                    <div>
+                                        <p>php - mysql - js es6</p>
+                                        <p>Tests Unitaires - PHP/JS OO</p>
+                                    </div>
+                                    <div>
+                                        <p>wordpress - symfony 5</p>
+                                        <p>Prestashop - Doctrine</p>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </section>
+                <section class="swiper-slide">
+                    <div id="article3M">
+                        <div class="pc50">
+                            <div id="i1" > <!-- Images list-->
+                                <img src="assets/img/site-mockup-triple.webp" alt="">
+                            </div>
+                            <div id="i2">
+                                <img src="assets/img/appli-mockup2.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="pc50">
+                            <div id="console">
+                                <div id="console-top">
+                                    <img src="assets/img/cmd.JPG" alt=""> Thomas Roess © <span><p>1</p>/<p>2</p></span></div>
+                                <div id="p1"> <!-- Project list-->
+                                    <h2>Site vitrine de l'osteopathe Annabel Begaud</h2>
+                                        <p>
+                                            Mon 1er site, fait sans CMS pour pouvoir prendre de bonnes habitudes et respecter la sémantique. Il est en constante évolution 
+                                            pour répondre aux demandes de ma cliente.
+                                        </p>
+                                </div>
+                                <div id="p2" >
+                                    <h2>OsteoClic</h2>
+                                    <p>
+                                        OsteoClic est une application faite pour une Ostéopathe pour gérer sa patientèle et ses consultations selon le cabinet. 
+                                        Elle a été développé sous Symfony 5 dont une grosse partie dynamique en JS.
+                                    </p>
+                                </div>
+                                <object type="image/svg+xml" data="assets/img/mouse-scroll-up-down.svg"></object>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="swiper-slide">
+                    <div id="article4M" >
+                        <a href="https://github.com/Kikuichimonji" target="blank_"><img src="assets/img/github.webp" alt="logo GitHub"></a>
+                        <a href="https://www.linkedin.com/in/thomas-roess/" target="blank_"><img src="assets/img/linkedin.webp" alt="logo Linkdin"></a>
+                        <div>
+                            <p>N'hesitez pas à me contacter pour plus d'informations</p>
+                            <form method="post" action="mail.php" id="contact"  onsubmit="return submitForm(this)">
+                                <div id="formContainer">
+                                    <div>
+                                        <label class="textDown" for="prenom">Votre prenom <span>*</span></label>
+                                        <input type="text" name="prenom" id="prenom"  required/>
+                                    </div>
+                                    <div>
+                                        <label class="textDown" for="nom">Votre nom <span>*</span></label>
+                                        <input type="text" name="nom" id="nom"  required/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="textDown" for="mail">Votre mail <span>*</span></label>
+                                    <input type="email" name="mail" id="mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  size="30" required/>
+                                </div>
+                                <div>
+                                    <label class="textDown" for="texte">Votre message <span>*</span></label>
+                                    <textarea name="texte" id="texte" rows="5" cols="33" required></textarea>  
+                                </div> 
+                                <button type="submit" form="contact" value="Submit" id="buttonForm">Envoyer</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
         <footer>
             <p>Politique de confidentialité</p>
@@ -218,12 +378,12 @@
                     <p>Nous prenons soin de vos données personnelles et nous nous engageons à en garantir la confidentialité et la sécurité.</p>
 
                     <p>Les informations personnelles que nous collectons :</p>
-                    <p>Lorsque vous visitez le thomas-roess.fr, nous recueillons certaines informations que vous rentreriez dnas le formulaire (le nom, le prénom, l'adresse mail).</p>
+                    <p>Lorsque vous visitez le thomas-roess.fr, nous recueillons certaines informations que vous rentreriez dans le formulaire (le nom, le prénom, l'adresse mail).</p>
 
                     <p>Pourquoi traitons-nous vos données ?</p>
-                    <p>Aucune données ne sont sauvergardée, ces données de contacts ne seront utilisées uniquement en cas de réponse</p>
+                    <p>Aucune données du formulaire n'est sauvergardées, ces données de contacts ne seront utilisées uniquement qu'en cas de réponse</p>
 
-                    <p>Vous pouvez visiter le site web sans nous dire qui vous êtes ni révéler d'informations, par lesquelles quelqu'un pourrait vous identifier comme un individu spécifique et identifiable. Toutefois, si vous souhaitez des détails en remplissant un formulaire, vous pouvez nous fournir des données personnelles, telles que votre e-mail, votre prénom, votre nom, votre ville de résidence, votre organisation, votre numéro de téléphone. Vous pouvez choisir de ne pas nous fournir vos données personnelles, mais il se peut alors que vous ne puissiez pas profiter de certaines fonctionnalités du site web. Par exemple vous ne pourrez pas nous contacter directement à partir du site web. Les utilisateurs qui ne savent pas quelles informations sont obligatoires sont invités à nous contacter via <span class="bold">thomas_roess@hotmail.fr</span>.</p>
+                    <p>Vous pouvez visiter le site web sans nous dire qui vous êtes ni révéler d'informations, par lesquelles quelqu'un pourrait vous identifier comme un individu spécifique et identifiable. Toutefois, si vous souhaitez des détails en remplissant un formulaire, vous pouvez nous fournir des données personnelles, telles que votre e-mail, votre prénom, votre nom, votre ville de résidence, votre organisation, votre numéro de téléphone. Vous pouvez choisir de ne pas nous fournir vos données personnelles, mais il se peut alors que vous ne puissiez pas profiter de certaines fonctionnalités du site web. Par exemple vous ne pourrez pas nous contacter directement à partir du site web. Les utilisateurs qui ne savent pas quelles informations sont obligatoires sont invités à nous contacter via <span class="bold">admin@thomas-roess.fr</span>.</p>
 
                     <p>Vos droits :</p>
                     <p>Si vous êtes un résident européen, vous disposez des droits suivants liés à vos données personnelles :</p>
@@ -249,7 +409,7 @@
                     <p>Nous divulguerons toute information que nous collectons, utilisons ou recevons si la loi l'exige ou l'autorise, par exemple pour nous conformer à une citation à comparaître ou à une procédure judiciaire similaire, et lorsque nous pensons de bonne foi que la divulgation est nécessaire pour protéger nos droits, votre sécurité ou celle d'autrui, enquêter sur une fraude ou répondre à une demande du gouvernement.</p>
 
                     <p>Informations de contact :</p>
-                    <p>Si vous souhaitez nous contacter pour comprendre davantage la présente politique ou si vous souhaitez nous contacter concernant toute question relative aux droits individuels et à vos informations personnelles, vous pouvez envoyer un courriel à <span class="bold">thomas_roess@hotmail.fr</span>.</p>
+                    <p>Si vous souhaitez nous contacter pour comprendre davantage la présente politique ou si vous souhaitez nous contacter concernant toute question relative aux droits individuels et à vos informations personnelles, vous pouvez envoyer un courriel à <span class="bold">admin@thomas-roess.fr</span>.</p>
                 </div>
             </div>
         </div>
@@ -269,10 +429,10 @@
                     <h2>1. Présentation du site internet.</h2>
                     <p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site internet <a href="https://www.thomas-roess.fr">https://www.thomas-roess.fr</a> l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi:
                     </p><p><strong>Propriétaire</strong> :   Thomas Roess   – 12 rue du rebberg 68140 Gunsbach<br>
-                    <strong>Responsable publication</strong> : Thomas Roess – thomas_roess@hotmail.fr<br>
+                    <strong>Responsable publication</strong> : Thomas Roess – admin@thomas-roess.fr<br>
                     Le responsable publication est une personne physique ou une personne morale.<br>
-                    <strong>Webmaster</strong> : Thomas Roess – thomas_roess@hotmail.fr<br>
-                    <strong>Hébergeur</strong> : ovh – 2 rue Kellermann 59100 Roubaix 1007<br>
+                    <strong>Webmaster</strong> : Thomas Roess – admin@thomas-roess.fr<br>
+                    <strong>Hébergeur</strong> : o2switch – 222 Bd Gustave Flaubert, 63000 Clermont-Ferrand<br>
                     </p>
 
                     <h2>2. Conditions générales d’utilisation du site et des services proposés.</h2>
