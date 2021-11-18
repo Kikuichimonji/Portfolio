@@ -365,10 +365,9 @@
             <span>Cookies?</span>
             <span>X</span>
             <div>
-                <p>Yes</p>
-                <p>No</p>
-                <p>Maybe</p>
-                <p>Can you repeat the question?</p>
+                <p>Decline All</p>
+                <p>Accept All</p>
+                <p>Manage Settings</p>
             </div>
         </div>
         <div class="modalBox" id="mConfid">

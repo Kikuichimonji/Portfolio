@@ -271,6 +271,16 @@ window.addEventListener("load", function () {
         })
 })
 
+window.addEventListener("keyup", function (e) {
+    if(e.key == "ArrowRight" )
+    {
+        swiper.slideNext();
+    }
+    else if(e.key == "ArrowLeft")
+    {
+        swiper.slidePrev();
+    }
+});
 window.addEventListener("wheel", function (e) {
     consoleBox.addEventListener("mouseenter", function (e) // we disable page scrolling when we enter the console box
     {
@@ -483,6 +493,13 @@ footerLinks[2].addEventListener("click", function () { //Mentions légales
         noScroll = false
     })
 })
-closeCookie.addEventListener("click", function () {
+closeCookie.addEventListener("click", function () { //Close cookie banner with X
     document.getElementById("cookie").style.display = "none"
 })
+cookieButtons = document.querySelectorAll("#cookie div p");
+for(count=0;count < cookieButtons.length; count++) // Close cookie banner with buttons (last minute stuff)
+{
+    cookieButtons[count].addEventListener("click", function () {
+        document.getElementById("cookie").style.display = "none"
+    })
+}
