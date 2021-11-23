@@ -83,6 +83,10 @@ span
     {
         margin-right: 0;
     }
+    :root
+    {
+        --swiper-navigation-size: 30px !important;
+    }
 }
 /*************
 INTRO
@@ -117,6 +121,16 @@ INTRO
     font-size: 40px;
 }
 
+@media all and (max-width: 600px){
+    #blackscreen div
+    {
+        font-size: 30px;
+    }
+    #start
+    {
+        font-size: 30px;
+    }
+}
 
 /*************
 SWIPER
@@ -158,27 +172,50 @@ SWIPER
     text-shadow: -1px 0px 3px lightgray;
     color:white ;
 }
-
+#slideList,#slideListM
+{
+    height: 30px;
+    top:65px;
+    display: none;
+}
 #slideList .swiper-pagination-bullet,#slideList .swiper-pagination-bullet-active
 {
     opacity: 1 ;
     padding: 3px;
+}
+#slideListM .swiper-pagination-bullet,#slideListM .swiper-pagination-bullet-active
+{
+    opacity: 1 ;
+    padding: 8px;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
 }
 #slideList .swiper-pagination-bullet
 {
     background-color: var(--black);
     border: 2px solid var(--white)
 }
-#slideList .swiper-pagination-bullet-active
+#slideListM .swiper-pagination-bullet
+{
+    background-color: var(--black);
+    border: 2px solid var(--white)
+}
+#slideList .swiper-pagination-bullet-active,#slideListM .swiper-pagination-bullet-active
 {
     background-color:white; 
 }
-#slideList
-{
-    height: 30px;
-    top:65px;
-}
 
+
+@media all and (max-width: 600px){
+    #mainWraper .swiper-button-next
+    {
+        margin-right:0.5em;
+    }
+    #mainWraper .swiper-button-prev
+    {
+        margin-left: 0.5em;
+    }
+}
 /*************
 HEADER
 *************/
@@ -228,7 +265,13 @@ header div
     animation: fadeOutDelayed 8s forwards;
 }
 
-
+@media all and (max-width: 600px){
+    header h2
+    {
+       margin-left: 50px;
+       font-size: 1.5em;
+    }
+}
 /*************
 SLIDER 1
 *************/
@@ -251,6 +294,12 @@ SLIDER 1
     margin-top: auto;
     margin-bottom: auto;
 }
+#article1M .pc50:first-child
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 #article1 .pc50:first-child div
 {
@@ -259,7 +308,7 @@ SLIDER 1
 }
 #article1M .pc50:first-child div
 {
-    height: 100%;
+    height: 80%;
 }
 
 #article1 .pc50:first-child img,#article1M .pc50:first-child img
@@ -283,6 +332,16 @@ SLIDER 1
     flex-direction: column;
     justify-content: space-evenly;
 }
+#article1M .pc50:last-child
+{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .dialog__content,.dialog__contentM /* FF7 dialog box :D */
 {
     border: solid 1px #ffffff;
@@ -307,29 +366,50 @@ SLIDER 1
     opacity: 0;
 }
 
-.dialog__content p:not(p:first-child)
+.dialog__content p:not(p:first-child),.dialog__contentM p:not(p:first-child)
 {
     margin-bottom: 0.5em;
     margin-top: 0.5em;
     margin-left: 15px;
 }
-.dialog__content p:first-child
+.dialog__content p:first-child,.dialog__contentM p:first-child
 {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
+#article1M .pc50:last-child .dialog__contentM:nth-child(2)
+{
+    display: none;
+}
 
+@media all and (max-width: 600px){
+    #article1M .pc50:first-child img
+    {
+        max-width: 75%;
+    }
+    #article1M .pc50:last-child
+    {
+        width: 75%;
+        display: initial;
+        padding-bottom: 2em;
+    }
+    .dialog__contentM
+    {
+        font-size: 20px;
+        height: 180px;
+    }
+}
 
 /*************
 COMPETENCE SLIDER 2
 *************/
-#article2
+#article2,#article2M
 {
     height: 100%;
     display: flex;
     flex-flow: row nowrap;
 }
-#article2 a
+#article2 a,#article2M a
 {
     color:var(--white);
     font-weight: bold;
@@ -344,43 +424,68 @@ COMPETENCE SLIDER 2
     margin-bottom: auto;
     
 }
-#article2 .pc50:last-child
+#article2HalfMWraper
+{
+    height: 100%;
+}
+#article2M table
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+#article2 .pc50:last-child,#article2M ,#article2HalfM
 {
     text-align: center;
     position: relative;
 }
-table
+#article2 table
 {
     margin-left: auto;
     margin-right: auto;
     height: 100%;
     width: 100%;
 }
+#article2M table
+{
+    margin-left: auto;
+    margin-right: auto;
 
-#article2 p,#article2 span
+}
+
+#article2 p,#article2 span,#article2M p,#article2M span
 {
     margin: 0;
     z-index: 1;
 }
-#article2 span
+#article2 span,#article2M span
 {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#article2 tr
+#article2 tr,#article2M tr
 {
     position: relative;
-    animation: buttonDown 0.2s ease-in-out forwards;
 }
-#article2 tr:hover
+#article2M tr
 {
-    /*animation: buttonUp 0.2s ease-in-out forwards;*/
+    height: 140px;
+    max-height: 140px;
+    min-height: 50px;
 }
+#article2M tr a
+{
+    margin-left: 0.5em;
+}
+
 .line
 {
     position: absolute;
-    top:calc(50% - 4px);
+    /*top:calc(50% - 4px);*/
+    transform: translate(0,-50%);
     right: 15%;
     height: 4px;
     width: 80%;
@@ -461,60 +566,111 @@ tr:nth-child(odd) .line
     z-index: 5;
     background-color: var(--blackless);
     height: 100%;
-    margin: auto;
 }
-#article2 .pc50:last-child p:first-child
+#article2HalfM
+{
+    height: 100%;
+    display: flex;
+}
+#article2 .pc50:last-child p:first-child, #article2HalfM p:first-child
 {
     font-size: 2em;
     font-weight: bold;
     text-transform: uppercase;
 }
-#article2 .pc50:last-child p:last-child
+#article2 .pc50:last-child p:last-child,#article2HalfM p:last-child
 {
     font-family: "MtSerrat";
     margin-top: 1em;
 }
-#outerBorder
+#outerBorder,#outerBorderM
 {
     padding:5px;
     z-index: 5;
     position: relative;
     overflow: hidden;
-    height: 80%;
-    width: 80%;
     margin: auto;
     border-radius: 5px;
 }
-#article2 .borderR
+#outerBorder
+{
+    height: 80%;
+    width: 80%;
+}    
+#outerBorderM
+{
+    height: 70%;
+    width: 70%;
+}
+#article2 .borderR,#article2HalfM .borderR
 {
     width:120%;
     height: 200px;
     position: absolute;
     opacity: 0;
 }
-#border1
+#border1,#border1M
 {
     top:50px;
     background-color: red;
 }
-#border2
+#border2,#border2M
 {
     background-color: blue;
 }
-#border3
+#border3,#border3M
 {
     background-color: green;
     bottom: 50px;
 }
-#article2 .pc50:last-child .borderR
+#article2 .pc50:last-child .borderR,#article2HalfM .borderR
 {
     animation: borderRotate 5s linear infinite;
 }
 
 
+@media all and (max-width: 600px){
+    #article2M tr
+    {
+        height: 90px;
+    }
+    #article2M table
+    {
+        width: 70%;
+        margin-left: 30px;
+        margin-top: 30px;
+    }
+    td:first-child span:not(.square)
+    {
+        min-height: 50px;
+        min-width: 50px;
+        font-size: 18px;
+    }
+    td:last-child span:not(.square2)
+    {
+        padding: 15px 15px 15px 15px;
+        border-radius: 10px; 
+        font-size: 15px;
+    }
+    #article2HalfM p:first-child
+    {
+        font-size: 1.20em;
+    }
+    #outerBorderM
+    {
+        width: 75%;
+        margin-top: 40px;
+    }
+    .line
+    {
+        width: 70%;
+    }
+}
+
 /*************
 CONSOLE SLIDER 3
 *************/
+
 #article3
 {
     display:flex;
@@ -537,7 +693,7 @@ CONSOLE SLIDER 3
 {
     display: flex;
 }
-#console-top
+.console-top
 {
     display: flex;
     align-content: center;
@@ -548,7 +704,7 @@ CONSOLE SLIDER 3
     padding-bottom: 5px;
     position: relative;
 }
-#console-top span
+.console-top span
 {
     display: flex;
     flex-direction: row;
@@ -558,19 +714,19 @@ CONSOLE SLIDER 3
     top:50%;
     transform: translate(0,-50%);
 }
-#console-top span p
+.console-top span p
 {
     margin: 0;
     margin-left: 0.5em;
     margin-right: 0.5em;
     font-weight: bold;
 }
-#console-top img
+.console-top img
 {
     margin-left: 0.5em;
     margin-right: 0.5em;
 }
-#console
+#console,#consoleM
 {
     border: solid 1px lightgray;
     border-color: lightgray;
@@ -580,11 +736,11 @@ CONSOLE SLIDER 3
     margin: auto;
     overflow: hidden;
 }
-#console:hover
+#console:hover,#consoleM:hover
 {
     animation: consoleColor 0.5s ease-in-out forwards; 
 }
-#console p:not(#console-top p)
+#console p:not(.console-top p),#consoleM p:not(.console-top p)
 {
     font-family: "MtSerrat";
     line-height: 1.5em;
@@ -618,6 +774,13 @@ CONSOLE SLIDER 3
     display: flex;
     max-width: 40vw;
 }
+#article3M .pc50:first-child div
+{
+    position: relative;
+    height: 100%;
+    max-height: 40vh;
+    padding-top: 1em;
+}
 #article3 .pc50:first-child img,#article3M .pc50:first-child img
 {
     display: block;
@@ -637,6 +800,38 @@ CONSOLE SLIDER 3
 
 }
 
+@media all and (max-width: 600px)
+{
+    #i1M,#i2M
+    {
+        max-width: 75%;
+        margin: auto;
+    }
+    #article3M h2
+    {
+        max-width: 70%;
+        font-size:1em;
+        margin-bottom: 2em;
+    }
+    #article3M object
+    {
+        top:0;
+        right:0;
+        transform: translate(0, 60%);
+        height: 60px;
+        left: auto;
+    }
+    #consoleM p:not(.console-top p)
+    {
+        line-height: initial;
+        font-size: 0.9em;
+    }
+    #consoleM
+    {
+        background-color: var(--black);
+    }
+}
+
 /*************
 FORM SLIDER 4
 *************/
@@ -650,12 +845,23 @@ FORM SLIDER 4
 }
 #article4 div:not(form div),#article4M div:not(form div)
 {
-    width: 50%;
     margin:auto;
     height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+#article4M div:not(form div)
+{
+    justify-content: space-evenly;
+}
+#article4 div:not(form div)
+{
+    width: 50%;
+}
+#article4M div:not(form div)
+{
+    width: 70%;
 }
 #article4 form,#article4M form
 {
@@ -664,14 +870,15 @@ FORM SLIDER 4
     height: 80%;
     justify-content: space-between;
     min-height: 450px;
+    font-family: "MtSerrat";
 }
-#article4 form #formContainer,#article4M form #formContainer
+#article4 form #formContainer,#article4M form #formContainerM
 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-#article4 form #formContainer div,#article4M form #formContainer div
+#article4 form #formContainer div,#article4M form #formContainerM div
 {
     width: 45%;
 }
@@ -681,7 +888,7 @@ FORM SLIDER 4
     margin-top: 0;
     margin-bottom: 0;
 }
-#article4 form #formContainer div,#article4 form div,#article4M form #formContainer div,#article4M form div
+#article4 form #formContainer div,#article4 form div,#article4M form #formContainerM div,#article4M form div
 {
     display: flex;
     flex-direction: column;
@@ -728,9 +935,13 @@ FORM SLIDER 4
     z-index: 0;
     color: #949494;
 }
-#article4 input,#article4 textarea,#article4 label,#article4 button,#article4 p
+#article4 input,#article4 textarea,#article4 label,#article4 p
 {
     font-family: "MtSerrat";
+    font-size: 20px;
+}
+#article4M input,#article4M textarea,#article4M label,#article4M p
+{
     font-size: 20px;
 }
 
@@ -748,11 +959,16 @@ FORM SLIDER 4
     height: 100px;
     
 }
-#article4 a,#article4M a
+#article4 a
 {
     position: absolute;
     top:50px;
     animation: linkPopDown 0.2s ease-in-out forwards; 
+}
+#article4M a
+{
+    position: absolute;
+    top:0;
 }
 #article4 a:hover
 {
@@ -766,14 +982,62 @@ FORM SLIDER 4
 {
     right:10%;
 }
-
+@media all and (max-width: 600px)
+{
+    #article4M img
+    {
+        width:50px;
+        height: 50px;
+    }
+    #article4M form
+    {
+        min-height: 0;
+    }
+    #article4M a:first-child
+    {
+        top:5%;
+        left:5%;
+    }
+    #article4M a:nth-child(2)
+    {
+        top:5%;
+        right:5%;
+    }
+    #article4M input,#article4M textarea,#article4M label,#article4M p
+    {
+        font-size: 1em;
+    }
+    #article4M form button
+    {
+        width: 150px;
+        font-size: 20px;
+    }
+    #article4M div:not(form div)
+    {
+        width: 75%;
+        margin-top:5%
+    }
+    .formDiv
+    {
+        width:75%;
+        margin-top: 5%;
+    }
+    #article4M p
+    {
+        width: 80%;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 1em;
+        margin-bottom: 2em;
+    }
+}
 /*************
 FOOTER
 *************/
 footer
 {
     
-    position: absolute;
+    position: fixed;
     display: flex;
     justify-content: space-evenly;
     width: 100vw;
@@ -792,6 +1056,27 @@ footer p:first-child:hover,footer p:last-child:hover
 {
     cursor: pointer;
     opacity: 1;
+}
+
+@media all and (max-width: 600px){
+    footer p
+    {
+        font-size: 0.75em;
+        text-align: center;
+    }
+    footer p:nth-child(2)
+    {
+        min-width: 180px;
+        margin-top: auto;
+    }
+    footer p:nth-child(1)
+    {
+        margin-left: 0.5em;
+    }
+    footer p:nth-child(3)
+    {
+        margin-right: 0.5em;
+    }
 }
 
 /*************
@@ -854,9 +1139,8 @@ COOKIES
     background-color: var(--white);
     color: var(--black);
     z-index: 15;
-    display: flex;
+    display: none;
     flex-direction: column;
-  
 }
 #cookie span:first-child
 {

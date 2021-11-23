@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="fr">
 <?php 
     session_start();
     $mailMessage = ["Mail bien envoyé","Un problème est survenu avec l'envoi du mail, veuillez réessayer plus tard"];
@@ -18,8 +20,6 @@
     echo("<input type='hidden' id='timerSession' data-value='".$timer."' />");
     
 ?>
-<!DOCTYPE html>
-<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,11 +49,12 @@
             <div class="<?= $messageClass ?>">
                 <p><?= $message ?></p>
             </div>
-            <img id="logo" src="assets/img/Logo-Thomas-black.png" alt="">
+            <img id="logo" src="assets/img/Logo-Thomas-black.png" alt="Logo Thomas Roess Boite noir avec Nom ecrit en blanc style console windows">
             <div>
                 <h2 id="titre"></h2>
                 <span id="undescore">&#95;</span>
                 <div id="slideList" class="swiper-pagination"></div>
+                <div id="slideListM" class="swiper-paginationM"></div>
             </div>
         </header>
         <div id ="swiper" class="swiper">
@@ -89,27 +90,27 @@
                                         <td><span>2011<span class="square"></span><!-- Little square that help me cheat with the borders-->
                                         </span></td>
                                         <td><div class="line"></div></td>
-                                        <td><span class="square2"></span><span><p>1ère Année de Cycle d'ingénieur - Epsi Arras</p></span></td>
+                                        <td><span class="square2"></span><span>1ère Année de Cycle d'ingénieur - Epsi Arras</span></td>
                                     </tr>
                                     <tr>
-                                        <td><span>2019<span class="square"></span></td>
+                                        <td><span>2019<span class="square"></span></span></td>
                                         <td><div class="line"></div></td>
-                                        <td><span class="square2"></span><span><p>Création du site <a href="https://www.osteopathe-begaud.fr" target="blank_">www.osteopathe-begaud.fr</a></p></span></td>
+                                        <td><span class="square2"></span><span>Création du site <a href="https://www.osteopathe-begaud.fr" target="blank_">www.osteopathe-begaud.fr</a></span></td>
                                     </tr>
                                     <tr>
-                                        <td><span>2020<span class="square"></span></td>
+                                        <td><span>2020<span class="square"></span></span></td>
                                         <td><div class="line"></div></td>
-                                        <td><span class="square2"></span><span><p>Diplôme de Développeur Web/Web Mobile</p></span></td>
+                                        <td><span class="square2"></span><span>Diplôme de Développeur Web/Web Mobile</span></td>
                                     </tr>
                                     <tr>
-                                        <td><span>2020<span class="square"></span></td>
+                                        <td><span>2020<span class="square"></span></span></td>
                                         <td><div class="line"></div></td>
-                                        <td><span class="square2"></span><span><p>Application Symfony 5 OsteoClic</p></span></td>
+                                        <td><span class="square2"></span><span>Application Symfony 5 OsteoClic</span></td>
                                     </tr>
                                     <tr>
-                                        <td><span>2021<span class="square"></span></td>
+                                        <td><span>2021<span class="square"></span></span></td>
                                         <td><div class="line"></div></td>
-                                        <td><span class="square2"></span><span><p>Formation de Développeur Fullstack CDA</p></span></td>
+                                        <td><span class="square2"></span><span>Formation de Développeur Fullstack CDA</span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -141,16 +142,16 @@
                     <div id="article3">
                         <div class="pc50">
                             <div id="i1" > <!-- Images list-->
-                                <img src="assets/img/site-mockup-triple.webp" alt="">
+                                <img src="assets/img/site-mockup-triple.webp" alt="Mockup du site Osteopathe begaud dans 3 formats différents, mobile, tablette, etlaptop">
                             </div>
                             <div id="i2">
-                                <img src="assets/img/appli-mockup2.webp" alt="">
+                                <img src="assets/img/appli-mockup2.webp" alt="Mockup de l'application Osteoclic sous format laptop">
                             </div>
                         </div>
                         <div class="pc50">
                             <div id="console">
-                                <div id="console-top">
-                                    <img src="assets/img/cmd.JPG" alt=""> Thomas Roess © <span><p>1</p>/<p>2</p></span></div>
+                                <div class="console-top">
+                                    <img src="assets/img/cmd.JPG" alt="logo de la console windows"> Thomas Roess © <span><p>1</p>/<p>2</p></span></div>
                                 <div id="p1"> <!-- Project list-->
                                     <h2>Site vitrine de l'osteopathe Annabel Begaud</h2>
                                         <p>
@@ -210,7 +211,7 @@
                     <div id="article1M" >
                         <div class="pc50"> <!-- Half screen separation-->
                             <div>
-                                <img src="assets/img/Thomas_roess-cropped.webp" alt="Photo du propriétaire du portfolio" class="border">
+                                <img src="assets/img/Thomas-roess-Mobile-flip.jpg" alt="Photo du propriétaire du portfolio" class="border">
                             </div>
                         </div>
                         <div class="pc50">
@@ -229,80 +230,76 @@
                 </section>
                 <section class="swiper-slide">
                     <div id="article2M">
-                        <div class="pc50">
-                            <table>
-                                <thead></thead>
-                                <tbody>
-                                    <tr>
-                                        <td><span>2011<span class="square"></span><!-- Little square that help me cheat with the borders-->
-                                        </span></td>
-                                        <td><div class="line"></div></td>
-                                        <td><span class="square2"></span><span><p>1ère Année de Cycle d'ingénieur - Epsi Arras</p></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span>2019<span class="square"></span></td>
-                                        <td><div class="line"></div></td>
-                                        <td><span class="square2"></span><span><p>Création du site <a href="https://www.osteopathe-begaud.fr" target="blank_">www.osteopathe-begaud.fr</a></p></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span>2020<span class="square"></span></td>
-                                        <td><div class="line"></div></td>
-                                        <td><span class="square2"></span><span><p>Diplôme de Développeur Web/Web Mobile</p></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span>2020<span class="square"></span></td>
-                                        <td><div class="line"></div></td>
-                                        <td><span class="square2"></span><span><p>Application Symfony 5 OsteoClic</p></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span>2021<span class="square"></span></td>
-                                        <td><div class="line"></div></td>
-                                        <td><span class="square2"></span><span><p>Formation de Développeur Fullstack CDA</p></span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <table>
+                            <thead></thead>
+                            <tbody>
+                                <tr>
+                                    <td><span>2011<span class="square"></span><!-- Little square that help me cheat with the borders-->
+                                    </span></td>
+                                    <td><div class="line"></div></td>
+                                    <td><span class="square2"></span><span>1ère Année de Cycle d'ingénieur - Epsi Arras</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span>2019<span class="square"></span></span></td>
+                                    <td><div class="line"></div></td>
+                                    <td><span class="square2"></span><span>Création du site <a href="https://www.osteopathe-begaud.fr" target="blank_">www.osteopathe-begaud.fr</a></span></td>
+                                </tr>
+                                <tr>
+                                    <td><span>2020<span class="square"></span></span></td>
+                                    <td><div class="line"></div></td>
+                                    <td><span class="square2"></span><span>Diplôme de Développeur Web/Web Mobile</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span>2020<span class="square"></span></span></td>
+                                    <td><div class="line"></div></td>
+                                    <td><span class="square2"></span><span>Application Symfony 5 OsteoClic</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span>2021<span class="square"></span></span></td>
+                                    <td><div class="line"></div></td>
+                                    <td><span class="square2"></span><span>Formation de Développeur Fullstack CDA</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
-                <section class="swiper-slide">
-                    <div id="article2.5M">
-                        <div class="pc50">
-                            <div id="outerBorder"> <!-- Border aniamtion-->
-                                <div id="border1" class="borderR"></div> <!-- Spinning rectangles-->
-                                <div id="border2" class="borderR"></div>
-                                <div id="border3" class="borderR"></div>
-                                <div class="border">
-                                    <div>
-                                        <p>HTML5 - CSS3 - UIKIT</p>
-                                        <p>Sémantique - SEO</p>
-                                    </div>
-                                    <div>
-                                        <p>php - mysql - js es6</p>
-                                        <p>Tests Unitaires - PHP/JS OO</p>
-                                    </div>
-                                    <div>
-                                        <p>wordpress - symfony 5</p>
-                                        <p>Prestashop - Doctrine</p>
-                                    </div>
+                <section id="article2HalfMWraper" class="swiper-slide">
+                    <div id="article2HalfM">
+                        <div id="outerBorderM"> <!-- Border aniamtion-->
+                            <div id="border1M" class="borderR"></div> <!-- Spinning rectangles-->
+                            <div id="border2M" class="borderR"></div>
+                            <div id="border3M" class="borderR"></div>
+                            <div class="border">
+                                <div>
+                                    <p>HTML5 - CSS3 - UIKIT</p>
+                                    <p>Sémantique - SEO</p>
                                 </div>
-                            </div>  
-                        </div>
+                                <div>
+                                    <p>php - mysql - js es6</p>
+                                    <p>Tests Unitaires - PHP/JS OO</p>
+                                </div>
+                                <div>
+                                    <p>wordpress - symfony 5</p>
+                                    <p>Prestashop - Doctrine</p>
+                                </div>
+                            </div>
+                        </div>  
                     </div>
                 </section>
                 <section class="swiper-slide">
                     <div id="article3M">
                         <div class="pc50">
                             <div id="i1M" > <!-- Images list-->
-                                <img src="assets/img/site-mockup-triple.webp" alt="">
+                                <img src="assets/img/site-mockup-triple.webp" alt="Mockup du site Osteopathe begaud dans 3 formats différents, mobile, tablette, etlaptop">
                             </div>
                             <div id="i2M">
-                                <img src="assets/img/appli-mockup2.webp" alt="">
+                                <img src="assets/img/appli-mockup2.webp" alt="Mockup de l'application Osteoclic sous format laptop">
                             </div>
                         </div>
                         <div class="pc50">
-                            <div id="console">
-                                <div id="console-top">
-                                    <img src="assets/img/cmd.JPG" alt=""> Thomas Roess © <span><p>1</p>/<p>2</p></span></div>
+                            <div id="consoleM">
+                                <div class="console-top">
+                                    <img src="assets/img/cmd.JPG" alt="Logo de la console windows"> Thomas Roess © <span><p>1</p>/<p>2</p></span></div>
                                 <div id="p1M"> <!-- Project list-->
                                     <h2>Site vitrine de l'osteopathe Annabel Begaud</h2>
                                         <p>
@@ -317,7 +314,7 @@
                                         Elle a été développé sous Symfony 5 dont une grosse partie dynamique en JS.
                                     </p>
                                 </div>
-                                <object type="image/svg+xml" data="assets/img/mouse-scroll-up-down.svg"></object>
+                                <object type="image/svg+xml" data="assets/img/mouse-scroll-down-up.svg"></object>
                             </div>
                         </div>
                     </div>
@@ -326,28 +323,28 @@
                     <div id="article4M" >
                         <a href="https://github.com/Kikuichimonji" target="blank_"><img src="assets/img/github.webp" alt="logo GitHub"></a>
                         <a href="https://www.linkedin.com/in/thomas-roess/" target="blank_"><img src="assets/img/linkedin.webp" alt="logo Linkdin"></a>
-                        <div>
+                        <div class="formDiv">
                             <p>N'hesitez pas à me contacter pour plus d'informations</p>
                             <form method="post" action="mail.php" id="contact"  onsubmit="return submitForm(this)">
-                                <div id="formContainer">
+                                <div id="formContainerM">
                                     <div>
-                                        <label class="textDown" for="prenom">Votre prenom <span>*</span></label>
-                                        <input type="text" name="prenom" id="prenom"  required/>
+                                        <label class="textDown" for="prenom">Prenom <span>*</span></label>
+                                        <input type="text" name="prenom" id="prenomM"  required/>
                                     </div>
                                     <div>
-                                        <label class="textDown" for="nom">Votre nom <span>*</span></label>
-                                        <input type="text" name="nom" id="nom"  required/>
+                                        <label class="textDown" for="nom">Nom <span>*</span></label>
+                                        <input type="text" name="nom" id="nomM"  required/>
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="textDown" for="mail">Votre mail <span>*</span></label>
-                                    <input type="email" name="mail" id="mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  size="30" required/>
+                                    <label class="textDown" for="mail">Mail <span>*</span></label>
+                                    <input type="email" name="mail" id="mailM" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  size="30" required/>
                                 </div>
                                 <div>
-                                    <label class="textDown" for="texte">Votre message <span>*</span></label>
-                                    <textarea name="texte" id="texte" rows="5" cols="33" required></textarea>  
+                                    <label class="textDown" for="texte">Message <span>*</span></label>
+                                    <textarea name="texte" id="texteM" rows="5" cols="33" required></textarea>  
                                 </div> 
-                                <button type="submit" form="contact" value="Submit" id="buttonForm">Envoyer</button>
+                                <button type="submit" form="contact" value="Submit" id="buttonFormM">Envoyer</button>
                             </form>
                         </div>
                     </div>

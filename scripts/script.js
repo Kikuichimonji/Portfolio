@@ -48,13 +48,14 @@ var mainWidth = window.innerWidth
 var mainHeight = window.innerHeight
 
 
-if (mainWidth < 768) {
+if (mainWidth <= 768) {
     swiperSuffix = "M"
     document.getElementById("logo").src = "assets/img/Favicon-Thomas.png"
 }
 
 
 document.getElementById("swiper" + swiperSuffix).style.display = "block"
+document.getElementById("slideList" + swiperSuffix).style.display = "block"
 
 const swiper = new Swiper("#swiper" + swiperSuffix, { // Swiper params
 
@@ -69,7 +70,7 @@ const swiper = new Swiper("#swiper" + swiperSuffix, { // Swiper params
         prevEl: '.swiper-button-prev',
     },*/
     pagination: { //Buletts
-        el: '.swiper-pagination',
+        el: '.swiper-pagination'+ swiperSuffix,
         type: 'bullets',
         clickable: 'true',
     },
@@ -172,12 +173,12 @@ function showDialog(text, textIndex, index, interval, tag) //Fuck yeah it finall
 {
     var mainBox = document.getElementsByClassName("dialog__content" + swiperSuffix); //To differentiate Mobile and Desktop box
 
-    if (tag == "dialog0") //first dialog box 
+    if (tag == "dialog0" || tag == "dialog1") //first dialog box 
     {
         mainBox[0].style.opacity = 1;
         subBox = mainBox[0].getElementsByClassName(tag)[0];
     }
-    if (tag == "dialog2") //second dialog box 
+    if (tag == "dialog2" || tag == "dialog3") //second dialog box 
     {
         mainBox[1].style.opacity = 1;
         subBox = mainBox[1].getElementsByClassName(tag)[0];
@@ -207,8 +208,11 @@ function showDialog(text, textIndex, index, interval, tag) //Fuck yeah it finall
 }
 function clearDialog(tag, list) //CLearing all the dialogs for the tags
 {
+    let indexDiag = 0;
+    if(swiperSuffix)
+        indexDiag = 1;
     for (count = 0; count < list.length; count++)
-        document.getElementsByClassName(tag + list[count])[0].textContent = ""
+        document.getElementsByClassName(tag + list[count])[indexDiag].textContent = ""
     var dialogList = document.getElementsByClassName("dialog__content" + swiperSuffix)
     for (count = 0; count < dialogList.length; count++)
         dialogList[count].style.opacity = 0
@@ -236,7 +240,7 @@ window.addEventListener("load", function () {
         .add({ // Coming down
             targets: '#intro',
             opacity: [0, 1],
-            translateY: [0, middleHeight],
+            translateY: [0, middleHeight-100],
             easing: "easeInExpo",
             duration: 1000,
         })
@@ -244,7 +248,7 @@ window.addEventListener("load", function () {
             targets: '#intro',
             easing: 'easeInOutSine',
             duration: 550,
-            translateY: [middleHeight, middleHeight], //necessary, if not here the text ges back up for some reason
+            translateY: [ middleHeight-100,  middleHeight-100], //necessary, if not here the text ges back up for some reason
             translateX: [
                 {
                     value: xMax * -1,
@@ -272,13 +276,47 @@ window.addEventListener("load", function () {
 })
 
 window.addEventListener("keyup", function (e) {
-    if(e.key == "ArrowRight" )
+    if(e.key == "ArrowRight")
     {
         swiper.slideNext();
     }
     else if(e.key == "ArrowLeft")
     {
         swiper.slidePrev();
+    }
+    if(swiper.activeIndex == 2)
+    {
+        if(e.key == "ArrowUp")
+        {
+            scrollUpP3 = anime.timeline({ loop: false })
+            .add({
+                targets: ["#p2" + swiperSuffix, "#i2" + swiperSuffix],
+                top: '100vh',
+                opacity: 0,
+                easing: "easeInExpo",
+                duration: 700,
+                begin: function () {
+                    animEnd = false;
+                },
+            })
+            .add({
+                targets: ["#p1" + swiperSuffix, "#i1" + swiperSuffix],
+                top: 0,
+                opacity: 1,
+                easing: "easeOutExpo",
+                duration: 700,
+                complete: function () {
+                    animEnd = true;
+                    animPosi = true;
+                    document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-up-down.svg"
+                    document.getElementById("console-top").getElementsByTagName("p")[0].textContent = 1 //"(1/2)"
+                }
+            })
+        }
+        else if(e.key =="ArrowDown")
+        {
+            animateConsole("down");
+        }
     }
 });
 window.addEventListener("wheel", function (e) {
@@ -310,7 +348,7 @@ window.addEventListener("wheel", function (e) {
             wheelSlowing = false
         }, interScroll)
     }
-})
+},{passive: true})
 
 consoleBox.addEventListener("wheel", function (e) // All the console animations
 {
@@ -320,30 +358,7 @@ consoleBox.addEventListener("wheel", function (e) // All the console animations
         {
             if (animEnd && animPosi) // if an animation is running or at the end of the list 
             {
-                scrolldownP3 = anime.timeline({ loop: false })
-                    .add({ // project 1 slide down
-                        targets: ["#p1" + swiperSuffix, "#i1" + swiperSuffix],
-                        top: "100vh",
-                        opacity: 0,
-                        easing: "easeInExpo",
-                        duration: 700,
-                        begin: function () {
-                            animEnd = false;
-                        }
-                    })
-                    .add({ // project 2 slide up
-                        targets: ["#p2" + swiperSuffix, "#i2" + swiperSuffix],
-                        top: 0,
-                        easing: "easeOutExpo",
-                        opacity: 1,
-                        duration: 700,
-                        complete: function () {
-                            animEnd = true;
-                            animPosi = false;
-                            document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-down-up.svg" //we swap the svg when we're at the end
-                            document.getElementById("console-top").getElementsByTagName("p")[0].textContent = 2 // "2/2"
-                        }
-                    })
+                animateConsole("down")
             }
             if (animEnd && !animPosi && !wheelSlowing) {
                 swiper.slideNext() // if we're at the bottom of the project list we can slide next 
@@ -379,7 +394,7 @@ consoleBox.addEventListener("wheel", function (e) // All the console animations
                             animEnd = true;
                             animPosi = true;
                             document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-up-down.svg"
-                            document.getElementById("console-top").getElementsByTagName("p")[0].textContent = 1 //"(1/2)"
+                            document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[0].textContent = 1 //"(1/2)"
                         }
                     })
             }
@@ -392,9 +407,42 @@ consoleBox.addEventListener("wheel", function (e) // All the console animations
             }
         }
     }
-})
+},{passive: true})
 
-
+function animateConsole(dir)
+{
+    switch (dir) {
+        case "down":
+            anime.timeline({ loop: false })
+            .add({ // project 1 slide down
+                targets: ["#p1" + swiperSuffix, "#i1" + swiperSuffix],
+                top: "100vh",
+                opacity: 0,
+                easing: "easeInExpo",
+                duration: 700,
+                begin: function () {
+                    animEnd = false;
+                }
+            })
+            .add({ // project 2 slide up
+                targets: ["#p2" + swiperSuffix, "#i2" + swiperSuffix],
+                top: 0,
+                easing: "easeOutExpo",
+                opacity: 1,
+                duration: 700,
+                complete: function () {
+                    animEnd = true;
+                    animPosi = false;
+                    document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-down-up.svg" //we swap the svg when we're at the end
+                    document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[0].textContent = 2 // "2/2"
+                }
+            })
+            break;
+        case "up":
+                return 0;
+            break;
+    }
+}
 /*swiper.on("touchEnd",function() //Custom Sensitivity , original was way too touchy
 {
     if(swiper.touches.diff > 100) //if we move more than 100pixels regarding of the speed, we slide  
@@ -428,12 +476,21 @@ swiper.on('slideChangeTransitionEnd', function () //event at the end of the slid
             }
             break;
         case 1:
-            showTitle(title2, interTitle, "titre");
+            showTitle(title2, interTitle, "titre");                
             break;
         case 2:
-            showTitle(title3, interTitle, "titre");
+            if(swiperSuffix)
+                showTitle(title2, interTitle, "titre");
+            else
+                showTitle(title3, interTitle, "titre");
             break;
         case 3:
+            if(swiperSuffix)
+                showTitle(title3, interTitle, "titre");
+            else
+                showTitle(title4, interTitle, "titre");
+            break;
+        case 4:
             showTitle(title4, interTitle, "titre");
             break;
     }
