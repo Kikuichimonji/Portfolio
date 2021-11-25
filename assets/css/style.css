@@ -138,6 +138,7 @@ SWIPER
 #mainWraper
 {
     height: 100vh;
+    min-height: 640px;
 }
 #mainWraper .swiper,#mainWraper .swiperM 
 {
@@ -207,6 +208,11 @@ SWIPER
 
 
 @media all and (max-width: 600px){
+    /*#mainWraper
+    {
+        overflow: visible;
+        overflow-x: hidden;
+    }*/
     #mainWraper .swiper-button-next
     {
         margin-right:0.5em;
@@ -268,8 +274,23 @@ header div
 @media all and (max-width: 600px){
     header h2
     {
-       margin-left: 50px;
-       font-size: 1.5em;
+        margin-left: 50px;
+        font-size: 1.5em;
+    }
+}
+@media all and (max-width: 320px){
+    header h2
+    {
+        margin-left: 50px;
+        font-size: 1.25em;
+    }
+    header div:not(#slideListM)
+    {
+        margin-top: 0.5em;
+    }
+    header #slideListM
+    {
+        margin-top: 1.5em;
     }
 }
 /*************
@@ -399,6 +420,12 @@ SLIDER 1
         height: 180px;
     }
 }
+@media all and (max-width: 320px){
+    .dialog__contentM
+    {
+        height: 200px;
+    }
+}
 
 /*************
 COMPETENCE SLIDER 2
@@ -430,9 +457,6 @@ COMPETENCE SLIDER 2
 }
 #article2M table
 {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -637,7 +661,7 @@ tr:nth-child(odd) .line
     #article2M table
     {
         width: 70%;
-        margin-left: 30px;
+        margin-left: auto;
         margin-top: 30px;
     }
     td:first-child span:not(.square)
@@ -1015,12 +1039,20 @@ FORM SLIDER 4
     #article4M div:not(form div)
     {
         width: 75%;
-        margin-top:5%
+        margin-top:5%;
+        margin-right: auto;
+        margin-left: auto;
     }
     .formDiv
     {
         width:75%;
         margin-top: 5%;
+        margin-right: auto;
+        margin-left: auto;
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
     #article4M p
     {
@@ -1030,6 +1062,18 @@ FORM SLIDER 4
         margin-top: 1em;
         margin-bottom: 2em;
     }
+}
+
+@media all and (max-width: 375px)
+{
+    /*#article4M form #formContainerM 
+    {
+        flex-direction: column;
+    }
+    #article4M form #formContainerM div
+    {
+        width: 100%;
+    }*/
 }
 /*************
 FOOTER
