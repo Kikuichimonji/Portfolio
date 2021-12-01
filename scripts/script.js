@@ -49,7 +49,7 @@ var mainHeight = window.innerHeight
 
 
 if (mainWidth <= 768) {
-    swiperSuffix = "M"
+    swiperSuffix = ""
     document.getElementById("logo").src = "assets/img/Favicon-Thomas.png"
 }
 
@@ -73,6 +73,7 @@ const swiper = new Swiper("#swiper" + swiperSuffix, { // Swiper params
         el: '.swiper-pagination'+ swiperSuffix,
         type: 'bullets',
         clickable: 'true',
+        autoHeight:'true',
     },
     on: {
         init(swiper) { //on initialisation
@@ -457,7 +458,30 @@ function animateConsole(dir)
     }   
 
 })*/ //everything become wanky, might change later again
+document.querySelector("#article1").style.height = window.innerHeight*0.9 - document.querySelector("header").offsetHeight +"px";
+document.querySelector("#article3").style.height = window.innerHeight*0.9 - document.querySelector("header").offsetHeight +"px";
+document.querySelector("#article4").style.height = window.innerHeight*0.9 - document.querySelector("header").offsetHeight +"px";
+swiper.on('beforeTransitionStart', function () //event at the end of the slide transition
+{
+    switch (swiper.activeIndex) {
+        case 0:
+            document.querySelector("#swiper").style.height = window.innerHeight - document.querySelector("header").offsetHeight +"px";
+            break;
+        case 1:
+            document.querySelector("#swiper").style.height = document.querySelector("#article2").offsetHeight+"px";
+            break;
+        case 2:
+            document.querySelector("#swiper").style.height = window.innerHeight - document.querySelector("header").offsetHeight +"px";
+            break;
+        case 3:
+            document.querySelector("#swiper").style.height = window.innerHeight - document.querySelector("header").offsetHeight +"px";
+            //document.querySelector("#swiperM .swiper-wrapper .swiper-slide:nth-child(4)").style.height = "1000px";
+            break;
+        case 4:
 
+            break;
+    }
+})
 swiper.on('slideChangeTransitionEnd', function () //event at the end of the slide transition
 {
     for (let countI = 0; countI < letters.length; countI++) //we clear the previous animation timeouts for the titles
@@ -473,10 +497,11 @@ swiper.on('slideChangeTransitionEnd', function () //event at the end of the slid
 
                 clearDialog("dialog", [0, 1, 2, 3]); //we clear the dialog for the id tag+n
                 setTimeout(function () { showDialog(textTable, [0, 1, 2, 3], 0, interDiag, "dialog0") }, 500);
+
             }
             break;
         case 1:
-            showTitle(title2, interTitle, "titre");                
+            showTitle(title2, interTitle, "titre");               
             break;
         case 2:
             if(swiperSuffix)
@@ -489,6 +514,7 @@ swiper.on('slideChangeTransitionEnd', function () //event at the end of the slid
                 showTitle(title3, interTitle, "titre");
             else
                 showTitle(title4, interTitle, "titre");
+
             break;
         case 4:
             showTitle(title4, interTitle, "titre");

@@ -30,7 +30,6 @@ body
     font-family: "OpenSans";
     background: var(--blackless);
     color: var(--white);
-    overflow: hidden;
 }
 h2,h3
 {
@@ -140,14 +139,13 @@ SWIPER
     height: 100vh;
     min-height: 640px;
 }
-#mainWraper .swiper,#mainWraper .swiperM 
+#mainWraper .swiper
 {
     height: calc(100vh - var(--header-height));
     width: 100%;
-    overflow: hidden;
     display: none;
+    overflow: hidden;
 }
-
 .slide-inner 
 {
     width: 50%;
@@ -173,7 +171,11 @@ SWIPER
     text-shadow: -1px 0px 3px lightgray;
     color:white ;
 }
-#slideList,#slideListM
+#mainWraper .swiper-button-next,#mainWraper .swiper-button-prev
+{
+    position: fixed;
+}
+#slideList
 {
     height: 30px;
     top:65px;
@@ -184,13 +186,7 @@ SWIPER
     opacity: 1 ;
     padding: 3px;
 }
-#slideListM .swiper-pagination-bullet,#slideListM .swiper-pagination-bullet-active
-{
-    opacity: 1 ;
-    padding: 8px;
-    margin-left: 0.25em;
-    margin-right: 0.25em;
-}
+
 #slideList .swiper-pagination-bullet
 {
     background-color: var(--black);
@@ -207,12 +203,7 @@ SWIPER
 }
 
 
-@media all and (max-width: 600px){
-    /*#mainWraper
-    {
-        overflow: visible;
-        overflow-x: hidden;
-    }*/
+@media all and (max-width: 768px){
     #mainWraper .swiper-button-next
     {
         margin-right:0.5em;
@@ -221,6 +212,14 @@ SWIPER
     {
         margin-left: 0.5em;
     }
+    #slideList .swiper-pagination-bullet,#slideList .swiper-pagination-bullet-active
+    {
+        opacity: 1 ;
+        padding: 8px;
+        margin-left: 0.25em;
+        margin-right: 0.25em;
+    }
+
 }
 /*************
 HEADER
@@ -303,34 +302,25 @@ SLIDER 1
     flex-direction: row;
     height: 100%;
 }
-#article1M
-{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
 #article1 .pc50:first-child
 {
     height: 60vh;
     margin-top: auto;
     margin-bottom: auto;
 }
-#article1M .pc50:first-child
+/*#article1 .pc50:first-child
 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+}*/
 
 #article1 .pc50:first-child div
 {
     height: 100%;
     display: flex;
 }
-#article1M .pc50:first-child div
-{
-    height: 80%;
-}
+
 
 #article1 .pc50:first-child img,#article1M .pc50:first-child img
 {
@@ -403,18 +393,28 @@ SLIDER 1
     display: none;
 }
 
-@media all and (max-width: 600px){
-    #article1M .pc50:first-child img
+@media all and (max-width: 768px){
+    #article1
+    {
+        display: flex;
+        flex-direction: column;
+        min-height: 550px;
+    }
+    #article1 .pc50:first-child img
     {
         max-width: 75%;
     }
-    #article1M .pc50:last-child
+    #article1 .pc50:last-child
     {
         width: 75%;
         display: initial;
         padding-bottom: 2em;
     }
-    .dialog__contentM
+    #article1 .pc50:first-child div
+    {
+        height: 80%;
+    }
+    .dialog__content
     {
         font-size: 20px;
         height: 180px;
@@ -430,11 +430,17 @@ SLIDER 1
 /*************
 COMPETENCE SLIDER 2
 *************/
-#article2,#article2M
+#article2
 {
     height: 100%;
     display: flex;
     flex-flow: row nowrap;
+}
+#article2M
+{
+    height:auto;
+    min-height: 950px ;
+    flex-flow: column nowrap;
 }
 #article2 a,#article2M a
 {
@@ -451,16 +457,13 @@ COMPETENCE SLIDER 2
     margin-bottom: auto;
     
 }
-#article2HalfMWraper
-{
-    height: 100%;
-}
+
 #article2M table
 {
     margin-top: auto;
     margin-bottom: auto;
 }
-#article2 .pc50:last-child,#article2M ,#article2HalfM
+#article2 .pc50:last-child,#article2M
 {
     text-align: center;
     position: relative;
@@ -591,18 +594,13 @@ tr:nth-child(odd) .line
     background-color: var(--blackless);
     height: 100%;
 }
-#article2HalfM
-{
-    height: 100%;
-    display: flex;
-}
-#article2 .pc50:last-child p:first-child, #article2HalfM p:first-child
+#article2 .pc50:last-child p:first-child, #article2M .pc50:last-child p:first-child
 {
     font-size: 2em;
     font-weight: bold;
     text-transform: uppercase;
 }
-#article2 .pc50:last-child p:last-child,#article2HalfM p:last-child
+#article2 .pc50:last-child p:last-child,#article2M .pc50:last-child p:last-child
 {
     font-family: "MtSerrat";
     margin-top: 1em;
@@ -626,7 +624,7 @@ tr:nth-child(odd) .line
     height: 70%;
     width: 70%;
 }
-#article2 .borderR,#article2HalfM .borderR
+#article2 .borderR,#article2M .borderR
 {
     width:120%;
     height: 200px;
@@ -647,7 +645,7 @@ tr:nth-child(odd) .line
     background-color: green;
     bottom: 50px;
 }
-#article2 .pc50:last-child .borderR,#article2HalfM .borderR
+#article2 .pc50:last-child .borderR,#article2M .borderR
 {
     animation: borderRotate 5s linear infinite;
 }
@@ -706,6 +704,7 @@ CONSOLE SLIDER 3
     display:flex;
     flex-direction: column;
     height: 100%;
+    min-height: 500px;
 }
 #article3 .pc50
 {
@@ -859,13 +858,17 @@ CONSOLE SLIDER 3
 /*************
 FORM SLIDER 4
 *************/
-#article4,#article4M
+#article4
 {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
+}
+#article4M
+{
+    min-height: 600px;
 }
 #article4 div:not(form div),#article4M div:not(form div)
 {
