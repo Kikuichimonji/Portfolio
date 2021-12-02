@@ -49,13 +49,19 @@ var mainHeight = window.innerHeight
 
 
 if (mainWidth <= 768) {
-    swiperSuffix = ""
+    /*swiperSuffix = ""*/
     document.getElementById("logo").src = "assets/img/Favicon-Thomas.png"
+    document.getElementById("prenomL").innerHTML = "Prénom";
+    document.getElementById("nomL").innerHTML = "Nom";
+    document.getElementById("mailL").innerHTML = "Mail";
+    document.getElementById("texteL").innerHTML = "Message";
+}
+if(mainWidth > mainHeight){
+    document.getElementById("mainImg").src = "assets/img/Thomas_roess-cropped.webp";
+} else {
+    document.getElementById("mainImg").src = "assets/img/Thomas-roess-Mobile-flip.jpg";
 }
 
-
-document.getElementById("swiper" + swiperSuffix).style.display = "block"
-document.getElementById("slideList" + swiperSuffix).style.display = "block"
 
 const swiper = new Swiper("#swiper" + swiperSuffix, { // Swiper params
 
@@ -458,6 +464,7 @@ function animateConsole(dir)
     }   
 
 })*/ //everything become wanky, might change later again
+document.querySelector("#swiper").style.height = document.querySelector("#article1").offsetHeight+100+"px";
 document.querySelector("#article1").style.height = window.innerHeight*0.9 - document.querySelector("header").offsetHeight +"px";
 document.querySelector("#article3").style.height = window.innerHeight*0.9 - document.querySelector("header").offsetHeight +"px";
 document.querySelector("#article4").style.height = window.innerHeight*0.9 - document.querySelector("header").offsetHeight +"px";
@@ -465,7 +472,7 @@ swiper.on('beforeTransitionStart', function () //event at the end of the slide t
 {
     switch (swiper.activeIndex) {
         case 0:
-            document.querySelector("#swiper").style.height = window.innerHeight - document.querySelector("header").offsetHeight +"px";
+            document.querySelector("#swiper").style.height = document.querySelector("#article1").offsetHeight+100+"px";
             break;
         case 1:
             document.querySelector("#swiper").style.height = document.querySelector("#article2").offsetHeight+"px";

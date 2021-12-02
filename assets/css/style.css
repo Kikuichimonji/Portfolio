@@ -76,11 +76,11 @@ span
     }
     .pc50:first-child
     {
-        margin-left: 0;
+        margin-left: 30px;
     }
     .pc50:last-child
     {
-        margin-right: 0;
+        margin-right: 30px;
     }
     :root
     {
@@ -120,7 +120,7 @@ INTRO
     font-size: 40px;
 }
 
-@media all and (max-width: 600px){
+@media all and (max-width: 768px){
     #blackscreen div
     {
         font-size: 30px;
@@ -143,7 +143,7 @@ SWIPER
 {
     height: calc(100vh - var(--header-height));
     width: 100%;
-    display: none;
+
     overflow: hidden;
 }
 .slide-inner 
@@ -179,7 +179,7 @@ SWIPER
 {
     height: 30px;
     top:65px;
-    display: none;
+
 }
 #slideList .swiper-pagination-bullet,#slideList .swiper-pagination-bullet-active
 {
@@ -192,12 +192,12 @@ SWIPER
     background-color: var(--black);
     border: 2px solid var(--white)
 }
-#slideListM .swiper-pagination-bullet
+/*#slideList .swiper-pagination-bullet
 {
     background-color: var(--black);
     border: 2px solid var(--white)
-}
-#slideList .swiper-pagination-bullet-active,#slideListM .swiper-pagination-bullet-active
+}*/
+#slideList .swiper-pagination-bullet-active
 {
     background-color:white; 
 }
@@ -308,12 +308,7 @@ SLIDER 1
     margin-top: auto;
     margin-bottom: auto;
 }
-/*#article1 .pc50:first-child
-{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}*/
+
 
 #article1 .pc50:first-child div
 {
@@ -322,7 +317,7 @@ SLIDER 1
 }
 
 
-#article1 .pc50:first-child img,#article1M .pc50:first-child img
+#article1 .pc50:first-child img
 {
     display: block;
     max-width: 100%;
@@ -343,17 +338,8 @@ SLIDER 1
     flex-direction: column;
     justify-content: space-evenly;
 }
-#article1M .pc50:last-child
-{
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
 
-.dialog__content,.dialog__contentM /* FF7 dialog box :D */
+.dialog__content /* FF7 dialog box :D */
 {
     border: solid 1px #ffffff;
     box-shadow: 1px 1px #e7dfe7,
@@ -377,20 +363,16 @@ SLIDER 1
     opacity: 0;
 }
 
-.dialog__content p:not(p:first-child),.dialog__contentM p:not(p:first-child)
+.dialog__content p:not(p:first-child)
 {
     margin-bottom: 0.5em;
     margin-top: 0.5em;
     margin-left: 15px;
 }
-.dialog__content p:first-child,.dialog__contentM p:first-child
+.dialog__content p:first-child
 {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-}
-#article1M .pc50:last-child .dialog__contentM:nth-child(2)
-{
-    display: none;
 }
 
 @media all and (max-width: 768px){
@@ -398,30 +380,54 @@ SLIDER 1
     {
         display: flex;
         flex-direction: column;
-        min-height: 550px;
+        min-height: 650px;
     }
-    #article1 .pc50:first-child img
+    /*#article1 .pc50:first-child img
     {
         max-width: 75%;
-    }
-    #article1 .pc50:last-child
+    }*/
+    /*#article1 .pc50:last-child
     {
         width: 75%;
         display: initial;
         padding-bottom: 2em;
+    }*/
+    #article1 .pc50:first-child
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 0;
     }
     #article1 .pc50:first-child div
     {
-        height: 80%;
+        width:75%;
+        display: initial;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
     }
+
     .dialog__content
     {
         font-size: 20px;
         height: 180px;
+        margin-top: 20px;
     }
+    #article1 .pc50:last-child
+    {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
 }
 @media all and (max-width: 320px){
-    .dialog__contentM
+    .dialog__content
     {
         height: 200px;
     }
@@ -436,13 +442,8 @@ COMPETENCE SLIDER 2
     display: flex;
     flex-flow: row nowrap;
 }
-#article2M
-{
-    height:auto;
-    min-height: 950px ;
-    flex-flow: column nowrap;
-}
-#article2 a,#article2M a
+
+#article2 a
 {
     color:var(--white);
     font-weight: bold;
@@ -458,12 +459,7 @@ COMPETENCE SLIDER 2
     
 }
 
-#article2M table
-{
-    margin-top: auto;
-    margin-bottom: auto;
-}
-#article2 .pc50:last-child,#article2M
+#article2 .pc50:last-child
 {
     text-align: center;
     position: relative;
@@ -475,37 +471,21 @@ COMPETENCE SLIDER 2
     height: 100%;
     width: 100%;
 }
-#article2M table
-{
-    margin-left: auto;
-    margin-right: auto;
 
-}
-
-#article2 p,#article2 span,#article2M p,#article2M span
+#article2 p,#article2 span
 {
     margin: 0;
     z-index: 1;
 }
-#article2 span,#article2M span
+#article2 span
 {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#article2 tr,#article2M tr
+#article2 tr
 {
     position: relative;
-}
-#article2M tr
-{
-    height: 140px;
-    max-height: 140px;
-    min-height: 50px;
-}
-#article2M tr a
-{
-    margin-left: 0.5em;
 }
 
 .line
@@ -594,18 +574,18 @@ tr:nth-child(odd) .line
     background-color: var(--blackless);
     height: 100%;
 }
-#article2 .pc50:last-child p:first-child, #article2M .pc50:last-child p:first-child
+#article2 .pc50:last-child p:first-child
 {
     font-size: 2em;
     font-weight: bold;
     text-transform: uppercase;
 }
-#article2 .pc50:last-child p:last-child,#article2M .pc50:last-child p:last-child
+#article2 .pc50:last-child p:last-child
 {
     font-family: "MtSerrat";
     margin-top: 1em;
 }
-#outerBorder,#outerBorderM
+#outerBorder
 {
     padding:5px;
     z-index: 5;
@@ -619,11 +599,7 @@ tr:nth-child(odd) .line
     height: 80%;
     width: 80%;
 }    
-#outerBorderM
-{
-    height: 70%;
-    width: 70%;
-}
+
 #article2 .borderR,#article2M .borderR
 {
     width:120%;
@@ -651,16 +627,30 @@ tr:nth-child(odd) .line
 }
 
 
-@media all and (max-width: 600px){
-    #article2M tr
+@media all and (max-width: 768px){
+    #article2
+    {
+        height:auto;
+        min-height: 950px ;
+        flex-flow: column nowrap;
+    }
+    #article2 tr
     {
         height: 90px;
+        max-height: 140px;
+        min-height: 50px;
     }
-    #article2M table
+    #article2 tr a
+    {
+        margin-left: 0.5em;
+    }
+    #article2 table
     {
         width: 70%;
-        margin-left: auto;
+        margin-left: 0;
+        margin-right: 0;
         margin-top: 30px;
+        margin-bottom: auto;
     }
     td:first-child span:not(.square)
     {
@@ -674,18 +664,30 @@ tr:nth-child(odd) .line
         border-radius: 10px; 
         font-size: 15px;
     }
-    #article2HalfM p:first-child
+    #article2 .pc50:last-child p:first-child
     {
         font-size: 1.20em;
     }
-    #outerBorderM
+    #outerBorder
     {
+        height: 70%;
         width: 75%;
         margin-top: 40px;
     }
     .line
     {
         width: 70%;
+    }
+    @media all and (max-width: 320px){
+        #article2 .pc50:first-child
+        {
+            margin-left: 0;
+        }
+        #article2 table
+        {
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
 }
 
@@ -698,13 +700,6 @@ CONSOLE SLIDER 3
     display:flex;
     flex-direction: row;
     height: 100%;
-}
-#article3M
-{
-    display:flex;
-    flex-direction: column;
-    height: 100%;
-    min-height: 500px;
 }
 #article3 .pc50
 {
@@ -749,7 +744,7 @@ CONSOLE SLIDER 3
     margin-left: 0.5em;
     margin-right: 0.5em;
 }
-#console,#consoleM
+#console
 {
     border: solid 1px lightgray;
     border-color: lightgray;
@@ -759,34 +754,34 @@ CONSOLE SLIDER 3
     margin: auto;
     overflow: hidden;
 }
-#console:hover,#consoleM:hover
+#console:hover
 {
     animation: consoleColor 0.5s ease-in-out forwards; 
 }
-#console p:not(.console-top p),#consoleM p:not(.console-top p)
+#console p:not(.console-top p)
 {
     font-family: "MtSerrat";
     line-height: 1.5em;
 }
-#p1,#p1M
+#p1
 {
     position: absolute;
     top:0;
     padding-top: 1em;
 }
-#p2,#p2M
+#p2
 {
     position: absolute;
     bottom:-100vh;
     padding-top: 1em;
 }
-#i1,#i1M
+#i1
 {
     position: absolute;
     top:0;
     max-width: 100%;
 }
-#i2,#i2M
+#i2
 {
     position: absolute;
     bottom:-100vh;
@@ -797,14 +792,8 @@ CONSOLE SLIDER 3
     display: flex;
     max-width: 40vw;
 }
-#article3M .pc50:first-child div
-{
-    position: relative;
-    height: 100%;
-    max-height: 40vh;
-    padding-top: 1em;
-}
-#article3 .pc50:first-child img,#article3M .pc50:first-child img
+
+#article3 .pc50:first-child img
 {
     display: block;
     max-width: 100%;
@@ -813,7 +802,7 @@ CONSOLE SLIDER 3
     border-radius: 5px;
     border-width: 2px;
 }
-#article3 object,#article3M object
+#article3 object
 {
     height: 100px;
     position: absolute;
@@ -823,20 +812,35 @@ CONSOLE SLIDER 3
 
 }
 
-@media all and (max-width: 600px)
+@media all and (max-width: 768px)
 {
-    #i1M,#i2M
+    #article3 .pc50
+    {
+        height: 40vh;
+    }
+    #article3 .pc50:first-child
+    {
+        margin-left: 0;
+    }
+    #article3
+    {
+        display:flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 500px;
+    }
+    #i1,#i2
     {
         max-width: 75%;
         margin: auto;
     }
-    #article3M h2
+    #article3 h2
     {
         max-width: 70%;
         font-size:1em;
         margin-bottom: 2em;
     }
-    #article3M object
+    #article3 object
     {
         top:0;
         right:0;
@@ -844,14 +848,23 @@ CONSOLE SLIDER 3
         height: 60px;
         left: auto;
     }
-    #consoleM p:not(.console-top p)
+    #console p:not(.console-top p)
     {
         line-height: initial;
         font-size: 0.9em;
     }
-    #consoleM
+    #console
     {
         background-color: var(--black);
+    }
+    #article3 .pc50:first-child div
+    {
+        max-width: 75%;
+        width: auto;
+        position: relative;
+        height: 100%;
+        max-height: 40vh;
+        padding-top: 1em;
     }
 }
 
@@ -865,12 +878,10 @@ FORM SLIDER 4
     flex-direction: column;
     justify-content: center;
     position: relative;
-}
-#article4M
-{
     min-height: 600px;
 }
-#article4 div:not(form div),#article4M div:not(form div)
+
+#article4 div:not(form div)
 {
     margin:auto;
     height: 70vh;
@@ -878,19 +889,13 @@ FORM SLIDER 4
     flex-direction: column;
     justify-content: space-between;
 }
-#article4M div:not(form div)
-{
-    justify-content: space-evenly;
-}
 #article4 div:not(form div)
 {
     width: 50%;
+    justify-content: space-evenly;
 }
-#article4M div:not(form div)
-{
-    width: 70%;
-}
-#article4 form,#article4M form
+
+#article4 form
 {
     display: flex;
     flex-direction: column;
@@ -899,13 +904,13 @@ FORM SLIDER 4
     min-height: 450px;
     font-family: "MtSerrat";
 }
-#article4 form #formContainer,#article4M form #formContainerM
+#article4 form #formContainer
 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-#article4 form #formContainer div,#article4M form #formContainerM div
+#article4 form #formContainer div
 {
     width: 45%;
 }
@@ -915,12 +920,12 @@ FORM SLIDER 4
     margin-top: 0;
     margin-bottom: 0;
 }
-#article4 form #formContainer div,#article4 form div,#article4M form #formContainerM div,#article4M form div
+#article4 form #formContainer div,#article4 form div
 {
     display: flex;
     flex-direction: column;
 }
-#article4 form button,#article4M form button
+#article4 form button
 {
     width: 200px;
     margin-right: auto;
@@ -936,26 +941,26 @@ FORM SLIDER 4
     animation: buttonUp 0.2s ease-in-out forwards; 
     cursor: pointer;
 }
-#article4 input,#article4 textarea,#article4M input,#article4M textarea
+#article4 input,#article4 textarea
 {
     background-color: transparent;
     color: var(--white);
     border:none;
     border-bottom: 1px solid #949494;
 }
-#article4 input,#article4M input
+#article4 input
 {
     height: 2em;
     z-index: 0;
     padding-left: 1em;
 }
-#article4 textarea,#article4M textarea
+#article4 textarea
 {
     border: 1px solid #949494;
     z-index: 0;
     padding-left: 1em;
 }
-#article4 label,#article4M label
+#article4 label
 {
     margin-left: 0.5em;
     transform: translate(0,150%);
@@ -967,20 +972,16 @@ FORM SLIDER 4
     font-family: "MtSerrat";
     font-size: 20px;
 }
-#article4M input,#article4M textarea,#article4M label,#article4M p
-{
-    font-size: 20px;
-}
 
-#article4 form .inputFocus,#article4M form .inputFocus
+#article4 form .inputFocus
 {
     animation: formUP 0.3s ease-in-out forwards; 
 }
-#article4 form .inputLoseFocus,#article4M form .inputLoseFocus
+#article4 form .inputLoseFocus
 {
     animation: formDOWN 0.3s ease-in-out forwards; 
 }
-#article4 img,#article4M img
+#article4 img
 {
     width: 100px;
     height: 100px;
@@ -992,54 +993,50 @@ FORM SLIDER 4
     top:50px;
     animation: linkPopDown 0.2s ease-in-out forwards; 
 }
-#article4M a
-{
-    position: absolute;
-    top:0;
-}
+
 #article4 a:hover
 {
     animation: linkPopUp 0.5s ease-in-out forwards; 
 }
-#article4 a:first-child,#article4M a:first-child
+#article4 a:first-child
 {
     left:10%;
 }
-#article4 a:nth-child(2),#article4M a:nth-child(2)
+#article4 a:nth-child(2)
 {
     right:10%;
 }
-@media all and (max-width: 600px)
+@media all and (max-width: 768px)
 {
-    #article4M img
+    #article4 img
     {
         width:50px;
         height: 50px;
     }
-    #article4M form
+    #article4 form
     {
         min-height: 0;
     }
-    #article4M a:first-child
+    #article4 a:first-child
     {
         top:5%;
         left:5%;
     }
-    #article4M a:nth-child(2)
+    #article4 a:nth-child(2)
     {
         top:5%;
         right:5%;
     }
-    #article4M input,#article4M textarea,#article4M label,#article4M p
+    #article4 input,#article4 textarea,#article4 label,#article4 p
     {
         font-size: 1em;
     }
-    #article4M form button
+    #article4 form button
     {
         width: 150px;
         font-size: 20px;
     }
-    #article4M div:not(form div)
+    #article4 div:not(form div)
     {
         width: 75%;
         margin-top:5%;
@@ -1057,13 +1054,18 @@ FORM SLIDER 4
         flex-direction: column;
         justify-content: space-between;
     }
-    #article4M p
+    #article4 p
     {
         width: 80%;
         margin-right: auto;
         margin-left: auto;
         margin-top: 1em;
         margin-bottom: 2em;
+    }
+    #article4 a
+    {
+        position: absolute;
+        top:0;
     }
 }
 

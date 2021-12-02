@@ -63,7 +63,7 @@
                     <div id="article1" >
                         <div class="pc50"> <!-- Half screen separation-->
                             <div>
-                                <img src="assets/img/Thomas_roess-cropped.webp" alt="Photo du propriétaire du portfolio" class="border">
+                                <img src="assets/img/Thomas_roess-cropped.webp" alt="Photo du propriétaire du portfolio" class="border" id="mainImg">
                             </div>
                         </div>
                         <div class="pc50">
@@ -180,20 +180,20 @@
                             <form method="post" action="mail.php" id="contact"  onsubmit="return submitForm(this)">
                                 <div id="formContainer">
                                     <div>
-                                        <label class="textDown" for="prenom">Votre prenom <span>*</span></label>
+                                        <label class="textDown" for="prenom" id="prenomL">Votre prenom <span>*</span></label>
                                         <input type="text" name="prenom" id="prenom"  required/>
                                     </div>
                                     <div>
-                                        <label class="textDown" for="nom">Votre nom <span>*</span></label>
+                                        <label class="textDown" for="nom"  id="nomL">Votre nom <span>*</span></label>
                                         <input type="text" name="nom" id="nom"  required/>
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="textDown" for="mail">Votre mail <span>*</span></label>
+                                    <label class="textDown" for="mail" id="mailL">Votre mail <span>*</span></label>
                                     <input type="email" name="mail" id="mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  size="30" required/>
                                 </div>
                                 <div>
-                                    <label class="textDown" for="texte">Votre message <span>*</span></label>
+                                    <label class="textDown" for="texte" id="texteL">Votre message <span>*</span></label>
                                     <textarea name="texte" id="texte" rows="5" cols="33" required></textarea>  
                                 </div> 
                                 <button type="submit" form="contact" value="Submit" id="buttonForm">Envoyer</button>
