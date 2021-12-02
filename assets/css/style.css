@@ -363,7 +363,7 @@ SLIDER 1
     font-family: "FF7";
     font-size: 28px;
     font-weight: normal;
-    line-height: normal;
+    line-height: 0.75em;
     flex-basis: 200px;
     opacity: 0;
 }
@@ -711,6 +711,7 @@ CONSOLE SLIDER 3
     height:60vh;
     margin-top: auto;
     margin-bottom: auto;
+    position: relative;
 }
 #article3 .pc50:last-child
 {
@@ -788,6 +789,7 @@ CONSOLE SLIDER 3
     border-radius: 50px;
     margin-bottom: 0.5em;
     margin-top: 0.5em;
+    cursor:pointer;
 }
 #projList span.active
 {
@@ -808,6 +810,12 @@ CONSOLE SLIDER 3
 }
 
 .imgPort
+{
+    position: absolute;
+    max-width: 100%;
+    bottom:-100vh;
+}
+.imgPort .active
 {
     position: absolute;
     max-width: 100%;
@@ -893,6 +901,7 @@ CONSOLE SLIDER 3
     }
     #console
     {
+        height: 100%;
         background-color: var(--black);
     }
     #article3 .pc50:first-child div

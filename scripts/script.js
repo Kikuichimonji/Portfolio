@@ -2,7 +2,7 @@ var blackscreen = document.getElementById("blackscreen");
 var intro = document.getElementById("intro");
 var visible = true; // blinking _
 var visibleStart = true; // blinking Intro
-var textTable = ['"Bonjour, Je me m\'appel Thomas, je suis Web Développeur Fullstack avec préférence Back end."',
+var textTable = ['"Bonjour, Je me m\'appelle Thomas, je suis Web Développeur Fullstack avec préférence Back end."',
     '"J\'ai 33 ans, j\'habite dans le Haut-Rhin et je suis également bénévole à l\'association \'Animaux en Détresse\'."',
     '"Je suis passionné par le développement web ansi que les jeux vidéo depuis que je suis jeune."',
     '"J\'aime également travailler en musique, les randonnées, la piscine, le vélo et m\'occuper des animaux."',
@@ -373,19 +373,22 @@ consoleBox.addEventListener("wheel", function (e) // All the console animations
     
 },{passive: true})
 
-function animateConsole(dir)
+function animateConsole(dir,endProj=null)
 {
     let activeProject = document.getElementById("article3").getElementsByClassName("active");
     let projectTable = Array.prototype.slice.call(projectListImg)
-    let index = projectTable.indexOf(activeProject[0]);
-    index++;
-    
+
+    startProj = projectTable.indexOf(activeProject[0]);
+    startProj++;
     switch (dir) {
         case "down":
-            if(projectTable[index]){
+            if(!endProj){
+                endProj = startProj+1;
+            }
+            if(projectTable[startProj]){
                 anime.timeline({ loop: false })
                 .add({ // project 1 slide down
-                    targets: ["#p"+index , "#i"+index ],
+                    targets: ["#p"+startProj , "#i"+startProj ],
                     top: "100vh",
                     opacity: 0,
                     easing: "easeInExpo",
@@ -394,29 +397,29 @@ function animateConsole(dir)
                         animEnd = false;
                     },
                     complete: function () {
-                        if(index > 0){
-                            document.getElementById("i"+(index)).style.display = "none";
+                        if(startProj > 0){
+                            document.getElementById("i"+(startProj)).style.display = "none";
                         }
                     }
                 })
                 .add({ // project 2 slide up
-                    targets: ["#p"+(index+1), "#i"+(index+1)],
+                    targets: ["#p"+(endProj), "#i"+(endProj)],
                     top: 0,
                     easing: "easeOutExpo",
                     opacity: 1,
                     duration: 700,
                     complete: function () {
                         animEnd = true;
-                        if(!projectTable[index+1]){
+                        if(!projectTable[endProj]){
                             document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-down-up.svg" //we swap the svg when we're at the end
                         }
-                        document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[0].textContent = index+1 // "2/2"
-                        projectListImg[index-1].classList.remove("active");
-                        projectListText[index-1].classList.remove("active");
-                        projectListBullet[index-1].classList.remove("active");
-                        projectListImg[index].classList.add("active");
-                        projectListText[index].classList.add("active");
-                        projectListBullet[index].classList.add("active");
+                        document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[0].textContent = endProj // "2/2"
+                        projectListImg[startProj-1].classList.remove("active");
+                        projectListText[startProj-1].classList.remove("active");
+                        projectListBullet[startProj-1].classList.remove("active");
+                        projectListImg[endProj-1].classList.add("active");
+                        projectListText[endProj-1].classList.add("active");
+                        projectListBullet[endProj-1].classList.add("active");
                     }
                 })
             }
@@ -425,10 +428,13 @@ function animateConsole(dir)
             }
         break;
         case "up":
-            if(projectTable[index-2]){
+            if(!endProj){
+                endProj = startProj-1;
+            }
+            if(projectTable[endProj-1]){
                 anime.timeline({ loop: false })
                 .add({
-                    targets: ["#p"+index , "#i"+index ],
+                    targets: ["#p"+startProj , "#i"+startProj ],
                     top: '100vh',
                     opacity: 0,
                     easing: "easeInExpo",
@@ -437,29 +443,29 @@ function animateConsole(dir)
                         animEnd = false;
                     },
                     complete: function () {
-                        if(index > 0){
-                            document.getElementById("i"+(index-1)).style.display = "flex";
+                        if(startProj > 0){
+                            document.getElementById("i"+(endProj)).style.display = "flex";
                         }
                     }
                 })
                 .add({
-                    targets: ["#p"+(index-1) , "#i"+(index-1) ],
+                    targets: ["#p"+(endProj) , "#i"+(endProj) ],
                     top: 0,
                     opacity: 1,
                     easing: "easeOutExpo",
                     duration: 700,
                     complete: function () {
                         animEnd = true;
-                        if(!projectTable[index-3]){
+                        if(!projectTable[endProj-1]){
                             document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-up-down.svg";
                         }
-                        document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[0].textContent = index-1 //"(1/2)"
-                        projectListImg[index-1].classList.remove("active");
-                        projectListText[index-1].classList.remove("active");
-                        projectListBullet[index-1].classList.remove("active");
-                        projectListImg[index-2].classList.add("active");
-                        projectListText[index-2].classList.add("active");
-                        projectListBullet[index-2].classList.add("active");
+                        document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[0].textContent = endProj //"(1/2)"
+                        projectListImg[startProj-1].classList.remove("active");
+                        projectListText[startProj-1].classList.remove("active");
+                        projectListBullet[startProj-1].classList.remove("active");
+                        projectListImg[endProj-1].classList.add("active");
+                        projectListText[endProj-1].classList.add("active");
+                        projectListBullet[endProj-1].classList.add("active");
                     }
                 })
             }
@@ -467,6 +473,24 @@ function animateConsole(dir)
                 swiper.slidePrev()
             }
         break;
+    }
+}
+
+for( i = 0; i< projectListBullet.length; i++){
+    projectListBullet[i].addEventListener("click", (e) =>{
+        if(animEnd && !wheelSlowing)
+            animateConsoleTo(e.target.innerHTML)     
+    })
+}
+
+
+function animateConsoleTo(index)
+{
+    let activeProject = document.getElementById("article3").getElementsByClassName("active");
+    if(activeProject[0].id.slice(1) > index){
+        animateConsole("up",index)
+    }else if(activeProject[0].id.slice(1) < index){
+        animateConsole("down",index)
     }
 }
 /*swiper.on("touchEnd",function() //Custom Sensitivity , original was way too touchy
@@ -496,10 +520,10 @@ swiper.on('beforeTransitionStart', function () //event at the end of the slide t
             document.querySelector("#swiper").style.height = document.querySelector("#article2").offsetHeight+"px";
             break;
         case 2:
-            document.querySelector("#swiper").style.height = window.innerHeight - document.querySelector("header").offsetHeight +"px";
+            document.querySelector("#swiper").style.height = document.querySelector("#article3").offsetHeight+100+"px";
             break;
         case 3:
-            document.querySelector("#swiper").style.height = window.innerHeight - document.querySelector("header").offsetHeight +"px";
+            document.querySelector("#swiper").style.height = document.querySelector("#article4").offsetHeight+100+"px";
             //document.querySelector("#swiperM .swiper-wrapper .swiper-slide:nth-child(4)").style.height = "1000px";
             break;
     }
