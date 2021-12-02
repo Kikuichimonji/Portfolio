@@ -22,7 +22,6 @@ var letters = []; // Table of timeouts, for easy cleaning (stop all typing anima
 
 var consoleBox = document.getElementById("console") //The console Mockup
 var animEnd = true; // Status of the animation (to prevent overlap)
-var animPosi = true; //Status of scroll | Start / end | (to not start an animation if we're already at the bottom for ex.)
 
 var listInput = document.getElementsByTagName("input")
 var listArea = document.getElementsByTagName("textarea")
@@ -43,9 +42,17 @@ else
     timer = 0;
 var timeDiff = 5 * 60 * 1000;
 var dateTimer = timer.value * 1000;
-var swiperSuffix = ""
-var mainWidth = window.innerWidth
-var mainHeight = window.innerHeight
+var swiperSuffix = "";
+var mainWidth = window.innerWidth;
+var mainHeight = window.innerHeight;
+
+let projectListImg = document.getElementsByClassName("imgPort");
+let projectListText = document.getElementsByClassName("textPort");
+let projectListBullet = document.getElementsByClassName("bulletPort");
+projectListImg[0].classList.add("active");
+projectListText[0].classList.add("active");
+projectListBullet[0].classList.add("active");
+document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[1].textContent = projectListImg.length
 
 
 if (mainWidth <= 768) {
@@ -126,6 +133,7 @@ const swiper = new Swiper("#swiper" + swiperSuffix, { // Swiper params
 
 blackscreen.addEventListener("click", function () //Remove the intro on click 
 {
+    document.querySelector("#swiper").style.height = document.querySelector("#article1").offsetHeight+100+"px";
     blackscreen.className = blackscreen.className + " fadeOutFast";
     setTimeout(() => { //I'm not used to type it this way, i need to train more
         blackscreen.style.display = "none";
@@ -240,7 +248,7 @@ start = window.setInterval(function () { //Blinking Start
 showTitle(title, interTitle, "titre"); //first title initialisation
 
 window.addEventListener("load", function () {
-
+    document.querySelector("#swiper").style.height = "0"
     var middleHeight = (window.innerHeight / 2) - (intro.offsetHeight / 2); //My attempt at centenring the title animation
     var xMax = 16 //shake offset
     anime.timeline({ loop: false }) //Intro Animation
@@ -295,34 +303,17 @@ window.addEventListener("keyup", function (e) {
     {
         if(e.key == "ArrowUp")
         {
-            scrollUpP3 = anime.timeline({ loop: false })
-            .add({
-                targets: ["#p2" + swiperSuffix, "#i2" + swiperSuffix],
-                top: '100vh',
-                opacity: 0,
-                easing: "easeInExpo",
-                duration: 700,
-                begin: function () {
-                    animEnd = false;
-                },
-            })
-            .add({
-                targets: ["#p1" + swiperSuffix, "#i1" + swiperSuffix],
-                top: 0,
-                opacity: 1,
-                easing: "easeOutExpo",
-                duration: 700,
-                complete: function () {
-                    animEnd = true;
-                    animPosi = true;
-                    document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-up-down.svg"
-                    document.getElementById("console-top").getElementsByTagName("p")[0].textContent = 1 //"(1/2)"
-                }
-            })
+            if (animEnd) 
+            {
+                animateConsole("up")
+            }
         }
         else if(e.key =="ArrowDown")
         {
-            animateConsole("down");
+            if (animEnd) // if an animation is running or at the end of the list 
+            {
+                animateConsole("down")
+            }
         }
     }
 });
@@ -359,95 +350,123 @@ window.addEventListener("wheel", function (e) {
 
 consoleBox.addEventListener("wheel", function (e) // All the console animations
 {
-    if (e.deltaY > 0) //if we scroll down
-    {
-        if (swiper.activeIndex == 2) //if we're actually on the console slide
+    if (swiper.activeIndex == 2){
+        if (e.deltaY > 0) //if we scroll down
         {
-            if (animEnd && animPosi) // if an animation is running or at the end of the list 
+            if (animEnd && !wheelSlowing) // if an animation is running or at the end of the list 
             {
                 animateConsole("down")
             }
-            if (animEnd && !animPosi && !wheelSlowing) {
-                swiper.slideNext() // if we're at the bottom of the project list we can slide next 
-                wheelSlowing = true;
-                setTimeout(function () {
-                    wheelSlowing = false
-                }, interScroll)
+        }
+        else //if we scroll up
+        {
+            if (animEnd && !wheelSlowing) 
+            {
+                animateConsole("up")
             }
         }
+        wheelSlowing = true;
+        setTimeout(function () {
+            wheelSlowing = false
+        }, interScroll)
     }
-    else //if we scroll up
-    {
-        if (swiper.activeIndex == 2) {
-            if (animEnd && !animPosi) {
-                scrollUpP3 = anime.timeline({ loop: false })
-                    .add({
-                        targets: ["#p2" + swiperSuffix, "#i2" + swiperSuffix],
-                        top: '100vh',
-                        opacity: 0,
-                        easing: "easeInExpo",
-                        duration: 700,
-                        begin: function () {
-                            animEnd = false;
-                        },
-                    })
-                    .add({
-                        targets: ["#p1" + swiperSuffix, "#i1" + swiperSuffix],
-                        top: 0,
-                        opacity: 1,
-                        easing: "easeOutExpo",
-                        duration: 700,
-                        complete: function () {
-                            animEnd = true;
-                            animPosi = true;
-                            document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-up-down.svg"
-                            document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[0].textContent = 1 //"(1/2)"
-                        }
-                    })
-            }
-            if (animEnd && animPosi) {
-                swiper.slidePrev()
-                wheelSlowing = true;
-                setTimeout(function () {
-                    wheelSlowing = false
-                }, interScroll)
-            }
-        }
-    }
+    
 },{passive: true})
 
 function animateConsole(dir)
 {
+    let activeProject = document.getElementById("article3").getElementsByClassName("active");
+    let projectTable = Array.prototype.slice.call(projectListImg)
+    let index = projectTable.indexOf(activeProject[0]);
+    index++;
+    
     switch (dir) {
         case "down":
-            anime.timeline({ loop: false })
-            .add({ // project 1 slide down
-                targets: ["#p1" + swiperSuffix, "#i1" + swiperSuffix],
-                top: "100vh",
-                opacity: 0,
-                easing: "easeInExpo",
-                duration: 700,
-                begin: function () {
-                    animEnd = false;
-                }
-            })
-            .add({ // project 2 slide up
-                targets: ["#p2" + swiperSuffix, "#i2" + swiperSuffix],
-                top: 0,
-                easing: "easeOutExpo",
-                opacity: 1,
-                duration: 700,
-                complete: function () {
-                    animEnd = true;
-                    animPosi = false;
-                    document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-down-up.svg" //we swap the svg when we're at the end
-                    document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[0].textContent = 2 // "2/2"
-                }
-            })
-            break;
+            if(projectTable[index]){
+                anime.timeline({ loop: false })
+                .add({ // project 1 slide down
+                    targets: ["#p"+index , "#i"+index ],
+                    top: "100vh",
+                    opacity: 0,
+                    easing: "easeInExpo",
+                    duration: 700,
+                    begin: function () {
+                        animEnd = false;
+                    },
+                    complete: function () {
+                        if(index > 0){
+                            document.getElementById("i"+(index)).style.display = "none";
+                        }
+                    }
+                })
+                .add({ // project 2 slide up
+                    targets: ["#p"+(index+1), "#i"+(index+1)],
+                    top: 0,
+                    easing: "easeOutExpo",
+                    opacity: 1,
+                    duration: 700,
+                    complete: function () {
+                        animEnd = true;
+                        if(!projectTable[index+1]){
+                            document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-down-up.svg" //we swap the svg when we're at the end
+                        }
+                        document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[0].textContent = index+1 // "2/2"
+                        projectListImg[index-1].classList.remove("active");
+                        projectListText[index-1].classList.remove("active");
+                        projectListBullet[index-1].classList.remove("active");
+                        projectListImg[index].classList.add("active");
+                        projectListText[index].classList.add("active");
+                        projectListBullet[index].classList.add("active");
+                    }
+                })
+            }
+            else{
+                swiper.slideNext()
+            }
+        break;
         case "up":
-                return 0;
-            break;
+            if(projectTable[index-2]){
+                anime.timeline({ loop: false })
+                .add({
+                    targets: ["#p"+index , "#i"+index ],
+                    top: '100vh',
+                    opacity: 0,
+                    easing: "easeInExpo",
+                    duration: 700,
+                    begin: function () {
+                        animEnd = false;
+                    },
+                    complete: function () {
+                        if(index > 0){
+                            document.getElementById("i"+(index-1)).style.display = "flex";
+                        }
+                    }
+                })
+                .add({
+                    targets: ["#p"+(index-1) , "#i"+(index-1) ],
+                    top: 0,
+                    opacity: 1,
+                    easing: "easeOutExpo",
+                    duration: 700,
+                    complete: function () {
+                        animEnd = true;
+                        if(!projectTable[index-3]){
+                            document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-up-down.svg";
+                        }
+                        document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[0].textContent = index-1 //"(1/2)"
+                        projectListImg[index-1].classList.remove("active");
+                        projectListText[index-1].classList.remove("active");
+                        projectListBullet[index-1].classList.remove("active");
+                        projectListImg[index-2].classList.add("active");
+                        projectListText[index-2].classList.add("active");
+                        projectListBullet[index-2].classList.add("active");
+                    }
+                })
+            }
+            else{
+                swiper.slidePrev()
+            }
+        break;
     }
 }
 /*swiper.on("touchEnd",function() //Custom Sensitivity , original was way too touchy
@@ -464,7 +483,6 @@ function animateConsole(dir)
     }   
 
 })*/ //everything become wanky, might change later again
-document.querySelector("#swiper").style.height = document.querySelector("#article1").offsetHeight+100+"px";
 document.querySelector("#article1").style.height = window.innerHeight*0.9 - document.querySelector("header").offsetHeight +"px";
 document.querySelector("#article3").style.height = window.innerHeight*0.9 - document.querySelector("header").offsetHeight +"px";
 document.querySelector("#article4").style.height = window.innerHeight*0.9 - document.querySelector("header").offsetHeight +"px";
@@ -483,9 +501,6 @@ swiper.on('beforeTransitionStart', function () //event at the end of the slide t
         case 3:
             document.querySelector("#swiper").style.height = window.innerHeight - document.querySelector("header").offsetHeight +"px";
             //document.querySelector("#swiperM .swiper-wrapper .swiper-slide:nth-child(4)").style.height = "1000px";
-            break;
-        case 4:
-
             break;
     }
 })

@@ -30,6 +30,7 @@ body
     font-family: "OpenSans";
     background: var(--blackless);
     color: var(--white);
+    overflow: hidden;
 }
 h2,h3
 {
@@ -86,6 +87,10 @@ span
     {
         --swiper-navigation-size: 30px !important;
     }
+    body
+    {
+        overflow-y: scroll;
+    }
 }
 /*************
 INTRO
@@ -137,7 +142,7 @@ SWIPER
 #mainWraper
 {
     height: 100vh;
-    min-height: 640px;
+    /*min-height: 640px;*/
 }
 #mainWraper .swiper
 {
@@ -763,29 +768,56 @@ CONSOLE SLIDER 3
     font-family: "MtSerrat";
     line-height: 1.5em;
 }
+#projList
+{
+    width: 29px;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    top:calc(50% + 15px);
+    transform: translate(0,-50%);
+    display: flex;
+    flex-direction: column;
+    margin-right: 1em;
+}
+#projList span
+{
+    background-color: var(--black);
+    border: 2px solid var(--white);
+    padding: 3px;
+    border-radius: 50px;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+#projList span.active
+{
+    background-color: var(--white);
+    color: var(--black);
+    font-weight: bold;
+}
+.textPort
+{
+    position: absolute;
+    padding-top: 1em;
+    bottom:-100vh;
+    width: 90%;
+}
 #p1
 {
-    position: absolute;
     top:0;
-    padding-top: 1em;
 }
-#p2
+
+.imgPort
 {
     position: absolute;
+    max-width: 100%;
     bottom:-100vh;
-    padding-top: 1em;
 }
 #i1
 {
-    position: absolute;
     top:0;
-    max-width: 100%;
 }
-#i2
-{
-    position: absolute;
-    bottom:-100vh;
-}
+
 #article3 .pc50:first-child div
 {
     height: 100%;
@@ -801,6 +833,7 @@ CONSOLE SLIDER 3
     margin: auto;
     border-radius: 5px;
     border-width: 2px;
+    width:100%;
 }
 #article3 object
 {
@@ -829,10 +862,14 @@ CONSOLE SLIDER 3
         height: 100%;
         min-height: 500px;
     }
-    #i1,#i2
+    .imgPort
     {
         max-width: 75%;
         margin: auto;
+    }
+    .textPort
+    {
+        width: 85%;
     }
     #article3 h2
     {
@@ -847,6 +884,7 @@ CONSOLE SLIDER 3
         transform: translate(0, 60%);
         height: 60px;
         left: auto;
+        display: none;
     }
     #console p:not(.console-top p)
     {
@@ -865,6 +903,15 @@ CONSOLE SLIDER 3
         height: 100%;
         max-height: 40vh;
         padding-top: 1em;
+    }
+    #projList
+    {
+        width: 23px;
+        margin-right: 0.5em;
+    }
+    #projList span
+    {
+        font-size: 10px;
     }
 }
 
@@ -1107,7 +1154,7 @@ footer p:first-child:hover,footer p:last-child:hover
     opacity: 1;
 }
 
-@media all and (max-width: 600px){
+@media all and (max-width: 768px){
     footer p
     {
         font-size: 0.75em;
@@ -1133,7 +1180,7 @@ MENTIONS
 *************/
 .modalBox
 {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100vw;
     height: 100vh;
@@ -1175,7 +1222,13 @@ MENTIONS
     color: var(--white);
     font-weight: bold;
 }
-
+@media all and (max-width: 768px){
+    .modal
+    {
+        transform: translate(13%,40%);
+        width: 80vw;
+    }
+}
 /*************
 COOKIES
 *************/

@@ -141,31 +141,47 @@
                 <section class="swiper-slide">
                     <div id="article3">
                         <div class="pc50">
-                            <div id="i1" > <!-- Images list-->
+                            <div class="imgPort" id="i1" > <!-- Images list-->
                                 <img src="assets/img/site-mockup-triple.webp" alt="Mockup du site Osteopathe begaud dans 3 formats différents, mobile, tablette, etlaptop">
                             </div>
-                            <div id="i2">
+                            <div class="imgPort" id="i2">
+                                <img src="assets/img/appli-mockup2.webp" alt="Mockup de l'application Osteoclic sous format laptop">
+                            </div>
+                            <div class="imgPort" id="i3">
                                 <img src="assets/img/appli-mockup2.webp" alt="Mockup de l'application Osteoclic sous format laptop">
                             </div>
                         </div>
                         <div class="pc50">
                             <div id="console">
                                 <div class="console-top">
-                                    <img src="assets/img/cmd.JPG" alt="logo de la console windows"> Thomas Roess © <span><p>1</p>/<p>2</p></span></div>
-                                <div id="p1"> <!-- Project list-->
-                                    <h2>Site vitrine de l'osteopathe Annabel Begaud</h2>
-                                        <p>
-                                            Mon 1er site, fait sans CMS pour pouvoir prendre de bonnes habitudes et respecter la sémantique. Il est en constante évolution 
-                                            pour répondre aux demandes de ma cliente.
-                                        </p>
+                                    <img src="assets/img/cmd.JPG" alt="logo de la console windows"> Thomas Roess © <span><p>1</p>/<p>2</p></span>
                                 </div>
-                                <div id="p2" >
+                                <div id="projList">
+                                    <span class="bulletPort">1</span>
+                                    <span class="bulletPort">2</span>
+                                    <span class="bulletPort">3</span>
+                                </div>
+                                <div class="textPort" id="p1"> <!-- Project list-->
+                                    <h2>Site vitrine de l'osteopathe Annabel Begaud</h2>
+                                    <p>
+                                        Mon 1er site, fait sans CMS pour pouvoir prendre de bonnes habitudes et respecter la sémantique. Il est en constante évolution 
+                                        pour répondre aux demandes de ma cliente.
+                                    </p>
+                                </div>
+                                <div class="textPort" id="p2" >
                                     <h2>OsteoClic</h2>
                                     <p>
                                         OsteoClic est une application faite pour une Ostéopathe pour gérer sa patientèle et ses consultations selon le cabinet. 
                                         Elle a été développé sous Symfony 5 dont une grosse partie dynamique en JS.
                                     </p>
                                 </div>
+                                <div class="textPort" id="p3" >
+                                    <h2>3eme projet</h2>
+                                    <p>
+                                        blablabla
+                                    </p>
+                                </div>
+
                                 <object type="image/svg+xml" data="assets/img/mouse-scroll-up-down.svg"></object>
                             </div>
                         </div>
@@ -280,7 +296,7 @@
 
                     <h2>1. Présentation du site internet.</h2>
                     <p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site internet <a href="https://www.thomas-roess.fr">https://www.thomas-roess.fr</a> l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi:
-                    </p><p><strong>Propriétaire</strong> :   Thomas Roess   – 12 rue du rebberg 68140 Gunsbach<br>
+                    </p><p><strong>Propriétaire</strong> :   Thomas Roess  <br>
                     <strong>Responsable publication</strong> : Thomas Roess – admin@thomas-roess.fr<br>
                     Le responsable publication est une personne physique ou une personne morale.<br>
                     <strong>Webmaster</strong> : Thomas Roess – admin@thomas-roess.fr<br>
