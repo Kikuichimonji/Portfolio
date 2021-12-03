@@ -384,6 +384,13 @@ SLIDER 1
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
+@media all and (max-width: 1024px){
+    .dialog__content
+    {
+        font-size: 28px;
+    }
+
+}
 
 @media all and (max-width: 768px){
     #article1
@@ -422,7 +429,6 @@ SLIDER 1
 
     .dialog__content
     {
-        font-size: 20px;
         height: 180px;
         margin-top: 20px;
     }
@@ -434,6 +440,13 @@ SLIDER 1
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+
+}
+@media all and (max-width: 570px){
+    .dialog__content
+    {
+        font-size: 20px;
     }
 
 }
@@ -606,9 +619,6 @@ tr:nth-child(odd) .line
     overflow: hidden;
     margin: auto;
     border-radius: 5px;
-}
-#outerBorder
-{
     height: 80%;
     width: 80%;
 }    
@@ -647,6 +657,11 @@ tr:nth-child(odd) .line
         min-height: 950px ;
         flex-flow: column nowrap;
     }
+    #article2 .pc50:first-child
+    {
+        margin-left: auto;
+        margin-right: auto;
+    }
     #article2 span
     {
         flex-wrap: nowrap;
@@ -664,8 +679,6 @@ tr:nth-child(odd) .line
     #article2 table
     {
         width: 70%;
-        margin-left: 0;
-        margin-right: 0;
         margin-top: 30px;
         margin-bottom: auto;
     }
@@ -690,21 +703,20 @@ tr:nth-child(odd) .line
         height: 70%;
         width: 75%;
         margin-top: 40px;
+        max-width: 400px;
     }
     .line
     {
         width: 70%;
     }
-    @media all and (max-width: 320px){
-        #article2 .pc50:first-child
-        {
-            margin-left: 0;
-        }
-        #article2 table
-        {
-            margin-left: auto;
-            margin-right: auto;
-        }
+}
+
+@media all and (max-width: 320px){
+
+    #article2 table
+    {
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -876,6 +888,7 @@ CONSOLE SLIDER 3
     #article3 .pc50:first-child
     {
         margin-left: 0;
+        margin-bottom: 2em;
     }
     #article3 .pc50:last-child
     {
@@ -928,6 +941,7 @@ CONSOLE SLIDER 3
     {
         height: 100%;
         background-color: var(--black);
+        max-width: 400px;
     }
     #article3 .pc50:first-child div
     {

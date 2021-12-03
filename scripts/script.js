@@ -1,50 +1,50 @@
-var blackscreen = document.getElementById("blackscreen");
-var intro = document.getElementById("intro");
-var visible = true; // blinking _
-var visibleStart = true; // blinking Intro
-var textTable = ['"Bonjour, Je me m\'appelle Thomas, je suis Web Développeur Fullstack avec préférence Back end."',
+let blackscreen = document.getElementById("blackscreen");
+let intro = document.getElementById("intro");
+let visible = true; // blinking _
+let visibleStart = true; // blinking Intro
+let textTable = ['"Bonjour, Je me m\'appelle Thomas, je suis Web Développeur Fullstack avec préférence Back end."',
     '"J\'ai 33 ans, j\'habite dans le Haut-Rhin et je suis également bénévole à l\'association \'Animaux en Détresse\'."',
     '"Je suis passionné par le développement web ansi que les jeux vidéo depuis que je suis jeune."',
     '"J\'aime également travailler en musique, les randonnées, la piscine, le vélo et m\'occuper des animaux."',
     "test"] //the dialogue text list
 
-var activeText = false;
-var interDiag = 10; //Typing Speed of the dialog
-var textInterval = [];  // Table of timeouts, for easy cleaning (page slide for ex)
+let activeText = false;
+let interDiag = 10; //Typing Speed of the dialog
+let textInterval = [];  // Table of timeouts, for easy cleaning (page slide for ex)
 
-var title = "Découvrez Thomas" //All the slider Titles
-var title2 = "Mes compétences"
-var title3 = "Mes projets"
-var title4 = "Me contacter"
-var interTitle = 80; //Typing Speed of the title
-var letters = []; // Table of timeouts, for easy cleaning (stop all typing animation for the title when we change slide)
+let title = "Découvrez Thomas" //All the slider Titles
+let title2 = "Mes compétences"
+let title3 = "Mes projets"
+let title4 = "Me contacter"
+let interTitle = 80; //Typing Speed of the title
+let letters = []; // Table of timeouts, for easy cleaning (stop all typing animation for the title when we change slide)
 
 
-var consoleBox = document.getElementById("console") //The console Mockup
-var animEnd = true; // Status of the animation (to prevent overlap)
+let consoleBox = document.getElementById("console") //The console Mockup
+let animEnd = true; // Status of the animation (to prevent overlap)
 
-var listInput = document.getElementsByTagName("input")
-var listArea = document.getElementsByTagName("textarea")
-var formButton = document.getElementsByTagName("button")[0]
+let listInput = document.getElementsByTagName("input")
+let listArea = document.getElementsByTagName("textarea")
+let formButton = document.getElementsByTagName("button")[0]
 
-var swiperTouchStartX;
-var wheelSlowing = false;
-var noScroll = false;
-var interScroll = 500;
+let swiperTouchStartX;
+let wheelSlowing = false;
+let noScroll = false;
+let interScroll = 500;
 
-var footerLinks = document.getElementsByTagName("footer")[0].getElementsByTagName("p")
-var modalBox = document.getElementsByClassName("modalBox")
-var closeCookie = document.getElementById("cookie").getElementsByTagName("span")[1];
-var table = [];
+let footerLinks = document.getElementsByTagName("footer")[0].getElementsByTagName("p")
+let modalBox = document.getElementsByClassName("modalBox")
+let closeCookie = document.getElementById("cookie").getElementsByTagName("span")[1];
+let table = [];
 if (typeof document.getElementById("timerSession") !== 'undefined')
     timer = document.getElementById("timerSession").dataset
 else
     timer = 0;
-var timeDiff = 5 * 60 * 1000;
-var dateTimer = timer.value * 1000;
-var swiperSuffix = "";
-var mainWidth = window.innerWidth;
-var mainHeight = window.innerHeight;
+let timeDiff = 5 * 60 * 1000;
+let dateTimer = timer.value * 1000;
+let swiperSuffix = "";
+let mainWidth = window.innerWidth;
+let mainHeight = window.innerHeight;
 
 let projectListImg = document.getElementsByClassName("imgPort");
 let projectListText = document.getElementsByClassName("textPort");
@@ -177,7 +177,7 @@ function showTitle(texte, interval, tag) // i separated title and text for scree
 
 function showDialog(text, textIndex, index, interval, tag) //Fuck yeah it finally work //(Table of dialog,list of indexes fot the table,which one in the list,what speed we write,where do we write)
 {
-    var mainBox = document.getElementsByClassName("dialog__content" + swiperSuffix); //To differentiate Mobile and Desktop box
+    let mainBox = document.getElementsByClassName("dialog__content" + swiperSuffix); //To differentiate Mobile and Desktop box
 
     if (tag == "dialog0" || tag == "dialog1") //first dialog box 
     {
@@ -219,7 +219,7 @@ function clearDialog(tag, list) //CLearing all the dialogs for the tags
         indexDiag = 1;
     for (count = 0; count < list.length; count++)
         document.getElementsByClassName(tag + list[count])[indexDiag].textContent = ""
-    var dialogList = document.getElementsByClassName("dialog__content" + swiperSuffix)
+    let dialogList = document.getElementsByClassName("dialog__content" + swiperSuffix)
     for (count = 0; count < dialogList.length; count++)
         dialogList[count].style.opacity = 0
 
@@ -251,8 +251,8 @@ window.addEventListener("load", function () {
     })
     noScroll = true;
     document.querySelector("#swiper").style.height = "0"
-    var middleHeight = (window.innerHeight / 2) - (intro.offsetHeight / 2); //My attempt at centenring the title animation
-    var xMax = 16 //shake offset
+    let middleHeight = (window.innerHeight / 2) - (intro.offsetHeight / 2); //My attempt at centenring the title animation
+    let xMax = 16 //shake offset
     anime.timeline({ loop: false }) //Intro Animation
         .add({ // Coming down
             targets: '#intro',
