@@ -11,17 +11,20 @@
 {
     font-family: "OpenSans";
     src: url("../fonts/OpenSans-VariableFont_wdth\,wght.ttf");
+    font-display: swap;
 }
 @font-face 
 {
     font-family: "FF7";
     src: url("../fonts/Reactor7.ttf") format("truetype");
+    font-display: swap;
 }
 @font-face 
 {
     font-family: "MtSerrat";
     src: url("../fonts/Montserrat-Regular.ttf") format("truetype");
     font-weight: normal;
+    font-display: swap;
 }
 
 body
@@ -265,14 +268,16 @@ header div
     justify-content: center;
     flex-direction: column;
     z-index: 15;
-    position: absolute;
-    width: 300px;
+    position: fixed;
+    width: 50%;
+    min-width: 100px;
+    max-width: 300px;
     height: 150px;
     bottom: 50px;
     left: 50px;
     background-color: var(--black);
     border: 2px solid white;
-    animation: fadeOutDelayed 8s forwards;
+    animation: fadeOutDelayed 5s forwards;
 }
 
 @media all and (max-width: 600px){
@@ -403,6 +408,7 @@ SLIDER 1
         flex-direction: column;
         justify-content: center;
         margin-left: 0;
+        height: 40vh;
     }
     #article1 .pc50:first-child div
     {
@@ -434,7 +440,7 @@ SLIDER 1
 @media all and (max-width: 320px){
     .dialog__content
     {
-        height: 200px;
+        height: 250px;
     }
 }
 
@@ -452,6 +458,7 @@ COMPETENCE SLIDER 2
 {
     color:var(--white);
     font-weight: bold;
+    margin-left: 1em;
 }
 #article2 .pc50
 {
@@ -487,6 +494,7 @@ COMPETENCE SLIDER 2
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-flow:row wrap;
 }
 #article2 tr
 {
@@ -638,6 +646,10 @@ tr:nth-child(odd) .line
         height:auto;
         min-height: 950px ;
         flex-flow: column nowrap;
+    }
+    #article2 span
+    {
+        flex-wrap: nowrap;
     }
     #article2 tr
     {
@@ -814,12 +826,14 @@ CONSOLE SLIDER 3
     position: absolute;
     max-width: 100%;
     bottom:-100vh;
+    display: none;
 }
 .imgPort .active
 {
     position: absolute;
     max-width: 100%;
     bottom:-100vh;
+    display: flex;
 }
 #i1
 {
@@ -863,25 +877,36 @@ CONSOLE SLIDER 3
     {
         margin-left: 0;
     }
+    #article3 .pc50:last-child
+    {
+        height: 50vh;
+    }
     #article3
     {
         display:flex;
         flex-direction: column;
         height: 100%;
-        min-height: 500px;
+        min-height: 550px;
     }
-    .imgPort
+    #article3 .pc50:first-child div
     {
         max-width: 75%;
         margin: auto;
+        display: none;
+        top:100vh;
     }
+    #article3 .pc50:first-child div.imgPort.active
+    {
+        display: flex;
+        top:0;
+    }
+
     .textPort
     {
         width: 85%;
     }
     #article3 h2
     {
-        max-width: 70%;
         font-size:1em;
         margin-bottom: 2em;
     }
@@ -937,16 +962,13 @@ FORM SLIDER 4
     min-height: 600px;
 }
 
-#article4 div:not(form div)
+#article4 #a4FirstDiv
 {
     margin:auto;
     height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-#article4 div:not(form div)
-{
     width: 50%;
     justify-content: space-evenly;
 }
@@ -1092,8 +1114,9 @@ FORM SLIDER 4
         width: 150px;
         font-size: 20px;
     }
-    #article4 div:not(form div)
+    #article4 #a4FirstDiv
     {
+        height: 80vh;
         width: 75%;
         margin-top:5%;
         margin-right: auto;
@@ -1142,7 +1165,7 @@ FOOTER
 footer
 {
     
-    position: fixed;
+    /*position: fixed;*/
     display: flex;
     justify-content: space-evenly;
     width: 100vw;

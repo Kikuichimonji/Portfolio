@@ -52,7 +52,7 @@ let projectListBullet = document.getElementsByClassName("bulletPort");
 projectListImg[0].classList.add("active");
 projectListText[0].classList.add("active");
 projectListBullet[0].classList.add("active");
-document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[1].textContent = projectListImg.length
+//document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[1].textContent = projectListImg.length
 
 
 if (mainWidth <= 768) {
@@ -66,7 +66,7 @@ if (mainWidth <= 768) {
 if(mainWidth > mainHeight){
     document.getElementById("mainImg").src = "assets/img/Thomas_roess-cropped.webp";
 } else {
-    document.getElementById("mainImg").src = "assets/img/Thomas-roess-Mobile-flip.jpg";
+    document.getElementById("mainImg").src = "assets/img/Thomas-roess-Mobile-flip.webp";
 }
 
 
@@ -131,15 +131,6 @@ const swiper = new Swiper("#swiper" + swiperSuffix, { // Swiper params
 });
 
 
-blackscreen.addEventListener("click", function () //Remove the intro on click 
-{
-    document.querySelector("#swiper").style.height = document.querySelector("#article1").offsetHeight+100+"px";
-    blackscreen.className = blackscreen.className + " fadeOutFast";
-    setTimeout(() => { //I'm not used to type it this way, i need to train more
-        blackscreen.style.display = "none";
-    }, 500);
-    setTimeout(function () { showDialog(textTable, [0, 1, 2, 3], 0, interDiag, "dialog0") }, 500); //first dialog initialisation
-})
 
 function attachEvenInput(listInput) // as name says, we attach all event listeners to the inputs
 {
@@ -248,6 +239,17 @@ start = window.setInterval(function () { //Blinking Start
 showTitle(title, interTitle, "titre"); //first title initialisation
 
 window.addEventListener("load", function () {
+    blackscreen.addEventListener("click", function () //Remove the intro on click 
+    {
+        noScroll = false;
+        document.querySelector("#swiper").style.height = document.querySelector("#article1").offsetHeight+100+"px";
+        blackscreen.className = blackscreen.className + " fadeOutFast";
+        setTimeout(() => { //I'm not used to type it this way, i need to train more
+            blackscreen.style.display = "none";
+        }, 500);
+        setTimeout(function () { showDialog(textTable, [0, 1, 2, 3], 0, interDiag, "dialog0") }, 500); //first dialog initialisation
+    })
+    noScroll = true;
     document.querySelector("#swiper").style.height = "0"
     var middleHeight = (window.innerHeight / 2) - (intro.offsetHeight / 2); //My attempt at centenring the title animation
     var xMax = 16 //shake offset
@@ -326,6 +328,7 @@ window.addEventListener("wheel", function (e) {
     {
         noScroll = false
     })
+
     if (!wheelSlowing && !noScroll) {
         wheelSlowing = true
         if (e.deltaY < 0 && swiper.isBeginning) //if we scroll up
@@ -408,12 +411,15 @@ function animateConsole(dir,endProj=null)
                     easing: "easeOutExpo",
                     opacity: 1,
                     duration: 700,
+                    begin: function () {
+                        document.getElementById("i"+(endProj)).style.display = "flex";
+                    },
                     complete: function () {
                         animEnd = true;
                         if(!projectTable[endProj]){
                             document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-down-up.svg" //we swap the svg when we're at the end
                         }
-                        document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[0].textContent = endProj // "2/2"
+                        //document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[0].textContent = endProj // "2/2"
                         projectListImg[startProj-1].classList.remove("active");
                         projectListText[startProj-1].classList.remove("active");
                         projectListBullet[startProj-1].classList.remove("active");
@@ -444,7 +450,7 @@ function animateConsole(dir,endProj=null)
                     },
                     complete: function () {
                         if(startProj > 0){
-                            document.getElementById("i"+(endProj)).style.display = "flex";
+                            document.getElementById("i"+(startProj)).style.display = "none";
                         }
                     }
                 })
@@ -454,12 +460,15 @@ function animateConsole(dir,endProj=null)
                     opacity: 1,
                     easing: "easeOutExpo",
                     duration: 700,
+                    begin: function () {
+                        document.getElementById("i"+(endProj)).style.display = "flex";
+                    },
                     complete: function () {
                         animEnd = true;
                         if(!projectTable[endProj-1]){
                             document.getElementsByTagName("object")[0].data = "assets/img/mouse-scroll-up-down.svg";
                         }
-                        document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[0].textContent = endProj //"(1/2)"
+                        //document.getElementsByClassName("console-top")[0].getElementsByTagName("p")[0].textContent = endProj //"(1/2)"
                         projectListImg[startProj-1].classList.remove("active");
                         projectListText[startProj-1].classList.remove("active");
                         projectListBullet[startProj-1].classList.remove("active");
@@ -523,7 +532,7 @@ swiper.on('beforeTransitionStart', function () //event at the end of the slide t
             document.querySelector("#swiper").style.height = document.querySelector("#article3").offsetHeight+100+"px";
             break;
         case 3:
-            document.querySelector("#swiper").style.height = document.querySelector("#article4").offsetHeight+100+"px";
+            document.querySelector("#swiper").style.height = document.querySelector("#article4").offsetHeight+50+"px";
             //document.querySelector("#swiperM .swiper-wrapper .swiper-slide:nth-child(4)").style.height = "1000px";
             break;
     }

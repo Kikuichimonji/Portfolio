@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
 <?php 
     session_start();
     $mailMessage = ["Mail bien envoyé","Un problème est survenu avec l'envoi du mail, veuillez réessayer plus tard"];
@@ -17,9 +15,10 @@
     else
         $timer = "";
 
-    echo("<input type='hidden' id='timerSession' data-value='".$timer."' />");
-    
+    $input = "<input type='hidden' id='timerSession' data-value='".$timer."' />";
 ?>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,6 +37,7 @@
     </script>
 </head>
 <body>
+<?= $input ?>
     <div id="mainWraper">
         <div id="blackscreen">
             <div id="intro">
@@ -49,7 +49,9 @@
             <div class="<?= $messageClass ?>">
                 <p><?= $message ?></p>
             </div>
-            <img id="logo" src="assets/img/Logo-Thomas-black.png" alt="Logo Thomas Roess Boite noir avec Nom ecrit en blanc style console windows">
+            <a href="index.php">
+                <img id="logo" src="assets/img/Logo-Thomas-black.png" alt="Logo Thomas Roess Boite noir avec Nom ecrit en blanc style console windows">
+            </a>
             <div>
                 <h2 id="titre"></h2>
                 <span id="undescore">&#95;</span>
@@ -148,13 +150,13 @@
                                 <img src="assets/img/appli-mockup2.webp" alt="Mockup de l'application Osteoclic sous format laptop">
                             </div>
                             <div class="imgPort" id="i3">
-                                <img src="assets/img/appli-mockup2.webp" alt="Mockup de l'application Osteoclic sous format laptop">
+                                <img src="assets/img/mockup_portfolio.webp" alt="Mockup du portfolio sous format laptop">
                             </div>
                         </div>
                         <div class="pc50">
                             <div id="console">
                                 <div class="console-top">
-                                    <img src="assets/img/cmd.JPG" alt="logo de la console windows"> Thomas Roess © <span><p>1</p>/<p>2</p></span>
+                                    <img src="assets/img/cmd.JPG" alt="logo de la console windows"> Thomas Roess © <!--<span><p>1</p>/<p>2</p></span>-->
                                 </div>
                                 <div id="projList">
                                     <span class="bulletPort">1</span>
@@ -176,9 +178,9 @@
                                     </p>
                                 </div>
                                 <div class="textPort" id="p3" >
-                                    <h2>3eme projet</h2>
+                                    <h2>Portfolio Thomas Roess</h2>
                                     <p>
-                                        blablabla
+                                        Projetception ! Mon portfolio est un projet que j'ai grandement aimé mettre en place. En utilisant de l'HTML, du CSS et du JS.
                                     </p>
                                 </div>
 
@@ -191,7 +193,7 @@
                     <div id="article4" >
                         <a href="https://github.com/Kikuichimonji" target="blank_"><img src="assets/img/github.webp" alt="logo GitHub"></a>
                         <a href="https://www.linkedin.com/in/thomas-roess/" target="blank_"><img src="assets/img/linkedin.webp" alt="logo Linkdin"></a>
-                        <div>
+                        <div id="a4FirstDiv">
                             <p>N'hesitez pas à me contacter pour plus d'informations</p>
                             <form method="post" action="mail.php" id="contact"  onsubmit="return submitForm(this)">
                                 <div id="formContainer">
@@ -311,7 +313,7 @@
                     Le site web <a href="https://www.thomas-roess.fr">https://www.thomas-roess.fr</a> est mis à jour régulièrement par <a href="https://www.thomas-roess.fr">https://www.thomas-roess.fr</a> responsable. De la même façon, les mentions légales peuvent être modifiées à tout moment : elles s’imposent néanmoins à l’utilisateur qui est invité à s’y référer le plus souvent possible afin d’en prendre connaissance.</p>
 
                     <h2>3. Description des services fournis.</h2>
-                    <a href="https://www.thomas-roess.fr">https://www.thomas-roess.fr</a> s’efforce de fournir sur le site <a href="https://www.thomas-roess.fr">https://www.thomas-roess.fr</a> des informations aussi précises que possible. Toutefois, il ne pourra être tenu responsable des oublis, des inexactitudes et des carences dans la mise à jour, qu’elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.</p>
+                    <p><a href="https://www.thomas-roess.fr">https://www.thomas-roess.fr</a> s’efforce de fournir sur le site <a href="https://www.thomas-roess.fr">https://www.thomas-roess.fr</a> des informations aussi précises que possible. Toutefois, il ne pourra être tenu responsable des oublis, des inexactitudes et des carences dans la mise à jour, qu’elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.</p>
 
                     <p>Toutes les informations indiquées sur le site <a href="https://www.thomas-roess.fr">https://www.thomas-roess.fr</a> sont données à titre indicatif, et sont susceptibles d’évoluer. Par ailleurs, les renseignements figurant sur le site <a href="https://www.thomas-roess.fr">https://www.thomas-roess.fr</a> ne sont pas exhaustifs. Ils sont donnés sous réserve de modifications ayant été apportées depuis leur mise en ligne.</p>
 
@@ -405,7 +407,7 @@
                     <p>
                     Dans la limite de leurs attributions respectives et pour les finalités rappelées ci-dessus, les principales personnes susceptibles d’avoir accès aux données des Utilisateurs de <a href="https://www.thomas-roess.fr">https://www.thomas-roess.fr</a> sont principalement les agents de notre service client.</p>
                     
-                    <div ng-bind-html="rgpdHTML"><h3>7.5 Types de données collectées</h3><p>Concernant les utilisateurs d’un Site <a href="https://www.thomas-roess.fr">https://www.thomas-roess.fr</a>, nous collectons les données suivantes qui sont indispensables au fonctionnement du service&nbsp;, et qui seront conservées pendant une période maximale de 12 mois mois après la fin de la relation contractuelle:<br>nom, prénom, adresse mail</p></div>
+                    <div><h3>7.5 Types de données collectées</h3><p>Concernant les utilisateurs d’un Site <a href="https://www.thomas-roess.fr">https://www.thomas-roess.fr</a>, nous collectons les données suivantes qui sont indispensables au fonctionnement du service&nbsp;, et qui seront conservées pendant une période maximale de 12 mois mois après la fin de la relation contractuelle:<br>nom, prénom, adresse mail</p></div>
 
 
                     <h2>8. Notification d’incident</h2>
